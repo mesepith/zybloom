@@ -1,0 +1,372 @@
+"Project-Id-Version: WP-Inbox\n"
+"POT-Creation-Date: 2020-02-25 10:30+0200\n"
+"PO-Revision-Date: 2020-02-25 09:55+0100\n"
+"Last-Translator: Softbranch <info@softbranch.com>\n"
+"Language-Team: Softbranch <info@softbranch.com>\n"
+"MIME-Version: 2.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid "Webmail Account overview"
+msgstr ""
+
+msgid "Steps to Setup Webmail"
+msgstr ""
+
+msgid "Open Cpanel."
+msgstr ""
+
+msgid "Go to File Manager."
+msgstr ""
+
+msgid "Click on Home."
+msgstr ""
+
+msgid "Go to Mail."
+msgstr ""
+
+msgid "Create new Folder."
+msgstr ""
+
+msgid "Go to WordPress admin."
+msgstr ""
+
+msgid "Click on INBOX-Webmail."
+msgstr ""
+
+msgid "Click on Inbox."
+msgstr ""
+
+msgid "Click on Inbox"
+msgstr ""
+
+msgid "INBOX"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Inbox Account Add/Edit"
+msgstr ""
+
+msgid "Steps to Setup Inbox"
+msgstr ""
+
+msgid "Enter email ID."
+msgstr ""
+
+msgid "Enter email Password."
+msgstr ""
+
+msgid "Delete from server after processed (Recommended)."
+msgstr ""
+
+msgid "Click on Active."
+msgstr ""
+
+msgid "Enter your Email Signature."
+msgstr ""
+
+msgid "Click Save."
+msgstr ""
+
+msgid "Email ID:"
+msgstr ""
+
+msgid "Password:"
+msgstr ""
+
+msgid "Delete from server after processed:"
+msgstr ""
+
+msgid "After process move to folder:"
+msgstr ""
+
+msgid "Active:"
+msgstr ""
+
+msgid "Email Signature:"
+msgstr ""
+
+msgid "Compose"
+msgstr ""
+
+msgid "Inbox"
+msgstr ""
+
+msgid "Sent"
+msgstr ""
+
+msgid "Important"
+msgstr ""
+
+msgid "Starred"
+msgstr ""
+
+msgid "Trash"
+msgstr ""
+
+msgid "Labels"
+msgstr ""
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr ""
+
+msgid "Upload File"
+msgstr ""
+
+msgid "Add more file"
+msgstr ""
+
+msgid "SEND"
+msgstr ""
+
+
+msgid "Inbox Account overview"
+msgstr ""
+
+msgid "From:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
+
+msgid "CC:"
+msgstr ""
+
+msgid "BCC:"
+msgstr ""
+
+msgid "Size:"
+msgstr ""
+
+msgid "KB"
+msgstr ""
+
+msgid "Reply"
+msgstr ""
+
+msgid "Forward"
+msgstr ""
+
+msgid "Bulk Actions"
+msgstr ""
+
+msgid "Mark as Read"
+msgstr ""
+
+msgid "Mark as Unread"
+msgstr ""
+
+msgid "Mark as Important"
+msgstr ""
+
+msgid "Remove Important"
+msgstr ""
+
+msgid "Mark as Starred"
+msgstr ""
+
+msgid "Remove Starred"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Primary"
+msgstr ""
+
+msgid "Promotions"
+msgstr ""
+
+msgid "Social"
+msgstr ""
+
+msgid "Account Details"
+msgstr ""
+
+msgid "Create Labels"
+msgstr ""
+
+msgid "Label Name"
+msgstr ""
+
+msgid "Color Code"
+msgstr ""
+
+msgid "Add more label"
+msgstr ""
+
+msgid "Folder Name"
+msgstr ""
+
+msgid "Save Data"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+msgid "CC"
+msgstr ""
+
+msgid "BCC"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+msgid "Add New"
+msgstr ""
+
+msgid "Cron Url:"
+msgstr ""
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr ""
+
+msgid "No data available"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "Move to Inbox"
+msgstr ""
+
+msgid "WP-Inbox"
+msgstr ""
+
+msgid "INBOX-Webmail"
+msgstr ""
+
+msgid "Delete Permanently"
+msgstr ""
+
+
+msgid "Apply"
+msgstr ""
+
+msgid "Mark as Star"
+msgstr ""
+
+msgid "Accounts"
+msgstr ""
+
+msgid "Data saved successfully."
+msgstr ""
+
+msgid "Entered Email/password is not correct."
+msgstr ""
+
+msgid "IMAP function not enabled."
+msgstr ""
+
+msgid "Data parse successfully. Total new email"
+msgstr ""
+
+msgid "Account not activated."
+msgstr ""
+
+msgid "To email and Subject is required field."
+msgstr ""
+
+msgid "Email send successfully."
+msgstr ""
+
+msgid "Some Problem occurred."
+msgstr ""
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+msgid "No any id seleted."
+msgstr ""
+
+msgid "Bulk Action performed."
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+
+msgid "Date"
+msgstr ""
+
+
+msgid "Status"
+msgstr ""
+
+
+msgid "Email"
+msgstr ""
+
+
+msgid "ID"
+msgstr ""
+
+
+msgid "Activate"
+msgstr ""
+
+
+msgid "In-Activate"
+msgstr ""
+
+
+msgid "Edit"
+msgstr ""
+
+
+msgid "Enter the folder name created in Cpanel Mail."
+msgstr ""
+
+msgid "Webmail Account Add/Edit"
+msgstr ""
+
+msgid "Webmail Inbox overview"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "In-Active"
+msgstr ""
+
+msgid "Enter Name of Sender"
+msgstr ""
+
+msgid "Enter Email ID"
+msgstr ""
+
+msgid "Enter Email Password"
+msgstr ""
+
+msgid "Click Active"
+msgstr ""
+
+msgid "Enter Signature"
+msgstr ""
+
+msgid "Click Save Data"
+msgstr ""
+
+msgid "Note : Please read the Documentation for complete information"
+msgstr ""
+
+
+msgid "Name:"
+msgstr ""

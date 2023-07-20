@@ -1,0 +1,360 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Inbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 10:57+0000\n"
+"PO-Revision-Date: 2020-03-28 10:57+0000\n"
+"Last-Translator: admin <bnimbhal@gmail.com>\n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+msgid "Webmail Account overview"
+msgstr "网络邮件帐户概述"
+
+msgid "Steps to Setup Webmail"
+msgstr "步骤，设置网络邮件"
+
+msgid "Open Cpanel."
+msgstr "打开那时."
+
+msgid "Go to File Manager."
+msgstr "文件经理。"
+
+msgid "Click on Home."
+msgstr "点击家。"
+
+msgid "Go to Mail."
+msgstr "去邮件。"
+
+msgid "Create new Folder."
+msgstr "创建新的文件夹。"
+
+msgid "Go to WordPress admin."
+msgstr "走到台管理."
+
+msgid "Click on INBOX-Webmail."
+msgstr "点击电子邮件收件箱-邮件."
+
+msgid "Click on Inbox."
+msgstr "点击电子邮件收件箱."
+
+msgid "Click on Inbox"
+msgstr "点击电子邮件收件箱"
+
+msgid "INBOX"
+msgstr "电子邮件收件箱"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Inbox Account Add/Edit"
+msgstr "电子邮件收件箱帐户的增加/编辑"
+
+msgid "Steps to Setup Inbox"
+msgstr "步骤设置的电子邮件收件箱"
+
+msgid "Enter email ID."
+msgstr "进入电子邮件ID。"
+
+msgid "Enter email Password."
+msgstr "进入电子邮件密码。"
+
+msgid "Delete from server after processed (Recommended)."
+msgstr "删除后从服务器进行处理(建议)."
+
+msgid "Click on Active."
+msgstr "点击活动。"
+
+msgid "Enter your Email Signature."
+msgstr "输入你的电子邮件签名。"
+
+msgid "Click Save."
+msgstr "\"保存\"。"
+
+msgid "Email ID:"
+msgstr "电子邮件ID:"
+
+msgid "Password:"
+msgstr "密码："
+
+msgid "Delete from server after processed:"
+msgstr "删除后从服务器进行处理："
+
+msgid "After process move to folder:"
+msgstr "后处理移到文件夹："
+
+msgid "Active:"
+msgstr "活动："
+
+msgid "Email Signature:"
+msgstr "电子邮件签署："
+
+msgid "Compose"
+msgstr "撰写"
+
+msgid "Inbox"
+msgstr "电子邮件收件箱"
+
+msgid "Sent"
+msgstr "发送"
+
+msgid "Important"
+msgstr "重要"
+
+msgid "Starred"
+msgstr "主演"
+
+msgid "Trash"
+msgstr "垃圾"
+
+msgid "Labels"
+msgstr "标签"
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr "使用逗号分开的电子邮件为多个电子邮件标识。"
+
+msgid "Upload File"
+msgstr "上传文件"
+
+msgid "Add more file"
+msgstr "添加更多的文件"
+
+msgid "SEND"
+msgstr "发送"
+
+msgid "Inbox Account overview"
+msgstr "电子邮件收件箱帐户的概述"
+
+msgid "From:"
+msgstr "自："
+
+msgid "To:"
+msgstr "为："
+
+msgid "CC:"
+msgstr "CC:"
+
+msgid "BCC:"
+msgstr "BCC:"
+
+msgid "Size:"
+msgstr "尺寸："
+
+msgid "KB"
+msgstr "KB"
+
+msgid "Reply"
+msgstr "回复"
+
+msgid "Forward"
+msgstr "向前"
+
+msgid "Bulk Actions"
+msgstr "散行动"
+
+msgid "Mark as Read"
+msgstr "标记如阅读"
+
+msgid "Mark as Unread"
+msgstr "标记为未读"
+
+msgid "Mark as Important"
+msgstr "标记一样重要"
+
+msgid "Remove Important"
+msgstr "删除重要"
+
+msgid "Mark as Starred"
+msgstr "标记作为主演"
+
+msgid "Remove Starred"
+msgstr "删除主演"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Primary"
+msgstr "主"
+
+msgid "Promotions"
+msgstr "促销"
+
+msgid "Social"
+msgstr "社会"
+
+msgid "Account Details"
+msgstr "帐户的详细信息"
+
+msgid "Create Labels"
+msgstr "创建标签"
+
+msgid "Label Name"
+msgstr "标签名"
+
+msgid "Color Code"
+msgstr "颜色代码"
+
+msgid "Add more label"
+msgstr "增加更多的标签"
+
+msgid "Folder Name"
+msgstr "文件夹的名字"
+
+msgid "Save Data"
+msgstr "保存数据"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "To"
+msgstr "要"
+
+msgid "CC"
+msgstr "CC"
+
+msgid "BCC"
+msgstr "BCC"
+
+msgid "Subject"
+msgstr "受"
+
+msgid "Add New"
+msgstr "添加新的"
+
+msgid "Cron Url:"
+msgstr "Cron Url:"
+
+msgid "No data available"
+msgstr "无可用数据"
+
+msgid "Message"
+msgstr "消息"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "or"
+msgstr "或"
+
+msgid "Move to Inbox"
+msgstr "移动到的电子邮件收件箱"
+
+msgid "WP-Inbox"
+msgstr "WP-电子邮件收件箱"
+
+msgid "INBOX-Webmail"
+msgstr "电子邮件收件箱-邮局"
+
+msgid "Delete Permanently"
+msgstr "删除永久地"
+
+msgid "Apply"
+msgstr "适用"
+
+msgid "Mark as Star"
+msgstr "标记星"
+
+msgid "Accounts"
+msgstr "帐户"
+
+msgid "Data saved successfully."
+msgstr "数据保存的成功。"
+
+msgid "Entered Email/password is not correct."
+msgstr "进入电子邮件/密码是不正确的。"
+
+msgid "IMAP function not enabled."
+msgstr "IMAP功能未启用。"
+
+msgid "Data parse successfully. Total new email"
+msgstr "数据分析的成功。 总的新的电子邮件"
+
+msgid "Account not activated."
+msgstr "账户中没有被激活。"
+
+msgid "To email and Subject is required field."
+msgstr "电子邮件和主题是必需的领域。"
+
+msgid "Email send successfully."
+msgstr "电子邮件发送成功。"
+
+msgid "Some Problem occurred."
+msgstr "一些问题的发生。"
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr "你没有足够的权限访问这个网页。"
+
+msgid "No any id seleted."
+msgstr "没有任何id入围."
+
+msgid "Bulk Action performed."
+msgstr "散装行动的进行。"
+
+msgid "Action"
+msgstr "动作"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Email"
+msgstr "电子邮件"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Activate"
+msgstr "激活"
+
+msgid "In-Activate"
+msgstr "在激活"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Enter the folder name created in Cpanel Mail."
+msgstr "进入文件夹的名字建立在交友的邮件。"
+
+msgid "Webmail Account Add/Edit"
+msgstr "网络邮件帐户的增加/编辑"
+
+msgid "Webmail Inbox overview"
+msgstr "网络邮件，电子邮件收件箱概述"
+
+msgid "Active"
+msgstr "活性"
+
+msgid "In-Active"
+msgstr "在活动"
+
+msgid "Enter Name of Sender"
+msgstr "进入发件人的名字"
+
+msgid "Enter Email ID"
+msgstr "输入电子邮件ID"
+
+msgid "Enter Email Password"
+msgstr "输入密码的电子邮件"
+
+msgid "Click Active"
+msgstr "击活动"
+
+msgid "Enter Signature"
+msgstr "输入的签名"
+
+msgid "Click Save Data"
+msgstr "点击数据的保存"
+
+msgid "Note : Please read the Documentation for complete information"
+msgstr "注意：请阅读的文献的完整信息"
+
+msgid "Name:"
+msgstr "名称："

@@ -1,0 +1,360 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Inbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 10:54+0000\n"
+"PO-Revision-Date: 2020-03-28 10:54+0000\n"
+"Last-Translator: admin <bnimbhal@gmail.com>\n"
+"Language-Team: Dutch (Formal)\n"
+"Language: nl_NL_formal\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+msgid "Webmail Account overview"
+msgstr "Webmail Account overzicht"
+
+msgid "Steps to Setup Webmail"
+msgstr "Stappen voor het Instellen van Webmail"
+
+msgid "Open Cpanel."
+msgstr "Open Cpanel."
+
+msgid "Go to File Manager."
+msgstr "Ga naar File Manager."
+
+msgid "Click on Home."
+msgstr "Klik op Home."
+
+msgid "Go to Mail."
+msgstr "Ga naar e-Mail."
+
+msgid "Create new Folder."
+msgstr "Nieuwe Map maken."
+
+msgid "Go to WordPress admin."
+msgstr "Ga naar de WordPress admin."
+
+msgid "Click on INBOX-Webmail."
+msgstr "Klik op POSTVAK in van Webmail."
+
+msgid "Click on Inbox."
+msgstr "Klik op Postvak in."
+
+msgid "Click on Inbox"
+msgstr "Klik op Postvak in"
+
+msgid "INBOX"
+msgstr "POSTVAK in"
+
+msgid "Settings"
+msgstr "Instellingen"
+
+msgid "Inbox Account Add/Edit"
+msgstr "Inbox-Account Toevoegen/Bewerken"
+
+msgid "Steps to Setup Inbox"
+msgstr "Stappen om het Setup Inbox"
+
+msgid "Enter email ID."
+msgstr "Vul de e-ID."
+
+msgid "Enter email Password."
+msgstr "Voer e-mail Wachtwoord."
+
+msgid "Delete from server after processed (Recommended)."
+msgstr "Verwijderen van server na het verwerkt (Aanbevolen)."
+
+msgid "Click on Active."
+msgstr "Klik op Actief."
+
+msgid "Enter your Email Signature."
+msgstr "Voer uw e-Mail Handtekening."
+
+msgid "Click Save."
+msgstr "Klik Op Opslaan."
+
+msgid "Email ID:"
+msgstr "E-mail-ID:"
+
+msgid "Password:"
+msgstr "Wachtwoord:"
+
+msgid "Delete from server after processed:"
+msgstr "Verwijderen van server na het verwerkt:"
+
+msgid "After process move to folder:"
+msgstr "Na het proces verplaatsen naar map:"
+
+msgid "Active:"
+msgstr "Actief:"
+
+msgid "Email Signature:"
+msgstr "E-Mail Handtekening:"
+
+msgid "Compose"
+msgstr "Samenstellen"
+
+msgid "Inbox"
+msgstr "Postvak in"
+
+msgid "Sent"
+msgstr "Verzonden"
+
+msgid "Important"
+msgstr "Belangrijk"
+
+msgid "Starred"
+msgstr "Ster"
+
+msgid "Trash"
+msgstr "Prullenbak"
+
+msgid "Labels"
+msgstr "Etiketten"
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr "Gebruik komma 's gescheiden e-mail voor meerdere e-mail-id' s."
+
+msgid "Upload File"
+msgstr "Upload Bestand"
+
+msgid "Add more file"
+msgstr "Voeg meer bestand"
+
+msgid "SEND"
+msgstr "VERZENDEN"
+
+msgid "Inbox Account overview"
+msgstr "Inbox-Account overzicht"
+
+msgid "From:"
+msgstr "Van:"
+
+msgid "To:"
+msgstr "Naar:"
+
+msgid "CC:"
+msgstr "CC:"
+
+msgid "BCC:"
+msgstr "BCC:"
+
+msgid "Size:"
+msgstr "Grootte:"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "Reply"
+msgstr "Beantwoorden"
+
+msgid "Forward"
+msgstr "Vooruit"
+
+msgid "Bulk Actions"
+msgstr "Bulk Acties"
+
+msgid "Mark as Read"
+msgstr "Markeren als Gelezen"
+
+msgid "Mark as Unread"
+msgstr "Markeren als Ongelezen"
+
+msgid "Mark as Important"
+msgstr "Markeren als Belangrijk"
+
+msgid "Remove Important"
+msgstr "Verwijder Belangrijk"
+
+msgid "Mark as Starred"
+msgstr "Markeer Ster"
+
+msgid "Remove Starred"
+msgstr "Verwijder Ster"
+
+msgid "Delete"
+msgstr "Verwijderen"
+
+msgid "Primary"
+msgstr "Primaire"
+
+msgid "Promotions"
+msgstr "Promoties"
+
+msgid "Social"
+msgstr "Sociale"
+
+msgid "Account Details"
+msgstr "Account Gegevens"
+
+msgid "Create Labels"
+msgstr "Etiketten Maken"
+
+msgid "Label Name"
+msgstr "Naam"
+
+msgid "Color Code"
+msgstr "Kleur Code"
+
+msgid "Add more label"
+msgstr "Voeg meer etiket"
+
+msgid "Folder Name"
+msgstr "Map-Naam In"
+
+msgid "Save Data"
+msgstr "Opslaan Gegevens"
+
+msgid "Save"
+msgstr "Opslaan"
+
+msgid "To"
+msgstr "Naar"
+
+msgid "CC"
+msgstr "CC"
+
+msgid "BCC"
+msgstr "BCC"
+
+msgid "Subject"
+msgstr "Onderwerp"
+
+msgid "Add New"
+msgstr "Het Toevoegen Van Nieuwe"
+
+msgid "Cron Url:"
+msgstr "Cron Url:"
+
+msgid "No data available"
+msgstr "Geen gegevens beschikbaar"
+
+msgid "Message"
+msgstr "Bericht"
+
+msgid "Download"
+msgstr "Downloaden"
+
+msgid "or"
+msgstr "of"
+
+msgid "Move to Inbox"
+msgstr "Verplaatsen naar Postvak in"
+
+msgid "WP-Inbox"
+msgstr "WP-Postvak in"
+
+msgid "INBOX-Webmail"
+msgstr "POSTVAK in van Webmail"
+
+msgid "Delete Permanently"
+msgstr "Permanent Verwijderen"
+
+msgid "Apply"
+msgstr "Toepassing"
+
+msgid "Mark as Star"
+msgstr "Markeer Sterren"
+
+msgid "Accounts"
+msgstr "Accounts"
+
+msgid "Data saved successfully."
+msgstr "Gegevens succesvol opgeslagen."
+
+msgid "Entered Email/password is not correct."
+msgstr "Ingegeven e-Mail/wachtwoord is niet correct."
+
+msgid "IMAP function not enabled."
+msgstr "IMAP functie niet ingeschakeld."
+
+msgid "Data parse successfully. Total new email"
+msgstr "Gegevens goed geparseerd. Totaal nieuwe e-mail"
+
+msgid "Account not activated."
+msgstr "Account niet geactiveerd."
+
+msgid "To email and Subject is required field."
+msgstr "Naar e-mail en het Onderwerp is een verplicht veld."
+
+msgid "Email send successfully."
+msgstr "E-mail verzenden met succes."
+
+msgid "Some Problem occurred."
+msgstr "Een Probleem is opgetreden."
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr "U hebt niet voldoende rechten om deze pagina te bekijken."
+
+msgid "No any id seleted."
+msgstr "Geen id seleted."
+
+msgid "Bulk Action performed."
+msgstr "Bulk Actie."
+
+msgid "Action"
+msgstr "Actie"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Activate"
+msgstr "Activeren"
+
+msgid "In-Activate"
+msgstr "In De-Activeren"
+
+msgid "Edit"
+msgstr "Bewerken"
+
+msgid "Enter the folder name created in Cpanel Mail."
+msgstr "Voer de naam van de map gemaakt in Cpanel Mail."
+
+msgid "Webmail Account Add/Edit"
+msgstr "Webmail Account Toevoegen/Bewerken"
+
+msgid "Webmail Inbox overview"
+msgstr "Webmail Inbox overzicht"
+
+msgid "Active"
+msgstr "Actief"
+
+msgid "In-Active"
+msgstr "In-Actief"
+
+msgid "Enter Name of Sender"
+msgstr "Voer de Naam van de Afzender"
+
+msgid "Enter Email ID"
+msgstr "Voer e-Mail-ID"
+
+msgid "Enter Email Password"
+msgstr "Voer E-Mail Wachtwoord"
+
+msgid "Click Active"
+msgstr "Klik Op Active"
+
+msgid "Enter Signature"
+msgstr "Voer Handtekening"
+
+msgid "Click Save Data"
+msgstr "Klik Op Opslaan Gegevens"
+
+msgid "Note : Please read the Documentation for complete information"
+msgstr "Opmerking : zie de Documentatie voor volledige informatie"
+
+msgid "Name:"
+msgstr "Naam:"

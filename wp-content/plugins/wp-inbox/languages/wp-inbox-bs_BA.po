@@ -1,0 +1,361 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Inbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 10:49+0000\n"
+"PO-Revision-Date: 2020-03-28 10:49+0000\n"
+"Last-Translator: admin <bnimbhal@gmail.com>\n"
+"Language-Team: Bosnian\n"
+"Language: bs_BA\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+msgid "Webmail Account overview"
+msgstr "Webmailu pregled"
+
+msgid "Steps to Setup Webmail"
+msgstr "Korake da je Nameštaljka Webmail"
+
+msgid "Open Cpanel."
+msgstr "Otvori Cpanel."
+
+msgid "Go to File Manager."
+msgstr "Idem da Dosije Menadžer."
+
+msgid "Click on Home."
+msgstr "Kliknite na Kući."
+
+msgid "Go to Mail."
+msgstr "Idi u Poštu."
+
+msgid "Create new Folder."
+msgstr "Stvoriti novi Direktorij."
+
+msgid "Go to WordPress admin."
+msgstr "Idem da WordPress admin."
+
+msgid "Click on INBOX-Webmail."
+msgstr "Kliknite na EMAIL-Webmail."
+
+msgid "Click on Inbox."
+msgstr "Kliknite na poštanski pretinac."
+
+msgid "Click on Inbox"
+msgstr "Kliknite na Inbox"
+
+msgid "INBOX"
+msgstr "INBOX"
+
+msgid "Settings"
+msgstr "Postavke"
+
+msgid "Inbox Account Add/Edit"
+msgstr "Inbox Račun Dodati/Uredi"
+
+msgid "Steps to Setup Inbox"
+msgstr "Korake da je Nameštaljka Inbox"
+
+msgid "Enter email ID."
+msgstr "Unesite e-mail ISPRAVE."
+
+msgid "Enter email Password."
+msgstr "Unesite e-mail Lozinku."
+
+msgid "Delete from server after processed (Recommended)."
+msgstr "Izbrisati iz server nakon što je obradio (Preporučio)."
+
+msgid "Click on Active."
+msgstr "Kliknite na Aktivne."
+
+msgid "Enter your Email Signature."
+msgstr "Unesite tvoj e-Mail Potpis."
+
+msgid "Click Save."
+msgstr "Klik Spasiti."
+
+msgid "Email ID:"
+msgstr "E-mail ID:"
+
+msgid "Password:"
+msgstr "Lozinka:"
+
+msgid "Delete from server after processed:"
+msgstr "Izbrisati iz server nakon što je obradio:"
+
+msgid "After process move to folder:"
+msgstr "Nakon proces preseliti u fascikli:"
+
+msgid "Active:"
+msgstr "Aktivni:"
+
+msgid "Email Signature:"
+msgstr "E-Mail Potpis:"
+
+msgid "Compose"
+msgstr "Komponujem"
+
+msgid "Inbox"
+msgstr "Inbox"
+
+msgid "Sent"
+msgstr "Poslali"
+
+msgid "Important"
+msgstr "Važno"
+
+msgid "Starred"
+msgstr "Glumila"
+
+msgid "Trash"
+msgstr "Đubre"
+
+msgid "Labels"
+msgstr "Etikete"
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr "Koristi zarez , odvojena e-mail za više e-mail iskaznice."
+
+msgid "Upload File"
+msgstr "Postavi Fajl"
+
+msgid "Add more file"
+msgstr "Dodaj više fajl"
+
+msgid "SEND"
+msgstr "POŠALJI"
+
+msgid "Inbox Account overview"
+msgstr "Inbox Račun pregled"
+
+msgid "From:"
+msgstr "Od:"
+
+msgid "To:"
+msgstr "Da:"
+
+msgid "CC:"
+msgstr "CC:"
+
+msgid "BCC:"
+msgstr "BCC:"
+
+msgid "Size:"
+msgstr "Velicina:"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "Reply"
+msgstr "Odgovor"
+
+msgid "Forward"
+msgstr "Naprijed"
+
+msgid "Bulk Actions"
+msgstr "Većina Akcije"
+
+msgid "Mark as Read"
+msgstr "Mark kao Pročitao"
+
+msgid "Mark as Unread"
+msgstr "Mark kao Nepročitano"
+
+msgid "Mark as Important"
+msgstr "Mark kao Važno"
+
+msgid "Remove Important"
+msgstr "Ukloni Važno"
+
+msgid "Mark as Starred"
+msgstr "Mark kao Glumila"
+
+msgid "Remove Starred"
+msgstr "Ukloni Glumila"
+
+msgid "Delete"
+msgstr "Obriši"
+
+msgid "Primary"
+msgstr "Primarni"
+
+msgid "Promotions"
+msgstr "Promocije"
+
+msgid "Social"
+msgstr "Socijalni"
+
+msgid "Account Details"
+msgstr "Račun Detalja"
+
+msgid "Create Labels"
+msgstr "Stvoriti Etikete"
+
+msgid "Label Name"
+msgstr "Etiketu Ime"
+
+msgid "Color Code"
+msgstr "Bojama"
+
+msgid "Add more label"
+msgstr "Dodaj više naljepnica"
+
+msgid "Folder Name"
+msgstr "Direktorij Ime"
+
+msgid "Save Data"
+msgstr "Spasi Podatke"
+
+msgid "Save"
+msgstr "Spasiti"
+
+msgid "To"
+msgstr "Da"
+
+msgid "CC"
+msgstr "CC"
+
+msgid "BCC"
+msgstr "BCC"
+
+msgid "Subject"
+msgstr "Subjekt"
+
+msgid "Add New"
+msgstr "Da Dodam Novog"
+
+msgid "Cron Url:"
+msgstr "Cron Url:"
+
+msgid "No data available"
+msgstr "Podaci nisu dostupni"
+
+msgid "Message"
+msgstr "Poruka"
+
+msgid "Download"
+msgstr "Preuzimanje"
+
+msgid "or"
+msgstr "ili"
+
+msgid "Move to Inbox"
+msgstr "Mrdaj da Inbox"
+
+msgid "WP-Inbox"
+msgstr "WP-Inbox"
+
+msgid "INBOX-Webmail"
+msgstr "INBOX-Webmail"
+
+msgid "Delete Permanently"
+msgstr "Obriši Trajno"
+
+msgid "Apply"
+msgstr "Prijaviti"
+
+msgid "Mark as Star"
+msgstr "Mark kao Zvezda"
+
+msgid "Accounts"
+msgstr "Računi"
+
+msgid "Data saved successfully."
+msgstr "Podaci spasio uspješno."
+
+msgid "Entered Email/password is not correct."
+msgstr "Ušao e-Mail/lozinku nije tačno."
+
+msgid "IMAP function not enabled."
+msgstr "IMAP funkcija ne omogućeno."
+
+msgid "Data parse successfully. Total new email"
+msgstr "Podaci tumačenje uspješno. Ukupno novi e-mail"
+
+msgid "Account not activated."
+msgstr "Računa se ne aktivira."
+
+msgid "To email and Subject is required field."
+msgstr "U e-mail, i Subjekt je potrebno polje."
+
+msgid "Email send successfully."
+msgstr "Pošalji e-mail uspješno."
+
+msgid "Some Problem occurred."
+msgstr "Neki Problem dogodilo."
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Nemaš dovoljno dozvole za pristup ovu stranicu."
+
+msgid "No any id seleted."
+msgstr "Ne li ličnu kartu seleted."
+
+msgid "Bulk Action performed."
+msgstr "Većina Akciju izveo."
+
+msgid "Action"
+msgstr "Akciju"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Activate"
+msgstr "Aktiviraj"
+
+msgid "In-Activate"
+msgstr "U-Aktiviraj"
+
+msgid "Edit"
+msgstr "Uredi"
+
+msgid "Enter the folder name created in Cpanel Mail."
+msgstr "Ući u fascikli ime stvoren u Cpanel Mail."
+
+msgid "Webmail Account Add/Edit"
+msgstr "Webmailu Dodati/Uredi"
+
+msgid "Webmail Inbox overview"
+msgstr "Webmail Inbox pregled"
+
+msgid "Active"
+msgstr "Aktivni"
+
+msgid "In-Active"
+msgstr "U-Aktivne"
+
+msgid "Enter Name of Sender"
+msgstr "Unesite Ime Pošiljaoca"
+
+msgid "Enter Email ID"
+msgstr "Unesite e-Mail ID"
+
+msgid "Enter Email Password"
+msgstr "Unesite E-Mail Lozinku"
+
+msgid "Click Active"
+msgstr "Klik Aktivni"
+
+msgid "Enter Signature"
+msgstr "Unesite Potpis"
+
+msgid "Click Save Data"
+msgstr "Klik Spasiti Podatke"
+
+msgid "Note : Please read the Documentation for complete information"
+msgstr "Napomena : Molim te, čitaj Dokumentacija za kompletne podatke"
+
+msgid "Name:"
+msgstr "Ime:"

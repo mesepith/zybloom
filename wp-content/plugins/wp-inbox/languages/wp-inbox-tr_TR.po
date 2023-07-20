@@ -1,0 +1,360 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Inbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 10:56+0000\n"
+"PO-Revision-Date: 2020-03-28 10:56+0000\n"
+"Last-Translator: admin <bnimbhal@gmail.com>\n"
+"Language-Team: Turkish\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+msgid "Webmail Account overview"
+msgstr "Webmail Hesabı genel bakış"
+
+msgid "Steps to Setup Webmail"
+msgstr "Kur Webmail için adımlar "
+
+msgid "Open Cpanel."
+msgstr "Açık Cpanel."
+
+msgid "Go to File Manager."
+msgstr "Dosya Yöneticisi gidin."
+
+msgid "Click on Home."
+msgstr "Eve tıklayın."
+
+msgid "Go to Mail."
+msgstr "Posta gidin."
+
+msgid "Create new Folder."
+msgstr "Yeni Klasör oluşturun."
+
+msgid "Go to WordPress admin."
+msgstr "WordPress admin gidin."
+
+msgid "Click on INBOX-Webmail."
+msgstr "GELEN kutusu tıklayın-Webmail."
+
+msgid "Click on Inbox."
+msgstr "Gelen Kutusu üzerine tıklayın."
+
+msgid "Click on Inbox"
+msgstr "Gelen Kutusu üzerine tıklayın "
+
+msgid "INBOX"
+msgstr "GELEN kutusu"
+
+msgid "Settings"
+msgstr "Ayarları"
+
+msgid "Inbox Account Add/Edit"
+msgstr "Gelen Hesap/Düzenle Ekle"
+
+msgid "Steps to Setup Inbox"
+msgstr "Kur Gelen adımları "
+
+msgid "Enter email ID."
+msgstr "E-posta KİMLİĞİ girin."
+
+msgid "Enter email Password."
+msgstr "E-posta Şifresini girin."
+
+msgid "Delete from server after processed (Recommended)."
+msgstr "(Önerilen) işlendikten sonra sunucudan sil."
+
+msgid "Click on Active."
+msgstr "Aktif tıklayın."
+
+msgid "Enter your Email Signature."
+msgstr "E-Posta imzanızı girin."
+
+msgid "Click Save."
+msgstr "Kaydet."
+
+msgid "Email ID:"
+msgstr "E-posta KİMLİĞİ:"
+
+msgid "Password:"
+msgstr "Şifre:"
+
+msgid "Delete from server after processed:"
+msgstr "İşlemden sonra sunucudan sil:"
+
+msgid "After process move to folder:"
+msgstr "İşlemden sonra klasöre gidin:"
+
+msgid "Active:"
+msgstr "Aktif:"
+
+msgid "Email Signature:"
+msgstr "E-Posta İmza:"
+
+msgid "Compose"
+msgstr "Oluştur"
+
+msgid "Inbox"
+msgstr "Gelen kutusu"
+
+msgid "Sent"
+msgstr "Gönderildi"
+
+msgid "Important"
+msgstr "Önemli"
+
+msgid "Starred"
+msgstr "Rol aldı"
+
+msgid "Trash"
+msgstr "Çöp"
+
+msgid "Labels"
+msgstr "Etiketler"
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr "Birden çok e-posta kimliği için kullanmak virgülle ayrılmış e-posta."
+
+msgid "Upload File"
+msgstr "Dosya Upload"
+
+msgid "Add more file"
+msgstr "Daha fazla dosya eklemek "
+
+msgid "SEND"
+msgstr "GÖNDER"
+
+msgid "Inbox Account overview"
+msgstr "Gelen Hesap özeti"
+
+msgid "From:"
+msgstr "Kimden:"
+
+msgid "To:"
+msgstr "İçin:"
+
+msgid "CC:"
+msgstr "CC:"
+
+msgid "BCC:"
+msgstr "BCC:"
+
+msgid "Size:"
+msgstr "Boyutu:"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "Reply"
+msgstr "Cevap"
+
+msgid "Forward"
+msgstr "İleri"
+
+msgid "Bulk Actions"
+msgstr "Toplu Eylemler"
+
+msgid "Mark as Read"
+msgstr "Okunmuş olarak işaretle"
+
+msgid "Mark as Unread"
+msgstr "Okunmamış olarak işaretle"
+
+msgid "Mark as Important"
+msgstr "Mark gibi Önemli"
+
+msgid "Remove Important"
+msgstr "Önemli Kaldırın "
+
+msgid "Mark as Starred"
+msgstr "Mark Canlandırdı"
+
+msgid "Remove Starred"
+msgstr "Rol Aldı Kaldır "
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "Primary"
+msgstr "İlköğretim"
+
+msgid "Promotions"
+msgstr "Promosyon"
+
+msgid "Social"
+msgstr "Sosyal"
+
+msgid "Account Details"
+msgstr "Hesap Ayrıntıları"
+
+msgid "Create Labels"
+msgstr "Etiketler Oluşturun "
+
+msgid "Label Name"
+msgstr "Etiket Adı"
+
+msgid "Color Code"
+msgstr "Renk Kodu"
+
+msgid "Add more label"
+msgstr "Daha fazla etiketi Ekle "
+
+msgid "Folder Name"
+msgstr "Klasör Adı"
+
+msgid "Save Data"
+msgstr "Veri Kaydet"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "To"
+msgstr "İçin"
+
+msgid "CC"
+msgstr "CC"
+
+msgid "BCC"
+msgstr "BCC"
+
+msgid "Subject"
+msgstr "Konu"
+
+msgid "Add New"
+msgstr "Yeni Ekle"
+
+msgid "Cron Url:"
+msgstr "Cron Url:"
+
+msgid "No data available"
+msgstr "Kullanılabilir veriler yok"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Download"
+msgstr "İndir"
+
+msgid "or"
+msgstr "ya"
+
+msgid "Move to Inbox"
+msgstr "Hareket Gelen "
+
+msgid "WP-Inbox"
+msgstr "WORDPRESS-Gelen Kutusu"
+
+msgid "INBOX-Webmail"
+msgstr "GELEN kutusu-Webmail"
+
+msgid "Delete Permanently"
+msgstr "Kalıcı Olarak Sil"
+
+msgid "Apply"
+msgstr "Uygula"
+
+msgid "Mark as Star"
+msgstr "Mark gibi Yıldız"
+
+msgid "Accounts"
+msgstr "Hesapları"
+
+msgid "Data saved successfully."
+msgstr "Veri başarıyla kaydedildi."
+
+msgid "Entered Email/password is not correct."
+msgstr "Girilen e-Posta/parola doğru değil."
+
+msgid "IMAP function not enabled."
+msgstr "IMAP fonksiyonu etkin değil."
+
+msgid "Data parse successfully. Total new email"
+msgstr "Veri başarıyla ayrıştırılamıyor. Toplam yeni e-posta"
+
+msgid "Account not activated."
+msgstr "Aktif hesap değil."
+
+msgid "To email and Subject is required field."
+msgstr "E-posta ve Konu alanı gereklidir."
+
+msgid "Email send successfully."
+msgstr "E-posta başarıyla gönderin."
+
+msgid "Some Problem occurred."
+msgstr "Bazı Sorun oluştu."
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Bu sayfaya erişmek için yeterli izinlere sahip değilsiniz."
+
+msgid "No any id seleted."
+msgstr "Hiçbir kimlik seleted."
+
+msgid "Bulk Action performed."
+msgstr "Toplu Eylem yapıldı."
+
+msgid "Action"
+msgstr "Eylem"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Status"
+msgstr "Durumu"
+
+msgid "Email"
+msgstr "E-posta"
+
+msgid "ID"
+msgstr "KİMLİĞİ"
+
+msgid "Activate"
+msgstr "Etkinleştirmek"
+
+msgid "In-Activate"
+msgstr "-Etkinleştirmek"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Enter the folder name created in Cpanel Mail."
+msgstr "Cpanel Mail olarak oluşturulan klasörün adını girin."
+
+msgid "Webmail Account Add/Edit"
+msgstr "Webmail Hesabı/Düzenle Ekle"
+
+msgid "Webmail Inbox overview"
+msgstr "Webmail Gelen bakış"
+
+msgid "Active"
+msgstr "Aktif"
+
+msgid "In-Active"
+msgstr "Bulunan-Aktif"
+
+msgid "Enter Name of Sender"
+msgstr "Gönderenin Adını girin "
+
+msgid "Enter Email ID"
+msgstr "E-Posta KİMLİĞİ girin "
+
+msgid "Enter Email Password"
+msgstr "E-Posta Şifrenizi Girin "
+
+msgid "Click Active"
+msgstr "Tıklayın Active"
+
+msgid "Enter Signature"
+msgstr "İmza Girin "
+
+msgid "Click Save Data"
+msgstr "Kaydet Veri"
+
+msgid "Note : Please read the Documentation for complete information"
+msgstr "Not : Lütfen Belgeleri okuyun tam bilgi için "
+
+msgid "Name:"
+msgstr "Adı:"

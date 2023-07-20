@@ -1,0 +1,365 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Inbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 10:54+0000\n"
+"PO-Revision-Date: 2020-03-28 10:55+0000\n"
+"Last-Translator: admin <bnimbhal@gmail.com>\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+msgid "Webmail Account overview"
+msgstr "Учетная запись электронной почты обзор"
+
+msgid "Steps to Setup Webmail"
+msgstr "Шаги для настройки электронной почты"
+
+msgid "Open Cpanel."
+msgstr "Откройте CPanel."
+
+msgid "Go to File Manager."
+msgstr "Перейдите в файловый менеджер."
+
+msgid "Click on Home."
+msgstr "Нажмите на дом."
+
+msgid "Go to Mail."
+msgstr "Идти на почту."
+
+msgid "Create new Folder."
+msgstr "Создать новую папку."
+
+msgid "Go to WordPress admin."
+msgstr "Идем в админке WordPress."
+
+msgid "Click on INBOX-Webmail."
+msgstr "Нажмите на почтовый ящик-электронная почта."
+
+msgid "Click on Inbox."
+msgstr "Нажмите на почтовый ящик."
+
+msgid "Click on Inbox"
+msgstr "Нажмите на почтовый"
+
+msgid "INBOX"
+msgstr "Почтовый"
+
+msgid "Settings"
+msgstr "Параметры"
+
+msgid "Inbox Account Add/Edit"
+msgstr "Почтовый Счет Добавить/Изменить"
+
+msgid "Steps to Setup Inbox"
+msgstr "Шаги для установки папки \"Входящие\""
+
+msgid "Enter email ID."
+msgstr "Введите идентификатор электронной почты."
+
+msgid "Enter email Password."
+msgstr "Введите пароль электронной почты."
+
+msgid "Delete from server after processed (Recommended)."
+msgstr "Удалять с сервера после обработки (рекомендуется)."
+
+msgid "Click on Active."
+msgstr "Нажмите на активный."
+
+msgid "Enter your Email Signature."
+msgstr "Введите Ваш адрес электронной подписи."
+
+msgid "Click Save."
+msgstr "Нажмите Кнопку Сохранить."
+
+msgid "Email ID:"
+msgstr "Адрес электронной почты:"
+
+msgid "Password:"
+msgstr "Пароль:"
+
+msgid "Delete from server after processed:"
+msgstr "Удалять с сервера после обработки:"
+
+msgid "After process move to folder:"
+msgstr "После процесса переместить в папку:"
+
+msgid "Active:"
+msgstr "Активный:"
+
+msgid "Email Signature:"
+msgstr "Подпись Электронной Почты:"
+
+msgid "Compose"
+msgstr "Сочинять"
+
+msgid "Inbox"
+msgstr "Почтовый"
+
+msgid "Sent"
+msgstr "Отправил"
+
+msgid "Important"
+msgstr "Важно"
+
+msgid "Starred"
+msgstr "Снялся"
+
+msgid "Trash"
+msgstr "Мусор"
+
+msgid "Labels"
+msgstr "Метки"
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr ""
+"Используйте запятую , разделяя электронной почты для нескольких "
+"идентификаторов электронной почты."
+
+msgid "Upload File"
+msgstr "Загрузить Файл"
+
+msgid "Add more file"
+msgstr "Добавить еще файл"
+
+msgid "SEND"
+msgstr "Отправить"
+
+msgid "Inbox Account overview"
+msgstr "Учетная запись почтовый обзор"
+
+msgid "From:"
+msgstr "От:"
+
+msgid "To:"
+msgstr "К:"
+
+msgid "CC:"
+msgstr "Копия:"
+
+msgid "BCC:"
+msgstr "КБК:"
+
+msgid "Size:"
+msgstr "Размер:"
+
+msgid "KB"
+msgstr "КБ"
+
+msgid "Reply"
+msgstr "Ответ"
+
+msgid "Forward"
+msgstr "Вперед"
+
+msgid "Bulk Actions"
+msgstr "Массовые Действия"
+
+msgid "Mark as Read"
+msgstr "Отметить как прочитанное"
+
+msgid "Mark as Unread"
+msgstr "Пометить как непрочитанное"
+
+msgid "Mark as Important"
+msgstr "Отметить как важное"
+
+msgid "Remove Important"
+msgstr "Удалить Важные"
+
+msgid "Mark as Starred"
+msgstr "Пометить как избранные"
+
+msgid "Remove Starred"
+msgstr "Удалить Снялся"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Primary"
+msgstr "Основной"
+
+msgid "Promotions"
+msgstr "Акции"
+
+msgid "Social"
+msgstr "Социальные"
+
+msgid "Account Details"
+msgstr "Реквизиты "
+
+msgid "Create Labels"
+msgstr "Создать Ярлыки"
+
+msgid "Label Name"
+msgstr "Имя Метки "
+
+msgid "Color Code"
+msgstr "Цветовой Код"
+
+msgid "Add more label"
+msgstr "Добавить больше меток"
+
+msgid "Folder Name"
+msgstr "Имя Папки "
+
+msgid "Save Data"
+msgstr "Сохранить Данные"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "To"
+msgstr "Для"
+
+msgid "CC"
+msgstr "Чч"
+
+msgid "BCC"
+msgstr "КБК"
+
+msgid "Subject"
+msgstr "Тема"
+
+msgid "Add New"
+msgstr "Добавить Новый"
+
+msgid "Cron Url:"
+msgstr "Хрон URL-Адрес:"
+
+msgid "No data available"
+msgstr "Нет данных"
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "Download"
+msgstr "Скачать"
+
+msgid "or"
+msgstr "или"
+
+msgid "Move to Inbox"
+msgstr "Перейти в почтовый ящик"
+
+msgid "WP-Inbox"
+msgstr "РГ-почтовый"
+
+msgid "INBOX-Webmail"
+msgstr "Почтовый ящик-электронная почта"
+
+msgid "Delete Permanently"
+msgstr "Удалить Навсегда"
+
+msgid "Apply"
+msgstr "Применить"
+
+msgid "Mark as Star"
+msgstr "Знак как звезды"
+
+msgid "Accounts"
+msgstr "Счетов"
+
+msgid "Data saved successfully."
+msgstr "Данные успешно сохранены."
+
+msgid "Entered Email/password is not correct."
+msgstr "Введенный email/пароль не правильный."
+
+msgid "IMAP function not enabled."
+msgstr "Поправте не включена."
+
+msgid "Data parse successfully. Total new email"
+msgstr "Данные успешно разобрать. Всего Новой почтой"
+
+msgid "Account not activated."
+msgstr "Учетная запись не активирована."
+
+msgid "To email and Subject is required field."
+msgstr "Для электронной почты и тему Обязательное поле."
+
+msgid "Email send successfully."
+msgstr "Электронной почты отправить."
+
+msgid "Some Problem occurred."
+msgstr "Какая-то проблема произошла."
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Вы не имеете достаточно прав для доступа к этой странице."
+
+msgid "No any id seleted."
+msgstr "Нет никаких документов отобранных."
+
+msgid "Bulk Action performed."
+msgstr "Массовое действие выполняется."
+
+msgid "Action"
+msgstr "Действие"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Email"
+msgstr "Электронной почты"
+
+msgid "ID"
+msgstr "Идентификатор"
+
+msgid "Activate"
+msgstr "Активировать"
+
+msgid "In-Activate"
+msgstr "В-Активировать"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Enter the folder name created in Cpanel Mail."
+msgstr "Введите имя папки, созданной в cPanel Почта."
+
+msgid "Webmail Account Add/Edit"
+msgstr "Учетной Записи Электронной Почты Добавить/Изменить"
+
+msgid "Webmail Inbox overview"
+msgstr "Электронная почта почтовый обзор"
+
+msgid "Active"
+msgstr "Активный"
+
+msgid "In-Active"
+msgstr "В-Активный"
+
+msgid "Enter Name of Sender"
+msgstr "Введите имя отправителя"
+
+msgid "Enter Email ID"
+msgstr "Введите идентификатор электронной почты "
+
+msgid "Enter Email Password"
+msgstr "Введите Пароль Электронной Почты "
+
+msgid "Click Active"
+msgstr "Нажмите Кнопку Активной"
+
+msgid "Enter Signature"
+msgstr "Введите Подпись"
+
+msgid "Click Save Data"
+msgstr "Нажмите Кнопку Сохранить Данные"
+
+msgid "Note : Please read the Documentation for complete information"
+msgstr ""
+"Примечание : пожалуйста, прочитайте документацию для получения полной "
+"информации"
+
+msgid "Name:"
+msgstr "Имя:"

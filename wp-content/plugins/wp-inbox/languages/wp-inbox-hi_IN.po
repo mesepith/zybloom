@@ -1,0 +1,360 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Inbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 10:51+0000\n"
+"PO-Revision-Date: 2020-03-28 10:51+0000\n"
+"Last-Translator: admin <bnimbhal@gmail.com>\n"
+"Language-Team: Hindi\n"
+"Language: hi_IN\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+msgid "Webmail Account overview"
+msgstr "वेबमेल खाते सिंहावलोकन"
+
+msgid "Steps to Setup Webmail"
+msgstr "कदम सेटअप करने के लिए वेबमेल"
+
+msgid "Open Cpanel."
+msgstr "खुला Cpanel."
+
+msgid "Go to File Manager."
+msgstr "जाने के लिए फ़ाइल प्रबंधक."
+
+msgid "Click on Home."
+msgstr "घर पर क्लिक करें."
+
+msgid "Go to Mail."
+msgstr "जाने के लिए मेल । "
+
+msgid "Create new Folder."
+msgstr "नया फ़ोल्डर बनाएँ."
+
+msgid "Go to WordPress admin."
+msgstr "जाने के लिए WordPress व्यवस्थापक."
+
+msgid "Click on INBOX-Webmail."
+msgstr "पर क्लिक करें इनबॉक्स-वेबमेल."
+
+msgid "Click on Inbox."
+msgstr "पर क्लिक करें इनबॉक्स."
+
+msgid "Click on Inbox"
+msgstr "इनबॉक्स पर क्लिक करें"
+
+msgid "INBOX"
+msgstr "इनबॉक्स"
+
+msgid "Settings"
+msgstr "सेटिंग्स"
+
+msgid "Inbox Account Add/Edit"
+msgstr "इनबॉक्स खाता जोड़ें/संपादित करें"
+
+msgid "Steps to Setup Inbox"
+msgstr "कदम सेटअप करने के लिए इनबॉक्स"
+
+msgid "Enter email ID."
+msgstr "दर्ज ईमेल आईडी."
+
+msgid "Enter email Password."
+msgstr "ईमेल दर्ज करें पासवर्ड । "
+
+msgid "Delete from server after processed (Recommended)."
+msgstr "हटाने के बाद सर्वर से संसाधित करें (अनुशंसित)."
+
+msgid "Click on Active."
+msgstr "पर क्लिक करें सक्रिय है । "
+
+msgid "Enter your Email Signature."
+msgstr "दर्ज करें अपने ईमेल हस्ताक्षर."
+
+msgid "Click Save."
+msgstr "सहेजें पर क्लिक करें."
+
+msgid "Email ID:"
+msgstr "ईमेल आईडी:"
+
+msgid "Password:"
+msgstr "पासवर्ड:"
+
+msgid "Delete from server after processed:"
+msgstr "से हटाने के बाद सर्वर संसाधित:"
+
+msgid "After process move to folder:"
+msgstr "के बाद प्रक्रिया फ़ोल्डर में ले जाएँ:"
+
+msgid "Active:"
+msgstr "सक्रिय:"
+
+msgid "Email Signature:"
+msgstr "ईमेल हस्ताक्षर:"
+
+msgid "Compose"
+msgstr "रचना"
+
+msgid "Inbox"
+msgstr "इनबॉक्स"
+
+msgid "Sent"
+msgstr "भेजा"
+
+msgid "Important"
+msgstr "महत्वपूर्ण"
+
+msgid "Starred"
+msgstr "अभिनय किया"
+
+msgid "Trash"
+msgstr "कचरा"
+
+msgid "Labels"
+msgstr "लेबल"
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr "उपयोग अल्पविराम से अलग किए गए ईमेल के लिए ईमेल आईडी."
+
+msgid "Upload File"
+msgstr "अपलोड फ़ाइल"
+
+msgid "Add more file"
+msgstr "अधिक फ़ाइल जोड़ें"
+
+msgid "SEND"
+msgstr "भेजें"
+
+msgid "Inbox Account overview"
+msgstr "इनबॉक्स खाते सिंहावलोकन"
+
+msgid "From:"
+msgstr "से:"
+
+msgid "To:"
+msgstr "करने के लिए:"
+
+msgid "CC:"
+msgstr "सीसी:"
+
+msgid "BCC:"
+msgstr "BCC:"
+
+msgid "Size:"
+msgstr "आकार:"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "Reply"
+msgstr "उत्तर"
+
+msgid "Forward"
+msgstr "आगे"
+
+msgid "Bulk Actions"
+msgstr "थोक कार्यों"
+
+msgid "Mark as Read"
+msgstr "मार्क के रूप में पढ़ें"
+
+msgid "Mark as Unread"
+msgstr "अपठित के रूप में चिह्नित"
+
+msgid "Mark as Important"
+msgstr "मार्क के रूप में महत्वपूर्ण"
+
+msgid "Remove Important"
+msgstr "निकालने महत्वपूर्ण"
+
+msgid "Mark as Starred"
+msgstr "मार्क के रूप में अभिनय किया"
+
+msgid "Remove Starred"
+msgstr "निकालें अभिनय किया"
+
+msgid "Delete"
+msgstr "हटाना"
+
+msgid "Primary"
+msgstr "प्राथमिक"
+
+msgid "Promotions"
+msgstr "प्रोन्नति"
+
+msgid "Social"
+msgstr "सामाजिक"
+
+msgid "Account Details"
+msgstr "खाते का विवरण"
+
+msgid "Create Labels"
+msgstr "लेबल बनाने"
+
+msgid "Label Name"
+msgstr "लेबल का नाम"
+
+msgid "Color Code"
+msgstr "रंग कोड"
+
+msgid "Add more label"
+msgstr "और अधिक जोड़ने के लेबल"
+
+msgid "Folder Name"
+msgstr "फ़ोल्डर का नाम"
+
+msgid "Save Data"
+msgstr "डेटा को बचाने के"
+
+msgid "Save"
+msgstr "बचाने के लिए"
+
+msgid "To"
+msgstr "करने के लिए"
+
+msgid "CC"
+msgstr "सीसी"
+
+msgid "BCC"
+msgstr "बीसीसी"
+
+msgid "Subject"
+msgstr "विषय"
+
+msgid "Add New"
+msgstr "नई जोड़ें"
+
+msgid "Cron Url:"
+msgstr "क्रॉन यूआरएल:"
+
+msgid "No data available"
+msgstr "कोई डेटा उपलब्ध नहीं है"
+
+msgid "Message"
+msgstr "संदेश"
+
+msgid "Download"
+msgstr "डाउनलोड"
+
+msgid "or"
+msgstr "या"
+
+msgid "Move to Inbox"
+msgstr "इनबॉक्स में स्थानांतरित"
+
+msgid "WP-Inbox"
+msgstr "WP-इनबॉक्स"
+
+msgid "INBOX-Webmail"
+msgstr "इनबॉक्स-वेबमेल"
+
+msgid "Delete Permanently"
+msgstr "स्थायी रूप से हटाएँ"
+
+msgid "Apply"
+msgstr "लागू"
+
+msgid "Mark as Star"
+msgstr "मार्क के रूप में स्टार"
+
+msgid "Accounts"
+msgstr "खातों"
+
+msgid "Data saved successfully."
+msgstr "डेटा सफलतापूर्वक बचाया."
+
+msgid "Entered Email/password is not correct."
+msgstr "प्रवेश ईमेल/पासवर्ड सही नहीं है । "
+
+msgid "IMAP function not enabled."
+msgstr "IMAP समारोह सक्रिय नहीं है."
+
+msgid "Data parse successfully. Total new email"
+msgstr "डेटा पार्स सफलतापूर्वक । कुल नया ईमेल"
+
+msgid "Account not activated."
+msgstr "खाता सक्रिय नहीं । "
+
+msgid "To email and Subject is required field."
+msgstr "ईमेल करने के लिए और इस विषय की आवश्यकता है क्षेत्र."
+
+msgid "Email send successfully."
+msgstr "ईमेल भेजने सफलतापूर्वक । "
+
+msgid "Some Problem occurred."
+msgstr "कुछ समस्या उत्पन्न हुई । "
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr "आप पर्याप्त अनुमति नहीं है करने के लिए इस पृष्ठ का उपयोग."
+
+msgid "No any id seleted."
+msgstr "कोई भी किसी भी आईडी seleted."
+
+msgid "Bulk Action performed."
+msgstr "थोक कार्रवाई प्रदर्शन किया."
+
+msgid "Action"
+msgstr "कार्रवाई"
+
+msgid "Date"
+msgstr "तारीख"
+
+msgid "Status"
+msgstr "स्थिति"
+
+msgid "Email"
+msgstr "ईमेल"
+
+msgid "ID"
+msgstr "आईडी"
+
+msgid "Activate"
+msgstr "सक्रिय"
+
+msgid "In-Activate"
+msgstr "में सक्रिय-"
+
+msgid "Edit"
+msgstr "संपादित करें"
+
+msgid "Enter the folder name created in Cpanel Mail."
+msgstr "फ़ोल्डर का नाम दर्ज करें में बनाई गई Cpanel मेल."
+
+msgid "Webmail Account Add/Edit"
+msgstr "वेबमेल खाते जोड़ें/संपादित करें"
+
+msgid "Webmail Inbox overview"
+msgstr "वेबमेल इनबॉक्स अवलोकन"
+
+msgid "Active"
+msgstr "सक्रिय"
+
+msgid "In-Active"
+msgstr "में सक्रिय"
+
+msgid "Enter Name of Sender"
+msgstr "दर्ज प्रेषक का नाम"
+
+msgid "Enter Email ID"
+msgstr "दर्ज ईमेल आईडी"
+
+msgid "Enter Email Password"
+msgstr "ईमेल पासवर्ड दर्ज करें"
+
+msgid "Click Active"
+msgstr "क्लिक करें सक्रिय"
+
+msgid "Enter Signature"
+msgstr "दर्ज हस्ताक्षर"
+
+msgid "Click Save Data"
+msgstr "डेटा सहेजें पर क्लिक करें"
+
+msgid "Note : Please read the Documentation for complete information"
+msgstr "नोट : प्रलेखन पढ़ें पूरी जानकारी के लिए"
+
+msgid "Name:"
+msgstr "नाम:"

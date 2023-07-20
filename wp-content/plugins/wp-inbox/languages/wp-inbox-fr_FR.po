@@ -1,0 +1,364 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Inbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 10:50+0000\n"
+"PO-Revision-Date: 2020-03-28 10:50+0000\n"
+"Last-Translator: admin <bnimbhal@gmail.com>\n"
+"Language-Team: French (France)\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+msgid "Webmail Account overview"
+msgstr "Webmail vue d'ensemble du Compte"
+
+msgid "Steps to Setup Webmail"
+msgstr "Les étapes de Configuration du Webmail"
+
+msgid "Open Cpanel."
+msgstr "Ouvrir Cpanel."
+
+msgid "Go to File Manager."
+msgstr "Accédez au Gestionnaire de Fichiers."
+
+msgid "Click on Home."
+msgstr "Cliquez sur la Maison."
+
+msgid "Go to Mail."
+msgstr "Aller à la poste."
+
+msgid "Create new Folder."
+msgstr "Créer un nouveau Dossier."
+
+msgid "Go to WordPress admin."
+msgstr "Aller à l'admin de WordPress."
+
+msgid "Click on INBOX-Webmail."
+msgstr "Cliquez sur BOÎTE de réception-Webmail."
+
+msgid "Click on Inbox."
+msgstr "Cliquez sur Boîte de réception."
+
+msgid "Click on Inbox"
+msgstr "Cliquez sur Boîte de réception"
+
+msgid "INBOX"
+msgstr "BOÎTE de réception"
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "Inbox Account Add/Edit"
+msgstr "Boîte De Réception Du Compte Ajouter/Modifier Des"
+
+msgid "Steps to Setup Inbox"
+msgstr "Étapes pour l'Installation de la Boîte de réception"
+
+msgid "Enter email ID."
+msgstr "Entrez l'adresse e-mail."
+
+msgid "Enter email Password."
+msgstr "Entrer Mot de passe de messagerie."
+
+msgid "Delete from server after processed (Recommended)."
+msgstr "Supprimer du serveur après traitement (Recommandé)."
+
+msgid "Click on Active."
+msgstr "Cliquez sur Active."
+
+msgid "Enter your Email Signature."
+msgstr "Entrez votre Signature d'e-Mail."
+
+msgid "Click Save."
+msgstr "Cliquez Sur Enregistrer."
+
+msgid "Email ID:"
+msgstr "ID e-mail:"
+
+msgid "Password:"
+msgstr "Mot de passe:"
+
+msgid "Delete from server after processed:"
+msgstr "Supprimer du serveur après traitement:"
+
+msgid "After process move to folder:"
+msgstr "Après le processus de déplacer vers un dossier:"
+
+msgid "Active:"
+msgstr "Active:"
+
+msgid "Email Signature:"
+msgstr "Signature D'E-Mail:"
+
+msgid "Compose"
+msgstr "Composer"
+
+msgid "Inbox"
+msgstr "Boîte de réception"
+
+msgid "Sent"
+msgstr "Envoyé"
+
+msgid "Important"
+msgstr "Important"
+
+msgid "Starred"
+msgstr "Étoilé"
+
+msgid "Trash"
+msgstr "Corbeille"
+
+msgid "Labels"
+msgstr "Les étiquettes"
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr ""
+"L'utilisation de virgules , séparés par courriel pour de multiples e-mail id."
+
+msgid "Upload File"
+msgstr "Télécharger Le Fichier"
+
+msgid "Add more file"
+msgstr "Ajouter plus de fichiers"
+
+msgid "SEND"
+msgstr "ENVOYER"
+
+msgid "Inbox Account overview"
+msgstr "Boîte de réception du Compte de présentation"
+
+msgid "From:"
+msgstr "De:"
+
+msgid "To:"
+msgstr "Pour:"
+
+msgid "CC:"
+msgstr "CC:"
+
+msgid "BCC:"
+msgstr "CCI:"
+
+msgid "Size:"
+msgstr "Taille:"
+
+msgid "KB"
+msgstr "KO"
+
+msgid "Reply"
+msgstr "Répondre"
+
+msgid "Forward"
+msgstr "Avant"
+
+msgid "Bulk Actions"
+msgstr "Des Actions Groupées"
+
+msgid "Mark as Read"
+msgstr "Marquer comme Lu"
+
+msgid "Mark as Unread"
+msgstr "Marquer comme non lu"
+
+msgid "Mark as Important"
+msgstr "Marquer comme Important"
+
+msgid "Remove Important"
+msgstr "Supprimer Important"
+
+msgid "Mark as Starred"
+msgstr "Marquer comme Étoilé"
+
+msgid "Remove Starred"
+msgstr "Supprimer Étoilé"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Primary"
+msgstr "Primaire"
+
+msgid "Promotions"
+msgstr "Les Promotions"
+
+msgid "Social"
+msgstr "Sociale"
+
+msgid "Account Details"
+msgstr "Détails Du Compte"
+
+msgid "Create Labels"
+msgstr "Créer Des Étiquettes"
+
+msgid "Label Name"
+msgstr "Le Nom De L'Étiquette"
+
+msgid "Color Code"
+msgstr "Code De Couleur"
+
+msgid "Add more label"
+msgstr "Ajouter plus de l'étiquette"
+
+msgid "Folder Name"
+msgstr "Nom De Dossier"
+
+msgid "Save Data"
+msgstr "Enregistrer Les Données"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "To"
+msgstr "Pour"
+
+msgid "CC"
+msgstr "CC"
+
+msgid "BCC"
+msgstr "CCI"
+
+msgid "Subject"
+msgstr "Sujet"
+
+msgid "Add New"
+msgstr "Ajouter De Nouveaux"
+
+msgid "Cron Url:"
+msgstr "Cron Url:"
+
+msgid "No data available"
+msgstr "Pas de données disponibles"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Download"
+msgstr "Télécharger"
+
+msgid "or"
+msgstr "ou"
+
+msgid "Move to Inbox"
+msgstr "Déplacer vers la Boîte de réception"
+
+msgid "WP-Inbox"
+msgstr "WP-Boîte de réception"
+
+msgid "INBOX-Webmail"
+msgstr "BOÎTE de réception-Webmail"
+
+msgid "Delete Permanently"
+msgstr "Supprimer Définitivement"
+
+msgid "Apply"
+msgstr "Appliquer"
+
+msgid "Mark as Star"
+msgstr "Marque Star"
+
+msgid "Accounts"
+msgstr "Comptes"
+
+msgid "Data saved successfully."
+msgstr "Les données enregistrées avec succès."
+
+msgid "Entered Email/password is not correct."
+msgstr "Entré e-Mail/mot de passe n'est pas correct."
+
+msgid "IMAP function not enabled."
+msgstr "IMAP fonction n'est pas activée."
+
+msgid "Data parse successfully. Total new email"
+msgstr "Les données de l'analyser correctement. Total des nouveaux e-mail"
+
+msgid "Account not activated."
+msgstr "Compte non activé."
+
+msgid "To email and Subject is required field."
+msgstr "Pour e-mail et l'Objet est un champ obligatoire."
+
+msgid "Email send successfully."
+msgstr "E-mail envoyer avec succès."
+
+msgid "Some Problem occurred."
+msgstr "Un Problème est survenu."
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+"Vous n'avez pas les autorisations suffisantes pour accéder à cette page."
+
+msgid "No any id seleted."
+msgstr "Aucune id sélectionné."
+
+msgid "Bulk Action performed."
+msgstr "En vrac Action effectuée."
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Activate"
+msgstr "Activer"
+
+msgid "In-Activate"
+msgstr "En-Activer"
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Enter the folder name created in Cpanel Mail."
+msgstr "Entrez le nom du dossier créé dans Cpanel Mail."
+
+msgid "Webmail Account Add/Edit"
+msgstr "Compte Webmail Ajouter/Modifier Des"
+
+msgid "Webmail Inbox overview"
+msgstr "Webmail aperçu de la Boîte de réception"
+
+msgid "Active"
+msgstr "Active"
+
+msgid "In-Active"
+msgstr "En-Active"
+
+msgid "Enter Name of Sender"
+msgstr "Saisir le Nom de l'Expéditeur"
+
+msgid "Enter Email ID"
+msgstr "Entrez l'adresse e-Mail"
+
+msgid "Enter Email Password"
+msgstr "Entrer Mot De Passe De Messagerie"
+
+msgid "Click Active"
+msgstr "Cliquez Sur Active"
+
+msgid "Enter Signature"
+msgstr "Entrez Signature"
+
+msgid "Click Save Data"
+msgstr "Cliquez Sur Enregistrer Les Données"
+
+msgid "Note : Please read the Documentation for complete information"
+msgstr ""
+"Remarque : Veuillez lire la Documentation pour obtenir des informations "
+"complètes"
+
+msgid "Name:"
+msgstr "Nom:"

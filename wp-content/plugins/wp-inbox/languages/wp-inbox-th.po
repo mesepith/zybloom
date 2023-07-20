@@ -1,0 +1,360 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Inbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 10:55+0000\n"
+"PO-Revision-Date: 2020-03-28 10:56+0000\n"
+"Last-Translator: admin <bnimbhal@gmail.com>\n"
+"Language-Team: Thai\n"
+"Language: th\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+msgid "Webmail Account overview"
+msgstr "Webmail บัญชีผู้ใช้มุมมองภาพรวม"
+
+msgid "Steps to Setup Webmail"
+msgstr "ขั้นตอนเพื่อตั้งค่า Webmail"
+
+msgid "Open Cpanel."
+msgstr "เปิด Cpanel."
+
+msgid "Go to File Manager."
+msgstr "ไปจัดการแฟ้ม."
+
+msgid "Click on Home."
+msgstr "คลิกกลับบ้าน"
+
+msgid "Go to Mail."
+msgstr "ไปจดหมาย"
+
+msgid "Create new Folder."
+msgstr "สร้างโฟลเดอร์ใหม่"
+
+msgid "Go to WordPress admin."
+msgstr "ไป WordPress แอดมิ."
+
+msgid "Click on INBOX-Webmail."
+msgstr "คลิกที่จดหมายเข้า-Webmail."
+
+msgid "Click on Inbox."
+msgstr "คลิกที่อยู่ในกล่องเอกสาร."
+
+msgid "Click on Inbox"
+msgstr "คลิกที่จดหมายเข้า"
+
+msgid "INBOX"
+msgstr "จดหมายเข้า"
+
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+msgid "Inbox Account Add/Edit"
+msgstr "ในกล่องเอกสารบัญชีผู้ใช้เพิ่ม/แก้ไข"
+
+msgid "Steps to Setup Inbox"
+msgstr "ขั้นตอนเพื่อตั้งค่าจดหมายเข้า"
+
+msgid "Enter email ID."
+msgstr "ป้อนส่งอีเมลบัตรประจำตัวครรับ"
+
+msgid "Enter email Password."
+msgstr "ป้อนรหัสผ่านอีเมล."
+
+msgid "Delete from server after processed (Recommended)."
+msgstr "ลบออกจากเซิร์ฟเวอร์หลังจากถูกประมวลผล(แนะนำให้ใช้)."
+
+msgid "Click on Active."
+msgstr "คลิกที่ปุ่มมีการสืบสวนตรงไหน"
+
+msgid "Enter your Email Signature."
+msgstr "ป้อนชื่อของคุณทางอีเมลนลายเซ็นต์ประจำตัว"
+
+msgid "Click Save."
+msgstr "คลิกที่บันทึก."
+
+msgid "Email ID:"
+msgstr "อีเมล์หมายเลข:"
+
+msgid "Password:"
+msgstr "รหัสผ่าน:"
+
+msgid "Delete from server after processed:"
+msgstr "ลบออกจากเซิร์ฟเวอร์หลังจากถูกประมวลผล:"
+
+msgid "After process move to folder:"
+msgstr "หลังจากระบวนการย้ายไปยังโฟลเดอร์:"
+
+msgid "Active:"
+msgstr "ที่ทำงานอยู่:"
+
+msgid "Email Signature:"
+msgstr "อีเมลลายเซ็น:"
+
+msgid "Compose"
+msgstr "Compose"
+
+msgid "Inbox"
+msgstr "จดหมายเข้า"
+
+msgid "Sent"
+msgstr "ส่ง"
+
+msgid "Important"
+msgstr "สำคัญ"
+
+msgid "Starred"
+msgstr "Starred"
+
+msgid "Trash"
+msgstr "ทิ้งลงถังขยะ"
+
+msgid "Labels"
+msgstr "ป้ายต่างๆ"
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr "ใช้จุลภาคแยกทางอีเมลสำหรับอีเมลหลายก็น่าจะเป็นบัตรประจำตั."
+
+msgid "Upload File"
+msgstr "อัปโหลดแฟ้ม"
+
+msgid "Add more file"
+msgstr "เพิ่มแฟ้ม"
+
+msgid "SEND"
+msgstr "ส่ง"
+
+msgid "Inbox Account overview"
+msgstr "ในกล่องเอกสารบัญชีผู้ใช้มุมมองภาพรวม"
+
+msgid "From:"
+msgstr "จาก:"
+
+msgid "To:"
+msgstr "ไปยัง:"
+
+msgid "CC:"
+msgstr "สำเนาถึง:"
+
+msgid "BCC:"
+msgstr "ซ่อนสำเนาถึง:"
+
+msgid "Size:"
+msgstr "ขนาด:"
+
+msgid "KB"
+msgstr "กิโลไบต์"
+
+msgid "Reply"
+msgstr "ตอบกลับ"
+
+msgid "Forward"
+msgstr "ไปข้างหน้า"
+
+msgid "Bulk Actions"
+msgstr "ก้อนข้อมูลการกระทำ"
+
+msgid "Mark as Read"
+msgstr "ทำเครื่องหมายว่าอ่านแล้ว"
+
+msgid "Mark as Unread"
+msgstr "ทำเครื่องหมายว่ายังไม่ได้อ่าน"
+
+msgid "Mark as Important"
+msgstr "ตั้งสถานะว่าสำคัญ"
+
+msgid "Remove Important"
+msgstr "ลบสำคัญ"
+
+msgid "Mark as Starred"
+msgstr "ตั้งสถานะเป็น msg status Starred"
+
+msgid "Remove Starred"
+msgstr "ลบ Starred"
+
+msgid "Delete"
+msgstr "ลบ"
+
+msgid "Primary"
+msgstr "กลุ่มหลัก"
+
+msgid "Promotions"
+msgstr "Promotions"
+
+msgid "Social"
+msgstr "สังคม"
+
+msgid "Account Details"
+msgstr "บัญชีรายละเอียด"
+
+msgid "Create Labels"
+msgstr "สร้างแถบป้าย"
+
+msgid "Label Name"
+msgstr "ป้ายชื่อ"
+
+msgid "Color Code"
+msgstr "สีของรหัส"
+
+msgid "Add more label"
+msgstr "เพิ่มป้ายชื่อ"
+
+msgid "Folder Name"
+msgstr "ชื่อโฟลเดอร์"
+
+msgid "Save Data"
+msgstr "บันทึกข้อมูล"
+
+msgid "Save"
+msgstr "บันทึก"
+
+msgid "To"
+msgstr "ต้อง"
+
+msgid "CC"
+msgstr "ซีซี"
+
+msgid "BCC"
+msgstr "À\"àà\"àªà¡àšà±à•à"
+
+msgid "Subject"
+msgstr "เรื่อง"
+
+msgid "Add New"
+msgstr "เพิ่มใหม่"
+
+msgid "Cron Url:"
+msgstr "ตารางงานของที่อยู่ Url:"
+
+msgid "No data available"
+msgstr "ไม่มีข้อมูลที่มีอยู่"
+
+msgid "Message"
+msgstr "ข้อความ"
+
+msgid "Download"
+msgstr "ดาวน์โหลด"
+
+msgid "or"
+msgstr "หรือ"
+
+msgid "Move to Inbox"
+msgstr "ย้ายไปยังจดหมายเข้า"
+
+msgid "WP-Inbox"
+msgstr "WP-จดหมายเข้า"
+
+msgid "INBOX-Webmail"
+msgstr "จดหมายเข้า-Webmail"
+
+msgid "Delete Permanently"
+msgstr "ลบออกอย่างถาวร"
+
+msgid "Apply"
+msgstr "ปรับใช้"
+
+msgid "Mark as Star"
+msgstr "ทำเครื่องหมายว่าดาวดวง"
+
+msgid "Accounts"
+msgstr "บัญชี"
+
+msgid "Data saved successfully."
+msgstr "ข้อมูลช่วยเรียบร้อยแล้ว"
+
+msgid "Entered Email/password is not correct."
+msgstr "อีเมลที่ป้อนมา/รหัสผ่านไม่ถูกต้อง"
+
+msgid "IMAP function not enabled."
+msgstr "บริการ imap@item mbox account ฟังก์ชันไม่ได้เปิดการทำงาน"
+
+msgid "Data parse successfully. Total new email"
+msgstr "ข้อมูลการวิเคราะห์เรียบร้อยแล้ว ทั้งหมดใหม่อีเมล"
+
+msgid "Account not activated."
+msgstr "บัญชีผู้ใช้ไม่ได้ทำงาน"
+
+msgid "To email and Subject is required field."
+msgstr "จะอีเมลและเรื่องก็คือต้องการสนาม"
+
+msgid "Email send successfully."
+msgstr "อีเมลล์ส่งเรียบร้อยแล้ว"
+
+msgid "Some Problem occurred."
+msgstr "มีปัญหาเกิดขึ้น"
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr "คุณไม่มีสิทธิ์ในการเข้าใช้งานหน้านี้"
+
+msgid "No any id seleted."
+msgstr "ไม่เจอบัตรประชาชนของเขา seleted."
+
+msgid "Bulk Action performed."
+msgstr "ก้อนข้อมูลการกระทำแสดง."
+
+msgid "Action"
+msgstr "การกระทำ"
+
+msgid "Date"
+msgstr "เดท"
+
+msgid "Status"
+msgstr "สถานะ"
+
+msgid "Email"
+msgstr "อีเมล"
+
+msgid "ID"
+msgstr "หมายเลข"
+
+msgid "Activate"
+msgstr "เปิดใช้งาน"
+
+msgid "In-Activate"
+msgstr "อยู่-เปิดใช้งาน"
+
+msgid "Edit"
+msgstr "แก้ไข"
+
+msgid "Enter the folder name created in Cpanel Mail."
+msgstr "ป้อนชื่อโฟลเดอร์กสร้างขึ้นใน Cpanel จดหมาย"
+
+msgid "Webmail Account Add/Edit"
+msgstr "Webmail บัญชีผู้ใช้เพิ่ม/แก้ไข"
+
+msgid "Webmail Inbox overview"
+msgstr "Webmail จดหมายเข้ามุมมองภาพรวม"
+
+msgid "Active"
+msgstr "ที่ทำงานอยู่"
+
+msgid "In-Active"
+msgstr "ในที่ทำงานอยู่"
+
+msgid "Enter Name of Sender"
+msgstr "ป้อนชื่อของผู้ส่ง"
+
+msgid "Enter Email ID"
+msgstr "ป้อนชื่ออีเมล์หมายเลข"
+
+msgid "Enter Email Password"
+msgstr "ป้อนรหัสผ่านอีเมล"
+
+msgid "Click Active"
+msgstr "คลิกที่ทำงานอยู่"
+
+msgid "Enter Signature"
+msgstr "เติมลายเซ็น"
+
+msgid "Click Save Data"
+msgstr "คลิกที่บันทึกข้อมูล"
+
+msgid "Note : Please read the Documentation for complete information"
+msgstr "ข้อควรจำ:โปรดอ่านเอกสารคู่มือสำหรับข้อมูลสมบูรณ์"
+
+msgid "Name:"
+msgstr "ชื่อ:"

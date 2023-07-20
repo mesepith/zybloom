@@ -1,0 +1,360 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Inbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 10:51+0000\n"
+"PO-Revision-Date: 2020-03-28 10:52+0000\n"
+"Last-Translator: admin <bnimbhal@gmail.com>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+msgid "Webmail Account overview"
+msgstr "ウェブメールの口座の概要"
+
+msgid "Steps to Setup Webmail"
+msgstr "への設定のウェブメール"
+
+msgid "Open Cpanel."
+msgstr "開Cpanel."
+
+msgid "Go to File Manager."
+msgstr "ファイルマネージャ。"
+
+msgid "Click on Home."
+msgstr "クリックします。"
+
+msgid "Go to Mail."
+msgstr "行きます。"
+
+msgid "Create new Folder."
+msgstr "新しいフォルダにまとめた。"
+
+msgid "Go to WordPress admin."
+msgstr "くWordPress admin."
+
+msgid "Click on INBOX-Webmail."
+msgstr "をクリック受信トレイ-ウェブメール."
+
+msgid "Click on Inbox."
+msgstr "受信トレイ\"をクリックし."
+
+msgid "Click on Inbox"
+msgstr "受信トレイ\"をクリック"
+
+msgid "INBOX"
+msgstr "受信トレイ"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Inbox Account Add/Edit"
+msgstr "受信トレイ\"口座の追加/編集"
+
+msgid "Steps to Setup Inbox"
+msgstr "手順を設定受信トレイ"
+
+msgid "Enter email ID."
+msgstr "入力メールアドレスを入力します。"
+
+msgid "Enter email Password."
+msgstr "入力メールのパスワードになります。"
+
+msgid "Delete from server after processed (Recommended)."
+msgstr "削除サーバーから後加工ます(推奨)。"
+
+msgid "Click on Active."
+msgstr "クリックします。"
+
+msgid "Enter your Email Signature."
+msgstr "入力メール署名を表します。"
+
+msgid "Click Save."
+msgstr "[保存]をクリックします。"
+
+msgid "Email ID:"
+msgstr "メールアドレス："
+
+msgid "Password:"
+msgstr "パスワード："
+
+msgid "Delete from server after processed:"
+msgstr "削除サーバーから後処理:"
+
+msgid "After process move to folder:"
+msgstr "後工程へ移動フォルダー:"
+
+msgid "Active:"
+msgstr "活動:"
+
+msgid "Email Signature:"
+msgstr "メールの署名:"
+
+msgid "Compose"
+msgstr "構成"
+
+msgid "Inbox"
+msgstr "受信トレイ"
+
+msgid "Sent"
+msgstr "送信"
+
+msgid "Important"
+msgstr "重要"
+
+msgid "Starred"
+msgstr "出演"
+
+msgid "Trash"
+msgstr "ゴミ箱"
+
+msgid "Labels"
+msgstr "ラベル"
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr "利用にカンマ区切りでメールが複数のメールidを持っています。"
+
+msgid "Upload File"
+msgstr "アップロードファイル"
+
+msgid "Add more file"
+msgstr "追加のファイル"
+
+msgid "SEND"
+msgstr "送信"
+
+msgid "Inbox Account overview"
+msgstr "受信トレイの口座の概要"
+
+msgid "From:"
+msgstr "："
+
+msgid "To:"
+msgstr "："
+
+msgid "CC:"
+msgstr "CC:"
+
+msgid "BCC:"
+msgstr "BCC:"
+
+msgid "Size:"
+msgstr "サイズ:"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "Reply"
+msgstr "返信"
+
+msgid "Forward"
+msgstr "進"
+
+msgid "Bulk Actions"
+msgstr "バルク行動"
+
+msgid "Mark as Read"
+msgstr "既読にする"
+
+msgid "Mark as Unread"
+msgstr "マークとして未読"
+
+msgid "Mark as Important"
+msgstr "マークとして重要な"
+
+msgid "Remove Important"
+msgstr "削除に重要な"
+
+msgid "Mark as Starred"
+msgstr "マークとして出演"
+
+msgid "Remove Starred"
+msgstr "削除出演"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Primary"
+msgstr "主"
+
+msgid "Promotions"
+msgstr "促進"
+
+msgid "Social"
+msgstr "社会"
+
+msgid "Account Details"
+msgstr "アカウント詳細"
+
+msgid "Create Labels"
+msgstr "作成ラベル"
+
+msgid "Label Name"
+msgstr "ラベル名"
+
+msgid "Color Code"
+msgstr "カラーコード"
+
+msgid "Add more label"
+msgstr "追加のラベル"
+
+msgid "Folder Name"
+msgstr "フォルダの名前"
+
+msgid "Save Data"
+msgstr "データ保存"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "To"
+msgstr "へ"
+
+msgid "CC"
+msgstr "CC"
+
+msgid "BCC"
+msgstr "BCC"
+
+msgid "Subject"
+msgstr "対象"
+
+msgid "Add New"
+msgstr "新規追加"
+
+msgid "Cron Url:"
+msgstr "CronのUrl:"
+
+msgid "No data available"
+msgstr "データはありません。"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "Download"
+msgstr "ダウンロード"
+
+msgid "or"
+msgstr "または"
+
+msgid "Move to Inbox"
+msgstr "移動受信トレイ"
+
+msgid "WP-Inbox"
+msgstr "WP-受信トレイ"
+
+msgid "INBOX-Webmail"
+msgstr "受信トレイ-ウェブメール"
+
+msgid "Delete Permanently"
+msgstr "恒久的に削除"
+
+msgid "Apply"
+msgstr "適用"
+
+msgid "Mark as Star"
+msgstr "マークとしてスター"
+
+msgid "Accounts"
+msgstr "座"
+
+msgid "Data saved successfully."
+msgstr "データ保存が成功しました。"
+
+msgid "Entered Email/password is not correct."
+msgstr "入力したメール/パスワードが正しくありません。"
+
+msgid "IMAP function not enabled."
+msgstr "IMAP機能を有効にします。"
+
+msgid "Data parse successfully. Total new email"
+msgstr "データ解析が成功しました。 合計新しいメール"
+
+msgid "Account not activated."
+msgstr "口座のない動作します。"
+
+msgid "To email and Subject is required field."
+msgstr "メールは入力必須項目です。"
+
+msgid "Email send successfully."
+msgstr "メール送信が成功しました。"
+
+msgid "Some Problem occurred."
+msgstr "一問題が発生しました。"
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr "できないために十分な権限アクセスはこのページです。"
+
+msgid "No any id seleted."
+msgstr "のない任意のid seleted."
+
+msgid "Bulk Action performed."
+msgstr "バルク行動を行います。"
+
+msgid "Action"
+msgstr "行動"
+
+msgid "Date"
+msgstr "日"
+
+msgid "Status"
+msgstr "状況"
+
+msgid "Email"
+msgstr "メール"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Activate"
+msgstr "活性化"
+
+msgid "In-Activate"
+msgstr "に有効化"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Enter the folder name created in Cpanel Mail."
+msgstr "フォルダー名を入力し作成したCpanelます。"
+
+msgid "Webmail Account Add/Edit"
+msgstr "ウェブメールの口座の追加/編集"
+
+msgid "Webmail Inbox overview"
+msgstr "Webメールの受信トレイの概要"
+
+msgid "Active"
+msgstr "活動"
+
+msgid "In-Active"
+msgstr "に活性"
+
+msgid "Enter Name of Sender"
+msgstr "名入力の送信"
+
+msgid "Enter Email ID"
+msgstr "メールID"
+
+msgid "Enter Email Password"
+msgstr "メールパスワード"
+
+msgid "Click Active"
+msgstr "クリックで活躍"
+
+msgid "Enter Signature"
+msgstr "署名を入力"
+
+msgid "Click Save Data"
+msgstr "[保存]をクリックしますデータ"
+
+msgid "Note : Please read the Documentation for complete information"
+msgstr "注意必ずお読みくださいドキュメンテーションに完全情報"
+
+msgid "Name:"
+msgstr "名前:"

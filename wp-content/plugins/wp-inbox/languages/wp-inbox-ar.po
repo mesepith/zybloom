@@ -1,0 +1,361 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Inbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 10:48+0000\n"
+"PO-Revision-Date: 2020-03-28 10:49+0000\n"
+"Last-Translator: admin <bnimbhal@gmail.com>\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100 >= 3 "
+"&& n%100<=10 ? 3 : n%100 >= 11 && n%100<=99 ? 4 : 5;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+msgid "Webmail Account overview"
+msgstr "حساب البريد الالكتروني نظرة عامة"
+
+msgid "Steps to Setup Webmail"
+msgstr "خطوات إعداد البريد الالكتروني"
+
+msgid "Open Cpanel."
+msgstr "فتح لوحة التحكم."
+
+msgid "Go to File Manager."
+msgstr "اذهب إلى مدير الملفات."
+
+msgid "Click on Home."
+msgstr "انقر على المنزل."
+
+msgid "Go to Mail."
+msgstr "انتقل إلى البريد."
+
+msgid "Create new Folder."
+msgstr "إنشاء مجلد جديد."
+
+msgid "Go to WordPress admin."
+msgstr "انتقل إلى المشرف وورد."
+
+msgid "Click on INBOX-Webmail."
+msgstr "انقر فوق علبة البريد-البريد الالكتروني."
+
+msgid "Click on Inbox."
+msgstr "انقر فوق علبة الوارد."
+
+msgid "Click on Inbox"
+msgstr "انقر فوق علبة الوارد"
+
+msgid "INBOX"
+msgstr "صندوق الوارد"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Inbox Account Add/Edit"
+msgstr "الوارد الاعتبار إضافة/تحرير"
+
+msgid "Steps to Setup Inbox"
+msgstr "خطوات إعداد علبة الوارد"
+
+msgid "Enter email ID."
+msgstr "أدخل معرف البريد الإلكتروني."
+
+msgid "Enter email Password."
+msgstr "أدخل البريد الإلكتروني وكلمة السر."
+
+msgid "Delete from server after processed (Recommended)."
+msgstr "حذف من الخادم بعد معالجتها (مستحسن)."
+
+msgid "Click on Active."
+msgstr "انقر على النشطة."
+
+msgid "Enter your Email Signature."
+msgstr "أدخل توقيع البريد الإلكتروني الخاص بك."
+
+msgid "Click Save."
+msgstr "انقر فوق حفظ."
+
+msgid "Email ID:"
+msgstr "معرف البريد الإلكتروني:"
+
+msgid "Password:"
+msgstr "كلمة المرور:"
+
+msgid "Delete from server after processed:"
+msgstr "حذف من الخادم بعد معالجتها:"
+
+msgid "After process move to folder:"
+msgstr "بعد العملية نقل إلى مجلد:"
+
+msgid "Active:"
+msgstr "نشط:"
+
+msgid "Email Signature:"
+msgstr "توقيع البريد الإلكتروني:"
+
+msgid "Compose"
+msgstr "يؤلف"
+
+msgid "Inbox"
+msgstr "صندوق الوارد"
+
+msgid "Sent"
+msgstr "إرسال"
+
+msgid "Important"
+msgstr "المهم"
+
+msgid "Starred"
+msgstr "تألق"
+
+msgid "Trash"
+msgstr "القمامة"
+
+msgid "Labels"
+msgstr "التسميات"
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr "استخدام فاصلة فصل البريد الإلكتروني عدة معرفات البريد الإلكتروني."
+
+msgid "Upload File"
+msgstr "تحميل الملف"
+
+msgid "Add more file"
+msgstr "إضافة المزيد من الملفات"
+
+msgid "SEND"
+msgstr "إرسال"
+
+msgid "Inbox Account overview"
+msgstr "الوارد نظرة عامة على الحساب"
+
+msgid "From:"
+msgstr "من:"
+
+msgid "To:"
+msgstr "إلى:"
+
+msgid "CC:"
+msgstr "CC:"
+
+msgid "BCC:"
+msgstr "مخفية:"
+
+msgid "Size:"
+msgstr "الحجم:"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "Reply"
+msgstr "رد"
+
+msgid "Forward"
+msgstr "إلى الأمام"
+
+msgid "Bulk Actions"
+msgstr "معظم الإجراءات"
+
+msgid "Mark as Read"
+msgstr "علامة للقراءة"
+
+msgid "Mark as Unread"
+msgstr "وضع علامة كغير مقروءة"
+
+msgid "Mark as Important"
+msgstr "علامة هامة"
+
+msgid "Remove Important"
+msgstr "إزالة المهم"
+
+msgid "Mark as Starred"
+msgstr "علامة نجمة"
+
+msgid "Remove Starred"
+msgstr "إزالة دور البطولة"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Primary"
+msgstr "الابتدائية"
+
+msgid "Promotions"
+msgstr "الترقيات"
+
+msgid "Social"
+msgstr "الاجتماعية"
+
+msgid "Account Details"
+msgstr "تفاصيل الحساب"
+
+msgid "Create Labels"
+msgstr "إنشاء تسميات"
+
+msgid "Label Name"
+msgstr "اسم التسمية"
+
+msgid "Color Code"
+msgstr "رمز اللون"
+
+msgid "Add more label"
+msgstr "إضافة المزيد من التسمية"
+
+msgid "Folder Name"
+msgstr "اسم المجلد"
+
+msgid "Save Data"
+msgstr "حفظ البيانات"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "To"
+msgstr "إلى"
+
+msgid "CC"
+msgstr "CC"
+
+msgid "BCC"
+msgstr "BCC"
+
+msgid "Subject"
+msgstr "الموضوع"
+
+msgid "Add New"
+msgstr "إضافة جديدة"
+
+msgid "Cron Url:"
+msgstr "كرون Url:"
+
+msgid "No data available"
+msgstr "لا تتوفر بيانات"
+
+msgid "Message"
+msgstr "الرسالة"
+
+msgid "Download"
+msgstr "تحميل"
+
+msgid "or"
+msgstr "أو"
+
+msgid "Move to Inbox"
+msgstr "الانتقال إلى علبة الوارد"
+
+msgid "WP-Inbox"
+msgstr "WP-البريد الوارد"
+
+msgid "INBOX-Webmail"
+msgstr "صندوق الوارد-البريد الالكتروني"
+
+msgid "Delete Permanently"
+msgstr "حذف بشكل دائم"
+
+msgid "Apply"
+msgstr "تطبيق"
+
+msgid "Mark as Star"
+msgstr "علامة نجمة"
+
+msgid "Accounts"
+msgstr "حسابات"
+
+msgid "Data saved successfully."
+msgstr "حفظ البيانات بنجاح."
+
+msgid "Entered Email/password is not correct."
+msgstr "دخلت البريد الإلكتروني/كلمة المرور غير صحيحة."
+
+msgid "IMAP function not enabled."
+msgstr "IMAP وظيفة لم يتم تمكين."
+
+msgid "Data parse successfully. Total new email"
+msgstr "البيانات تحليل بنجاح. إجمالي البريد الإلكتروني الجديد"
+
+msgid "Account not activated."
+msgstr "الحساب غير فعال."
+
+msgid "To email and Subject is required field."
+msgstr "إلى البريد الإلكتروني هذا الموضوع هو حقل مطلوب."
+
+msgid "Email send successfully."
+msgstr "إرسال البريد الإلكتروني بنجاح."
+
+msgid "Some Problem occurred."
+msgstr "بعض حدوث المشكلة."
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr "ليس لديك أذونات كافية للوصول إلى هذه الصفحة."
+
+msgid "No any id seleted."
+msgstr "لا يوجد أي معرف seleted."
+
+msgid "Bulk Action performed."
+msgstr "معظم العمل المنجز."
+
+msgid "Action"
+msgstr "العمل"
+
+msgid "Date"
+msgstr "تاريخ"
+
+msgid "Status"
+msgstr "حالة"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "ID"
+msgstr "معرف"
+
+msgid "Activate"
+msgstr "تفعيل"
+
+msgid "In-Activate"
+msgstr "في تفعيل"
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Enter the folder name created in Cpanel Mail."
+msgstr "أدخل اسم المجلد التي تم إنشاؤها في وحة التحكم الإلكتروني."
+
+msgid "Webmail Account Add/Edit"
+msgstr "حساب البريد الالكتروني إضافة/تحرير"
+
+msgid "Webmail Inbox overview"
+msgstr "البريد الالكتروني الوارد نظرة عامة"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "In-Active"
+msgstr "في النشطة"
+
+msgid "Enter Name of Sender"
+msgstr "أدخل اسم المرسل"
+
+msgid "Enter Email ID"
+msgstr "أدخل معرف البريد الإلكتروني"
+
+msgid "Enter Email Password"
+msgstr "أدخل البريد الإلكتروني وكلمة السر"
+
+msgid "Click Active"
+msgstr "انقر فوق Active"
+
+msgid "Enter Signature"
+msgstr "أدخل التوقيع"
+
+msgid "Click Save Data"
+msgstr "انقر فوق حفظ البيانات"
+
+msgid "Note : Please read the Documentation for complete information"
+msgstr "ملاحظة : يرجى قراءة الوثائق للحصول على معلومات كاملة"
+
+msgid "Name:"
+msgstr "الاسم:"

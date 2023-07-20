@@ -1,0 +1,361 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Inbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 10:52+0000\n"
+"PO-Revision-Date: 2020-03-28 10:52+0000\n"
+"Last-Translator: admin <bnimbhal@gmail.com>\n"
+"Language-Team: Persian\n"
+"Language: fa_IR\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+msgid "Webmail Account overview"
+msgstr "ایمیل حساب بررسی اجمالی"
+
+msgid "Steps to Setup Webmail"
+msgstr "مراحل راه اندازی پست الکترونیکی"
+
+msgid "Open Cpanel."
+msgstr "باز کردن پنل."
+
+msgid "Go to File Manager."
+msgstr "رفتن به فایل منیجر."
+
+msgid "Click on Home."
+msgstr "با کلیک بر روی صفحه اصلی."
+
+msgid "Go to Mail."
+msgstr "رفتن به ایمیل."
+
+msgid "Create new Folder."
+msgstr "ایجاد پوشه جدید."
+
+msgid "Go to WordPress admin."
+msgstr "رفتن به مدیریت وردپرس."
+
+msgid "Click on INBOX-Webmail."
+msgstr "با کلیک بر روی صندوق پستی-پست الکترونیکی."
+
+msgid "Click on Inbox."
+msgstr "با کلیک بر روی صندوق."
+
+msgid "Click on Inbox"
+msgstr "با کلیک بر روی صندوق"
+
+msgid "INBOX"
+msgstr "صندوق"
+
+msgid "Settings"
+msgstr "تنظیمات"
+
+msgid "Inbox Account Add/Edit"
+msgstr "صندوق حساب اضافه کردن/ویرایش"
+
+msgid "Steps to Setup Inbox"
+msgstr "مراحل راه اندازی صندوق"
+
+msgid "Enter email ID."
+msgstr "ایمیل را وارد کنید ID."
+
+msgid "Enter email Password."
+msgstr "ایمیل را وارد کنید رمز عبور."
+
+msgid "Delete from server after processed (Recommended)."
+msgstr "حذف از سرور پس از پردازش (توصیه می شود)."
+
+msgid "Click on Active."
+msgstr "با کلیک بر روی فعال است."
+
+msgid "Enter your Email Signature."
+msgstr "را وارد کنید ایمیل خود را امضا می کند."
+
+msgid "Click Save."
+msgstr "کلیک کنید ذخیره."
+
+msgid "Email ID:"
+msgstr "شناسه ایمیل:"
+
+msgid "Password:"
+msgstr "رمز عبور:"
+
+msgid "Delete from server after processed:"
+msgstr "حذف از سرور پس از پردازش:"
+
+msgid "After process move to folder:"
+msgstr "پس از فرایند حرکت به پوشه:"
+
+msgid "Active:"
+msgstr "فعال:"
+
+msgid "Email Signature:"
+msgstr "امضای ایمیل:"
+
+msgid "Compose"
+msgstr "آهنگسازی"
+
+msgid "Inbox"
+msgstr "صندوق"
+
+msgid "Sent"
+msgstr "ارسال"
+
+msgid "Important"
+msgstr "مهم"
+
+msgid "Starred"
+msgstr "ستاره دار"
+
+msgid "Trash"
+msgstr "سطل زباله"
+
+msgid "Labels"
+msgstr "برچسبها"
+
+msgid "Use comma , separated email for multiple email ids."
+msgstr "استفاده از کاما از هم جدا ایمیل برای ایمیل های متعدد شناسه."
+
+msgid "Upload File"
+msgstr "آپلود فایل"
+
+msgid "Add more file"
+msgstr "بیشتر اضافه کردن فایل"
+
+msgid "SEND"
+msgstr "ارسال"
+
+msgid "Inbox Account overview"
+msgstr "صندوق حساب بررسی اجمالی"
+
+msgid "From:"
+msgstr "از:"
+
+msgid "To:"
+msgstr "به:"
+
+msgid "CC:"
+msgstr "CC:"
+
+msgid "BCC:"
+msgstr "BCC:"
+
+msgid "Size:"
+msgstr "حجم:"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "Reply"
+msgstr "پاسخ"
+
+msgid "Forward"
+msgstr "جلو"
+
+msgid "Bulk Actions"
+msgstr "اقدامات فله"
+
+msgid "Mark as Read"
+msgstr "علامت گذاری به عنوان خوانده شده"
+
+msgid "Mark as Unread"
+msgstr "علامت گذاری به عنوان خوانده نشده"
+
+msgid "Mark as Important"
+msgstr "علامت گذاری به عنوان مهم"
+
+msgid "Remove Important"
+msgstr "حذف مهم"
+
+msgid "Mark as Starred"
+msgstr "علامت گذاری به عنوان ستاره دار"
+
+msgid "Remove Starred"
+msgstr "حذف ستاره دار"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Primary"
+msgstr "اولیه"
+
+msgid "Promotions"
+msgstr "تبلیغات"
+
+msgid "Social"
+msgstr "اجتماعی"
+
+msgid "Account Details"
+msgstr "جزئیات حساب"
+
+msgid "Create Labels"
+msgstr "ایجاد برچسب"
+
+msgid "Label Name"
+msgstr "برچسب نام"
+
+msgid "Color Code"
+msgstr "کد رنگ"
+
+msgid "Add more label"
+msgstr "بیشتر اضافه کردن برچسب"
+
+msgid "Folder Name"
+msgstr "نام پوشه"
+
+msgid "Save Data"
+msgstr "صرفه جویی در داده ها"
+
+msgid "Save"
+msgstr "صرفه جویی در"
+
+msgid "To"
+msgstr "به"
+
+msgid "CC"
+msgstr "CC"
+
+msgid "BCC"
+msgstr "BCC"
+
+msgid "Subject"
+msgstr "موضوع"
+
+msgid "Add New"
+msgstr "اضافه کردن جدید"
+
+msgid "Cron Url:"
+msgstr "Cron آدرس:"
+
+msgid "No data available"
+msgstr "هیچ داده ای در دسترس"
+
+msgid "Message"
+msgstr "پیام"
+
+msgid "Download"
+msgstr "دانلود"
+
+msgid "or"
+msgstr "یا"
+
+msgid "Move to Inbox"
+msgstr "انتقال به صندوق ورودی"
+
+msgid "WP-Inbox"
+msgstr "WP-صندوق"
+
+msgid "INBOX-Webmail"
+msgstr "صندوق پستی-پست الکترونیکی"
+
+msgid "Delete Permanently"
+msgstr "حذف دائم"
+
+msgid "Apply"
+msgstr "درخواست"
+
+msgid "Mark as Star"
+msgstr "علامت گذاری به عنوان ستاره"
+
+msgid "Accounts"
+msgstr "حساب"
+
+msgid "Data saved successfully."
+msgstr "اطلاعات با موفقیت ذخیره شد."
+
+msgid "Entered Email/password is not correct."
+msgstr "وارد ایمیل/رمز عبور صحیح نمی باشد."
+
+msgid "IMAP function not enabled."
+msgstr "IMAP تابع فعال نیست."
+
+msgid "Data parse successfully. Total new email"
+msgstr "اطلاعات پارسه با موفقیت. کل ایمیل جدید"
+
+msgid "Account not activated."
+msgstr "حساب کاربری فعال نیست."
+
+msgid "To email and Subject is required field."
+msgstr "به ایمیل و موضوع مورد نیاز است زمینه است."
+
+msgid "Email send successfully."
+msgstr "ایمیل با موفقیت ارسال."
+
+msgid "Some Problem occurred."
+msgstr "برخی از مشکل رخ داده است."
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr "You do not have sufficient permissions to access this page."
+
+msgid "No any id seleted."
+msgstr "هیچ id seleted."
+
+msgid "Bulk Action performed."
+msgstr "فله عمل انجام شده است."
+
+msgid "Action"
+msgstr "عمل"
+
+msgid "Date"
+msgstr "تاریخ"
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Email"
+msgstr "ایمیل"
+
+msgid "ID"
+msgstr "شناسه"
+
+msgid "Activate"
+msgstr "فعال"
+
+msgid "In-Activate"
+msgstr "در-فعال"
+
+msgid "Edit"
+msgstr "ویرایش"
+
+msgid "Enter the folder name created in Cpanel Mail."
+msgstr "را وارد کنید نام پوشه ایجاد شده در Cpanel ایمیل."
+
+msgid "Webmail Account Add/Edit"
+msgstr "ایمیل حساب کاربری اضافه کردن/ویرایش"
+
+msgid "Webmail Inbox overview"
+msgstr "پست الکترونیکی صندوق بررسی اجمالی"
+
+msgid "Active"
+msgstr "فعال"
+
+msgid "In-Active"
+msgstr "در-فعال"
+
+msgid "Enter Name of Sender"
+msgstr "نام فرستنده را وارد کنید"
+
+msgid "Enter Email ID"
+msgstr "ایمیل را وارد کنید ID"
+
+msgid "Enter Email Password"
+msgstr "ایمیل را وارد کنید رمز عبور"
+
+msgid "Click Active"
+msgstr "کلیک کنید فعال"
+
+msgid "Enter Signature"
+msgstr "وارد امضاء"
+
+msgid "Click Save Data"
+msgstr "کلیک کنید ذخیره اطلاعات"
+
+msgid "Note : Please read the Documentation for complete information"
+msgstr ""
+"توجه داشته باشید : لطفا به عنوان خوانده شده اسناد و مدارک برای تکمیل اطلاعات"
+
+msgid "Name:"
+msgstr "نام:"
