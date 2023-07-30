@@ -2,8 +2,8 @@
 Contributors: pmbaldha, woocommerce9, emailemailemail, freemius
 Tags: email, email-mail-email, email-woocommerce-email
 Requires at least: 4.0
-Tested up to: 6.0
-Stable tag: 5.3.8
+Tested up to: 6.2.2
+Stable tag: trunk
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -123,6 +123,9 @@ The free version of the plugin can tracks email views. The Pro version of the pl
 4. Settings to manage all emails
 
 == Changelog ==
+
+= 5.3.9, July 21, 2023 =
+* TWEAK: Freemius library updated to the latest version.
 
 = 5.3.8, May 23, 2022 =
 * TWEAK: Email Deletion in 250 batch size instead of 100. (Premium version)
