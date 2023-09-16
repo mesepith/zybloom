@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit388e32729f8413747cf9113074aa8955
+class ComposerStaticIniteed33a47749dd2f6af73eb571a658934
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -594,7 +594,6 @@ class ComposerStaticInit388e32729f8413747cf9113074aa8955
         'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\WooCommerceBrands' => __DIR__ . '/../..' . '/src/Integration/WooCommerceBrands.php',
         'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\WooCommercePreOrders' => __DIR__ . '/../..' . '/src/Integration/WooCommercePreOrders.php',
         'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\WooCommerceProductBundles' => __DIR__ . '/../..' . '/src/Integration/WooCommerceProductBundles.php',
-        'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\WooCommerceSubscriptions' => __DIR__ . '/../..' . '/src/Integration/WooCommerceSubscriptions.php',
         'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\YoastWooCommerceSeo' => __DIR__ . '/../..' . '/src/Integration/YoastWooCommerceSeo.php',
         'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\ContainerAwareTrait' => __DIR__ . '/../..' . '/src/Internal/ContainerAwareTrait.php',
         'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\DependencyManagement\\AbstractServiceProvider' => __DIR__ . '/../..' . '/src/Internal/DependencyManagement/AbstractServiceProvider.php',
@@ -4110,9 +4109,9 @@ class ComposerStaticInit388e32729f8413747cf9113074aa8955
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit388e32729f8413747cf9113074aa8955::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit388e32729f8413747cf9113074aa8955::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit388e32729f8413747cf9113074aa8955::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticIniteed33a47749dd2f6af73eb571a658934::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticIniteed33a47749dd2f6af73eb571a658934::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticIniteed33a47749dd2f6af73eb571a658934::$classMap;
 
         }, null, ClassLoader::class);
     }

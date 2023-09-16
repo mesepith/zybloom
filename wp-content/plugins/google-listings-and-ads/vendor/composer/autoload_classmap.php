@@ -303,7 +303,6 @@ return array(
     'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\WooCommerceBrands' => $baseDir . '/src/Integration/WooCommerceBrands.php',
     'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\WooCommercePreOrders' => $baseDir . '/src/Integration/WooCommercePreOrders.php',
     'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\WooCommerceProductBundles' => $baseDir . '/src/Integration/WooCommerceProductBundles.php',
-    'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\WooCommerceSubscriptions' => $baseDir . '/src/Integration/WooCommerceSubscriptions.php',
     'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\YoastWooCommerceSeo' => $baseDir . '/src/Integration/YoastWooCommerceSeo.php',
     'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\ContainerAwareTrait' => $baseDir . '/src/Internal/ContainerAwareTrait.php',
     'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\DependencyManagement\\AbstractServiceProvider' => $baseDir . '/src/Internal/DependencyManagement/AbstractServiceProvider.php',
