@@ -120,6 +120,7 @@ class WC_Google_Analytics extends WC_Integration {
 		add_action( 'woocommerce_update_options_integration_google_analytics', array( $this, 'process_admin_options' ) );
 		add_action( 'woocommerce_update_options_integration_google_analytics', array( $this, 'show_options_info' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_admin_assets' ) );
+		add_action( 'admin_init', array( $this, 'privacy_policy' ) );
 
 		// Tracking code
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_tracking_code' ), 9 );
@@ -131,8 +132,7 @@ class WC_Google_Analytics extends WC_Integration {
 		add_action( 'woocommerce_after_cart', array( $this, 'remove_from_cart' ) );
 		add_action( 'woocommerce_after_mini_cart', array( $this, 'remove_from_cart' ) );
 		add_filter( 'woocommerce_cart_item_remove_link', array( $this, 'remove_from_cart_attributes' ), 10, 2 );
-		add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'listing_click' ) );
-		add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'listing_impression' ) );
+		add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'track_product' ), 10, 2 );
 		add_action( 'woocommerce_after_single_product', array( $this, 'product_detail' ) );
 		add_action( 'woocommerce_after_checkout_form', array( $this, 'checkout_process' ) );
 
@@ -424,6 +424,27 @@ class WC_Google_Analytics extends WC_Integration {
 	}
 
 	/**
+	 * Add suggested privacy policy content
+	 *
+	 * @return void
+	 */
+	public function privacy_policy() {
+		$policy_text = sprintf(
+			/* translators: 1) HTML anchor open tag 2) HTML anchor closing tag */
+			esc_html__( 'By using this extension, you may be storing personal data or sharing data with an external service. %1$sLearn more about what data is collected by Google and what you may want to include in your privacy policy%2$s.', 'woocommerce-google-analytics-integration' ),
+			'<a href="https://support.google.com/analytics/answer/7318509" target="_blank">',
+			'</a>'
+		);
+
+		// As the extension doesn't offer suggested privacy policy text, the button to copy it is hidden.
+		$content = '
+			<p class="privacy-policy-tutorial">' . $policy_text . '</p>
+			<style>#privacy-settings-accordion-block-woocommerce-google-analytics-integration .privacy-settings-accordion-actions { display: none }</style>';
+
+		wp_add_privacy_policy_content( 'WooCommerce Google Analytics Integration', wpautop( $content, false ) );
+	}
+
+	/**
 	 * Display the tracking codes
 	 * Acts as a controller to figure out which code to display
 	 */
@@ -651,27 +672,18 @@ class WC_Google_Analytics extends WC_Integration {
 	}
 
 	/**
-	 * Measures a listing impression (from search results)
+	 * Measure a product click and impression from a Product list
+	 *
+	 * @param string     $link The Add To Cart Link
+	 * @param WC_Product $product The Product
 	 */
-	public function listing_impression() {
-		if ( ! $this->enhanced_ecommerce_enabled( $this->ga_enhanced_product_impression_enabled ) ) {
-			return;
+	public function track_product( $link, $product ) {
+		if ( $this->enhanced_ecommerce_enabled( $this->ga_enhanced_product_click_enabled ) ) {
+			$this->get_tracking_instance()->listing_impression( $product );
+			$this->get_tracking_instance()->listing_click( $product );
 		}
 
-		global $product, $woocommerce_loop;
-		$this->get_tracking_instance()->listing_impression( $product, $woocommerce_loop['loop'] );
-	}
-
-	/**
-	 * Measure a product click from a listing page
-	 */
-	public function listing_click() {
-		if ( ! $this->enhanced_ecommerce_enabled( $this->ga_enhanced_product_click_enabled ) ) {
-			return;
-		}
-
-		global $product, $woocommerce_loop;
-		$this->get_tracking_instance()->listing_click( $product, $woocommerce_loop['loop'] );
+		return $link;
 	}
 
 	/**
@@ -718,7 +730,7 @@ class WC_Google_Analytics extends WC_Integration {
 	/**
 	 * Check if the Google Analytics Tracking ID has been set up.
 	 *
-	 * @since x.x.x
+	 * @since 1.5.17
 	 *
 	 * @return bool Whether the Google Analytics setup is completed.
 	 */
@@ -730,7 +742,7 @@ class WC_Google_Analytics extends WC_Integration {
 	/**
 	 * Adds the setup task to the Tasklists.
 	 *
-	 * @since x.x.x
+	 * @since 1.5.17
 	 */
 	public function add_wc_setup_task() {
 		require_once 'class-wc-google-analytics-task.php';
