@@ -2,8 +2,8 @@
 Contributors: woocommerce, automattic, claudiosanches, bor0, royho, laurendavissmith001, c-shultz
 Tags: woocommerce, google analytics
 Requires at least: 3.9
-Tested up to: 6.3
-Stable tag: 1.8.7
+Tested up to: 6.4
+Stable tag: 1.8.11
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -60,22 +60,20 @@ Exact wording depends on the national data privacy laws and should be adjusted.
 
 == Changelog ==
 
-= 1.8.7 - 2023-10-10 =
-* Fix - JS syntax error on pages with cart and mini-cart rendered, which was causing purchases and cart removals not to be tracked.
+= 1.8.11 - 2023-12-18 =
+* Dev - Prevent DB warnings in unit tests.
+* Tweak - WC 8.4 compatibility.
 
-= 1.8.6 - 2023-10-03 =
-* Add - Privacy policy guide section.
-* Dev - Enable since tag replacement.
-* Fix - Track select_content instead of add_to_cart for variations.
-* Tweak - Add documentation link with UTM parameters.
-* Tweak - Tracking for Products ( Add To Cart and Impression) when using Products (Beta) Block.
-* Tweak - WC 8.2 compatibility.
+= 1.8.10 - 2023-11-28 =
+* Dev - Update phpunit polyfills to 1.1 for WP 6.4.
+* Fix - Add semicolon after `gtag` calls.
+* Fix - Prevent firing up the add_to_cart event when clicking in product image.
+* Tweak - Test environment setup to resolve notice.
 
-= 1.8.5 - 2023-09-14 =
-* Dev - Add Workflow for generation Hooks documentation.
-* Dev - Fetch WooCommerce and WordPress versions for our tests.
-* Fix - Add To Cart and Impression events when using Blocks.
-* Fix - Compat - Add PHP 8.2 support.
-* Tweak - WC 8.1.0 compatibility.
+= 1.8.9 - 2023-11-07 =
+* Tweak - WC 8.3 compatibility.
+* Tweak - WP 6.4 compatibility.
+* Update - Use new Woo.com domain.
+* Update - WordPressCS to version 3.0.
 
 [See changelog for all versions](https://raw.githubusercontent.com/woocommerce/woocommerce-google-analytics-integration/trunk/changelog.txt).

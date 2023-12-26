@@ -142,7 +142,7 @@ class WC_Google_Analytics_JS extends WC_Abstract_Google_Analytics_JS {
 
 		wc_enqueue_js(
 			"
-			$( '.product.post-" . esc_js( $product->get_id() ) . ' a , .product.post-' . esc_js( $product->get_id() ) . " button' ).on('click', function() {
+			$( '.product.post-" . esc_js( $product->get_id() ) . ' a.button , .product.post-' . esc_js( $product->get_id() ) . " button' ).on('click', function() {
 				if ( false === $(this).hasClass( 'product_type_variable' ) && false === $(this).hasClass( 'product_type_grouped' ) ) {
 					" . self::tracker_var() . "( 'ec:addProduct', {
 						'id': '" . esc_js( $product->get_id() ) . "',
@@ -539,5 +539,4 @@ class WC_Google_Analytics_JS extends WC_Abstract_Google_Analytics_JS {
 		wp_add_inline_script( 'google-analytics', $code );
 		wp_enqueue_script( 'google-analytics' );
 	}
-
 }
