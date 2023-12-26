@@ -114,6 +114,13 @@ if ( ! class_exists( 'Astra_Theme_Options' ) ) {
 			$apply_new_default_values = astra_button_default_padding_updated();
 
 			/**
+			 * Update Astra customizer default values. To not update directly on existing users site, added backwards.
+			 *
+			 * @since 4.5.2
+			 */
+			$apply_scndry_default_padding_values = astra_scndry_btn_default_padding();
+
+			/**
 			 * Update Astra default color and typography values. To not update directly on existing users site, added backwards.
 			 *
 			 * @since 4.0.0
@@ -195,6 +202,10 @@ if ( ! class_exists( 'Astra_Theme_Options' ) ) {
 					'button-h-color'                       => '',
 					'button-bg-color'                      => '',
 					'button-bg-h-color'                    => '',
+					'secondary-button-bg-h-color'          => '',
+					'secondary-button-bg-color'            => '',
+					'secondary-button-color'               => '',
+					'secondary-button-h-color'             => '',
 					'theme-button-padding'                 => array(
 						'desktop'      => array(
 							'top'    => $apply_new_default_values ? 15 : 10,
@@ -213,6 +224,29 @@ if ( ! class_exists( 'Astra_Theme_Options' ) ) {
 							'right'  => $apply_new_default_values ? 24 : '',
 							'bottom' => $apply_new_default_values ? 12 : '',
 							'left'   => $apply_new_default_values ? 24 : '',
+						),
+						'desktop-unit' => 'px',
+						'tablet-unit'  => 'px',
+						'mobile-unit'  => 'px',
+					),
+					'secondary-theme-button-padding'       => array(
+						'desktop'      => array(
+							'top'    => $apply_scndry_default_padding_values ? 15 : '',
+							'right'  => $apply_scndry_default_padding_values ? 30 : '',
+							'bottom' => $apply_scndry_default_padding_values ? 15 : '',
+							'left'   => $apply_scndry_default_padding_values ? 30 : '',
+						),
+						'tablet'       => array(
+							'top'    => $apply_scndry_default_padding_values ? 14 : '',
+							'right'  => $apply_scndry_default_padding_values ? 28 : '',
+							'bottom' => $apply_scndry_default_padding_values ? 14 : '',
+							'left'   => $apply_scndry_default_padding_values ? 28 : '',
+						),
+						'mobile'       => array(
+							'top'    => $apply_scndry_default_padding_values ? 12 : '',
+							'right'  => $apply_scndry_default_padding_values ? 24 : '',
+							'bottom' => $apply_scndry_default_padding_values ? 12 : '',
+							'left'   => $apply_scndry_default_padding_values ? 24 : '',
 						),
 						'desktop-unit' => 'px',
 						'tablet-unit'  => 'px',
@@ -241,12 +275,42 @@ if ( ! class_exists( 'Astra_Theme_Options' ) ) {
 						'tablet-unit'  => 'px',
 						'mobile-unit'  => 'px',
 					),
+					'secondary-button-radius-fields'       => array(
+						'desktop'      => array(
+							'top'    => ! isset( $astra_options['button-radius'] ) ? '' : $astra_options['button-radius'],
+							'right'  => ! isset( $astra_options['button-radius'] ) ? '' : $astra_options['button-radius'],
+							'bottom' => ! isset( $astra_options['button-radius'] ) ? '' : $astra_options['button-radius'],
+							'left'   => ! isset( $astra_options['button-radius'] ) ? '' : $astra_options['button-radius'],
+						),
+						'tablet'       => array(
+							'top'    => '',
+							'right'  => '',
+							'bottom' => '',
+							'left'   => '',
+						),
+						'mobile'       => array(
+							'top'    => '',
+							'right'  => '',
+							'bottom' => '',
+							'left'   => '',
+						),
+						'desktop-unit' => 'px',
+						'tablet-unit'  => 'px',
+						'mobile-unit'  => 'px',
+					),
 					'theme-button-border-group-border-size' => array(
 						'top'    => '',
 						'right'  => '',
 						'bottom' => '',
 						'left'   => '',
 					),
+					'secondary-theme-button-border-group-border-size' => array(
+						'top'    => '',
+						'right'  => '',
+						'bottom' => '',
+						'left'   => '',
+					),
+
 					// Footer - Small.
 					'footer-sml-layout'                    => 'footer-sml-layout-1',
 					'footer-sml-section-1'                 => 'custom',
@@ -617,6 +681,7 @@ if ( ! class_exists( 'Astra_Theme_Options' ) ) {
 					'single-page-sidebar-layout'           => false === astra_check_is_structural_setup() ? 'default' : 'no-sidebar',
 					'single-post-sidebar-layout'           => 'default',
 					'archive-post-sidebar-layout'          => 'default',
+					'site-sticky-sidebar'                  => false,
 					'site-sidebar-style'                   => 'unboxed',
 					'single-page-sidebar-style'            => 'unboxed',
 					'single-post-sidebar-style'            => 'default',

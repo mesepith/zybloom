@@ -310,7 +310,9 @@ class Astra_Posts_Archive_Structures_Configs extends Astra_Customizer_Config_Bas
 					'section'  => $parent_section,
 					'priority' => 2,
 					'linked'   => $title_section,
-					'linkText' => ( 'post' === $post_type ) ? __( 'Blog Title', 'astra' ) : Astra_Posts_Structures_Configs::astra_get_dynamic_section_title( get_post_type_object( $post_type ), $post_type ) . __( ' Title', 'astra' ),
+					// @codingStandardsIgnoreStart
+					'linkText' => $this->get_dynamic_section_title( get_post_type_object( $post_type ), $post_type ),
+					// @codingStandardsIgnoreEnd
 				),
 
 				/**
@@ -775,7 +777,7 @@ class Astra_Posts_Archive_Structures_Configs extends Astra_Customizer_Config_Bas
 					'transport'         => 'postMessage',
 					'title'             => __( 'Font Size', 'astra' ),
 					'sanitize_callback' => array( 'Astra_Customizer_Sanitizes', 'sanitize_responsive_slider' ),
-					'suffix'            => array( 'px', 'em' ),
+					'suffix'            => array( 'px', 'em', 'vw' ),
 					'input_attrs'       => array(
 						'px' => array(
 							'min'  => 0,
@@ -784,8 +786,13 @@ class Astra_Posts_Archive_Structures_Configs extends Astra_Customizer_Config_Bas
 						),
 						'em' => array(
 							'min'  => 0,
-							'step' => 1,
+							'step' => 0.01,
 							'max'  => 20,
+						),
+						'vw' => array(
+							'min'  => 0,
+							'step' => 0.1,
+							'max'  => 25,
 						),
 					),
 				),
@@ -800,7 +807,7 @@ class Astra_Posts_Archive_Structures_Configs extends Astra_Customizer_Config_Bas
 					'transport'         => 'postMessage',
 					'title'             => __( 'Font Size', 'astra' ),
 					'sanitize_callback' => array( 'Astra_Customizer_Sanitizes', 'sanitize_responsive_slider' ),
-					'suffix'            => array( 'px', 'em' ),
+					'suffix'            => array( 'px', 'em', 'vw' ),
 					'input_attrs'       => array(
 						'px' => array(
 							'min'  => 0,
@@ -809,8 +816,13 @@ class Astra_Posts_Archive_Structures_Configs extends Astra_Customizer_Config_Bas
 						),
 						'em' => array(
 							'min'  => 0,
-							'step' => 1,
+							'step' => 0.01,
 							'max'  => 20,
+						),
+						'vw' => array(
+							'min'  => 0,
+							'step' => 0.1,
+							'max'  => 25,
 						),
 					),
 				),
@@ -875,7 +887,7 @@ class Astra_Posts_Archive_Structures_Configs extends Astra_Customizer_Config_Bas
 					'transport'         => 'postMessage',
 					'title'             => __( 'Font Size', 'astra' ),
 					'sanitize_callback' => array( 'Astra_Customizer_Sanitizes', 'sanitize_responsive_slider' ),
-					'suffix'            => array( 'px', 'em' ),
+					'suffix'            => array( 'px', 'em', 'vw' ),
 					'input_attrs'       => array(
 						'px' => array(
 							'min'  => 0,
@@ -884,8 +896,13 @@ class Astra_Posts_Archive_Structures_Configs extends Astra_Customizer_Config_Bas
 						),
 						'em' => array(
 							'min'  => 0,
-							'step' => 1,
+							'step' => 0.01,
 							'max'  => 20,
+						),
+						'vw' => array(
+							'min'  => 0,
+							'step' => 0.1,
+							'max'  => 25,
 						),
 					),
 				),
@@ -1001,6 +1018,23 @@ class Astra_Posts_Archive_Structures_Configs extends Astra_Customizer_Config_Bas
 		}
 
 		return $configurations;
+	}
+
+	/**
+	 * Get Dynamic Section Title.
+	 *
+	 * @since 4.4.0
+	 * @param object|null $post_type_object Post type object.
+	 * @param string      $post_type Post type.
+	 * @return string
+	 */
+	public function get_dynamic_section_title( $post_type_object, $post_type ) {
+		if ( ! is_null( $post_type_object ) ) {
+			$title = ( 'post' === $post_type ) ? __( 'Blog', 'astra' ) : Astra_Posts_Structures_Configs::astra_get_dynamic_section_title( get_post_type_object( $post_type ), $post_type );
+		} else {
+			$title = __( 'Archive Banner', 'astra' );
+		}
+		return apply_filters( 'astra_archive_post_title', $title . __( ' Title', 'astra' ) );
 	}
 }
 

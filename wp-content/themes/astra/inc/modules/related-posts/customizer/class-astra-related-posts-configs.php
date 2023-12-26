@@ -72,7 +72,8 @@ class Astra_Related_Posts_Configs extends Astra_Customizer_Config_Base {
 				'section'   => 'section-blog-single',
 				'priority'  => 11,
 				'title'     => __( 'Title', 'astra' ),
-				'control'   => 'text',
+				'control'   => 'ast-text-input',
+				'divider'   => array( 'ast_class' => 'ast-top-dotted-divider' ),
 				'transport' => 'postMessage',
 				'partial'   => array(
 					'selector'            => '.ast-related-posts-title-section .ast-related-posts-title',
@@ -329,6 +330,7 @@ class Astra_Related_Posts_Configs extends Astra_Customizer_Config_Base {
 				'section'    => 'section-blog-single',
 				'priority'   => 1,
 				'control'    => 'ast-selector',
+				'divider'    => array( 'ast_class' => 'ast-sub-bottom-dotted-divider' ),
 				'title'      => __( 'Related Posts by', 'astra' ),
 				'choices'    => array(
 					'categories' => __( 'Categories', 'astra' ),
@@ -347,6 +349,7 @@ class Astra_Related_Posts_Configs extends Astra_Customizer_Config_Base {
 				'parent'    => ASTRA_THEME_SETTINGS . '[related-posts-query-group]',
 				'section'   => 'section-blog-single',
 				'type'      => 'sub-control',
+				'divider'   => array( 'ast_class' => 'ast-sub-bottom-dotted-divider' ),
 				'priority'  => 2,
 				'transport' => 'postMessage',
 				'title'     => __( 'Order by', 'astra' ),
@@ -720,7 +723,7 @@ class Astra_Related_Posts_Configs extends Astra_Customizer_Config_Base {
 				'transport'         => 'postMessage',
 				'title'             => __( 'Font Size', 'astra' ),
 				'sanitize_callback' => array( 'Astra_Customizer_Sanitizes', 'sanitize_responsive_slider' ),
-				'suffix'            => array( 'px', 'em' ),
+				'suffix'            => array( 'px', 'em', 'vw' ),
 				'input_attrs'       => array(
 					'px' => array(
 						'min'  => 0,
@@ -731,6 +734,11 @@ class Astra_Related_Posts_Configs extends Astra_Customizer_Config_Base {
 						'min'  => 0,
 						'step' => 0.01,
 						'max'  => 20,
+					),
+					'vw' => array(
+						'min'  => 0,
+						'step' => 0.1,
+						'max'  => 25,
 					),
 				),
 			),
@@ -796,7 +804,7 @@ class Astra_Related_Posts_Configs extends Astra_Customizer_Config_Base {
 				'transport'         => 'postMessage',
 				'title'             => __( 'Font Size', 'astra' ),
 				'sanitize_callback' => array( 'Astra_Customizer_Sanitizes', 'sanitize_responsive_slider' ),
-				'suffix'            => array( 'px', 'em' ),
+				'suffix'            => array( 'px', 'em', 'vw' ),
 				'input_attrs'       => array(
 					'px' => array(
 						'min'  => 0,
@@ -807,6 +815,11 @@ class Astra_Related_Posts_Configs extends Astra_Customizer_Config_Base {
 						'min'  => 0,
 						'step' => 0.01,
 						'max'  => 20,
+					),
+					'vw' => array(
+						'min'  => 0,
+						'step' => 0.1,
+						'max'  => 25,
 					),
 				),
 			),
@@ -871,7 +884,7 @@ class Astra_Related_Posts_Configs extends Astra_Customizer_Config_Base {
 				'transport'         => 'postMessage',
 				'title'             => __( 'Font Size', 'astra' ),
 				'sanitize_callback' => array( 'Astra_Customizer_Sanitizes', 'sanitize_responsive_slider' ),
-				'suffix'            => array( 'px', 'em' ),
+				'suffix'            => array( 'px', 'em', 'vw' ),
 				'input_attrs'       => array(
 					'px' => array(
 						'min'  => 0,
@@ -882,6 +895,11 @@ class Astra_Related_Posts_Configs extends Astra_Customizer_Config_Base {
 						'min'  => 0,
 						'step' => 0.01,
 						'max'  => 20,
+					),
+					'vw' => array(
+						'min'  => 0,
+						'step' => 0.1,
+						'max'  => 25,
 					),
 				),
 			),
@@ -945,7 +963,7 @@ class Astra_Related_Posts_Configs extends Astra_Customizer_Config_Base {
 				'transport'         => 'postMessage',
 				'title'             => __( 'Font Size', 'astra' ),
 				'sanitize_callback' => array( 'Astra_Customizer_Sanitizes', 'sanitize_responsive_slider' ),
-				'suffix'            => array( 'px', 'em' ),
+				'suffix'            => array( 'px', 'em', 'vw' ),
 				'input_attrs'       => array(
 					'px' => array(
 						'min'  => 0,
@@ -956,6 +974,11 @@ class Astra_Related_Posts_Configs extends Astra_Customizer_Config_Base {
 						'min'  => 0,
 						'step' => 0.01,
 						'max'  => 20,
+					),
+					'vw' => array(
+						'min'  => 0,
+						'step' => 0.1,
+						'max'  => 25,
 					),
 				),
 			),
