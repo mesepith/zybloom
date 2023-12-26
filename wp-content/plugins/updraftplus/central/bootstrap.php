@@ -116,7 +116,7 @@ class UpdraftCentral_Main {
 		} else {
 			$url_prefix = is_ssl() ? 'https' : 'http';
 			$host = empty($_SERVER['HTTP_HOST']) ? parse_url(network_site_url(),  PHP_URL_HOST) : $_SERVER['HTTP_HOST'];
-			$current_url = $url_prefix."://".$host.$_SERVER['REQUEST_URI'];
+			$current_url = $url_prefix."://".$host.wp_unslash($_SERVER['REQUEST_URI']);
 		}
 		$remove_query_args = array('state', 'action', 'oauth_verifier', 'nonce', 'updraftplus_instance', 'access_token', 'user_id', 'updraftplus_googledriveauth');
 
@@ -750,6 +750,11 @@ class UpdraftCentral_Main {
 					</tr>
 				</tbody>
 			</table>
+			<div id="updraft-copy-modal" title="<?php _e('Copy to clipboard', 'updraftplus');?>">
+				<p>
+					<?php echo __('Your web browser prevented the copy operation.', 'updraftplus').' '.'<a href="https://updraftplus.com/faqs/how-do-i-set-clipboard-permissions-for-different-browsers/" target="__blank">'.' '.__('Follow this link to read about how to set browser permission', 'updraftplus').'</a>'; ?>
+				</p>
+			</div>
 		</div>
 		<?php
 		return ob_get_clean();
