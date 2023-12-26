@@ -1,6 +1,6 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "eedee/block-gutenslider",
   "textdomain": "gutenslider",
   "title": "Gutenslider",
@@ -505,19 +505,31 @@
     "align": true,
     "html": false,
     "spacing": {
-      "padding": true,
+      "blockGap": {
+        "__experimentalDefault": "2em",
+        "sides": [
+          "horizontal",
+          "vertical"
+        ]
+      },
       "margin": [
         "top",
         "bottom"
       ],
+      "padding": true,
       "__experimentalDefaultControls": {
-        "padding": true
+        "padding": true,
+        "blockGap": true
       }
     },
     "color": {
       "__experimentalDuotone": "> .wp-block-cover__image-background, > .wp-block-cover__video-background",
-      "text": false,
-      "background": false
+      "gradients": true,
+      "link": true,
+      "__experimentalDefaultControls": {
+        "background": true,
+        "text": true
+      }
     },
     "typography": {
       "fontSize": true,

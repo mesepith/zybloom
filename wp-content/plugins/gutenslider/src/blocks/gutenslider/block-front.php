@@ -38,6 +38,54 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 			'bottom right' => 'is-position-bottom-right',
 		);
 
+		$gap = _wp_array_get( $attr, array( 'style', 'spacing', 'blockGap' ) );
+		// Skip if gap value contains unsupported characters.
+		// Regex for CSS value borrowed from `safecss_filter_attr`, and used here
+		// because we only want to match against the value, not the CSS attribute.
+		if ( is_array( $gap ) ) {
+			foreach ( $gap as $key => $value ) {
+				// Make sure $value is a string to avoid PHP 8.1 deprecation error in preg_match() when the value is null.
+				$value = is_string( $value ) ? $value : '';
+				$value = $value && preg_match( '%[\\\(&=}]|/\*%', $value ) ? null : $value;
+	
+				// Get spacing CSS variable from preset value if provided.
+				if ( is_string( $value ) && str_contains( $value, 'var:preset|spacing|' ) ) {
+					$index_to_splice = strrpos( $value, '|' ) + 1;
+					$slug            = _wp_to_kebab_case( substr( $value, $index_to_splice ) );
+					$value           = "var(--wp--preset--spacing--$slug)";
+				}
+	
+				$gap[ $key ] = $value;
+			}
+		} else {
+			// Make sure $gap is a string to avoid PHP 8.1 deprecation error in preg_match() when the value is null.
+			$gap = is_string( $gap ) ? $gap : '';
+			$gap = $gap && preg_match( '%[\\\(&=}]|/\*%', $gap ) ? null : $gap;
+	
+			// Get spacing CSS variable from preset value if provided.
+			if ( is_string( $gap ) && str_contains( $gap, 'var:preset|spacing|' ) ) {
+				$index_to_splice = strrpos( $gap, '|' ) + 1;
+				$slug            = _wp_to_kebab_case( substr( $gap, $index_to_splice ) );
+				$gap             = "var(--wp--preset--spacing--$slug)";
+			}
+		}
+
+		$fallback_gap = 'var( --wp--style--gallery-gap-default, var( --gallery-block--gutter-size, var( --wp--style--block-gap, 0.5em ) ) )';
+		$gap_value    = $gap ? $gap : $fallback_gap;
+		$gap_horizontal   = $gap_value;
+		$gap_vertical = $gap_value;
+	
+		if ( is_array( $gap_value ) ) {
+			$gap_vertical    = isset( $gap_value['top'] ) ? $gap_value['top'] : $fallback_gap;
+			$gap_horizontal = isset( $gap_value['left'] ) ? $gap_value['left'] : $fallback_gap;
+			$gap_value  = $gap_vertical === $gap_horizontal ? $gap_vertical : $gap_vertical . ' ' . $gap_horizontal;
+		}
+	
+		// The unstable gallery gap calculation requires a real value (such as `0px`) and not `0`.
+		if ( '0' === $gap_horizontal ) {
+			$gap_horizontal = '0px';
+		}
+
 		$id = '';
 
 		$getSlidesPerView = function ( $slidesBreakpoint ) use (&$attr) {
@@ -63,7 +111,7 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 		}
 
 		$class = sprintf(
-			'wp-block-eedee-block-gutenslider content-%1$s',
+			'wp-block-eedee-block-gutenslider gs-frontend content-%1$s',
 			esc_attr( $attr['contentMode'] )
 		);
 		if ( isset( $attr['align'] ) ) {
@@ -157,12 +205,32 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 			$class .= ' lg-zoom-icon';
 		}
 
-		$bg_image = '';
-		if ( isset( $attr['bgImageId'] ) ) {
-			if ( wp_get_attachment_image_src( $attr['bgImageId'], 'medium' ) ) {
-				$bg_image = wp_get_attachment_image_src( $attr['bgImageId'], 'medium' )[0];
-			}
+		if ( isset( $attr['firstNotLazy'] ) && $attr['firstNotLazy'] ) {
+			$class .= ' gs-first-not-lazy';
 		}
+
+		if ( isset( $attr['wrapAutoHeight'] ) && $attr['wrapAutoHeight'] ) {
+			$class .= ' wrap-auto-height';
+		}
+
+
+
+		$bg_image = '';
+		// if ( isset( $attr['bgImageId'] ) ) {
+		// 	if ( is_numeric($attr['bgImageId']) ) {
+		// 		if ( wp_get_attachment_image_src( $attr['bgImageId'] ) ) {
+		// 			$bg_image = sprintf(
+		// 				'<img src="%1$s" alt="gutenslider-loading-image" />',
+		// 				wp_get_attachment_image_src( $attr['bgImageId'], 'medium' )[0]
+		// 			);
+		// 		}
+		// 	} else {
+		// 		$bg_image = sprintf(
+		// 			'<div style="width: 100%%; height: 100%%; background: %1$s;"></div>', $attr['bgImageId']
+		// 		);
+		// 	}
+		// }
+		// var_dump( $attr['bgImageId'] );
 
 		$effect = esc_attr( $attr['animation'] );
 
@@ -216,7 +284,10 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 			. '--gutenslider-divider-top: %46$spx;'
 			. '--gutenslider-divider-bottom: %47$spx;'
 			. '--gutenslider-lightgallery-bg: %48$s;'
-			. '--gutenslider-lightgallery-font: %49$s;',
+			. '--gutenslider-lightgallery-font: %49$s;'
+			. '--gs-first-pos: %50$s;'
+			. '--gs-gap-vertical: %51$s;'
+			. '--gs-gap-horizontal: %52$s;',
 			$attr['sliderHeight'],
 			$attr['arrowSize'],
 			$attr['dotSize'],
@@ -230,7 +301,7 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 			$attr['spacingXDesktop'],
 			$attr['spacingYUnit'],
 			$attr['spacingXUnit'],
-			$bg_image,
+			'',
 			$attr['sliderHeightMd'],
 			$attr['sliderHeightSm'],
 			$attr['paddingX'],
@@ -265,7 +336,10 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 			$attr['dividers']['top']['height'],
 			$attr['dividers']['bottom']['height'],
 			$attr['lgBgColor'],
-			$attr['lgFontColor']
+			$attr['lgFontColor'],
+			$attr['bgImagePos'],
+			$gap_vertical,
+			$gap_horizontal
 		);
 
 		$overlay_style = '';
@@ -284,7 +358,7 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 		$next_arrow = $eedee_gutenslider_arrows[ $arr_key ][ 'next' ];
 
 		$slider_settings = array(
-			'autoplay'         => esc_attr( $attr['autoplay'] ) ? array(
+			'autoplay'         => boolval( $attr['autoplay'] ) ? array(
 				'delay' => intval( $attr['duration']) * 1000,
 				'pauseOnMouseEnter' => boolval( $attr['pauseOnHover'] ),
 				'disableOnInteraction' => ! boolval( $attr['pauseOnHover'] )
@@ -292,8 +366,9 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 			'speed'            => floatval( $attr['fadeSpeed'] ) * 1000,
 			'direction'        => 'horizontal',
 			'autoHeight'       => isset( $attr['adaptiveHeightSm'] ) ? esc_attr( $attr['adaptiveHeightSm'] ) : false,
-			'loop'             => $attr['loop'],
-			// 'loopedSlides'     => 4,
+			'loop'             => $getSlidesPerView( $attr['slidesToShowSm'] ) !== 'auto' ? $attr['loop'] : false,
+			// 'rewind'		   => $getSlidesPerView( $attr['slidesToShowSm'] ) === 'auto' && $attr['loop'],
+			// 'loopedSlides'     => 5,
 			'centeredSlides'   => $attr['centeredSlides'] || esc_attr($attr['animation']) === 'coverflow',
 			'spaceBetween'     => $attr['animation'] === 'cube' ? 0 : intval($attr['spaceBetweenSm']),
 			'slidesPerView'    => $getSlidesPerView( $attr['slidesToShowSm'] ),
@@ -331,20 +406,25 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 				'slidesPerView' => $getSlidesPerView( $attr['slidesToShowMd'] ),
 				'slidesPerGroup' => intval( $attr['slidesToScrollMd'] ),
 				'spaceBetween' => $attr['animation'] === 'cube' ? 0 : intval( $attr['spaceBetweenMd'] ),
+				'loop'             => $getSlidesPerView( $attr['slidesToShowMd'] ) !== 'auto' ? $attr['loop'] : false,
+				// 'rewind'		   => $getSlidesPerView( $attr['slidesToShowMd'] ) === 'auto' && $attr['loop'],
 			),
 			'settingsLg' => array(
 				'autoHeight'   => isset( $attr['adaptiveHeight'] ) ? esc_attr( $attr['adaptiveHeight'] ) : false,
 				'slidesPerView' => $getSlidesPerView( $attr['slidesToShow'] ),
 				'slidesPerGroup' => intval( $attr['slidesToScroll'] ),
 				'spaceBetween' => $attr['animation'] === 'cube' ? 0 : intval( $attr['spaceBetween'] ),
+				'loop'             => $getSlidesPerView( $attr['slidesToShow'] ) !== 'auto' ? $attr['loop'] : false,
+				// 'rewind'		   => $getSlidesPerView( $attr['slidesToShow'] ) === 'auto' && $attr['loop'],
 			),
 			'hasLg' => $attr[ 'hasLg' ],
 			'hasLgCounter' => $attr[ 'hasLgCounter' ],
 			'isFullScreen' => $attr[ 'isFullScreen' ],
 			'arrowsFollowMouse' => $attr[ 'arrowPosition' ] === 'arrow-follow-mouse',
-			'lgTitle' => $attr[ 'lgTitle' ],
-			'lgCaption' => $attr[ 'lgCaption' ],
-			'lgThumbnails' => $attr[ 'lgThumbnails' ],
+			'lgTitle' => isset( $attr[ 'lgTitle' ] ) ? esc_attr( $attr[ 'lgTitle' ] ) : '',
+			'lgCaption' => isset( $attr[ 'lgCaption' ] ) ? esc_attr( $attr[ 'lgCaption' ] ) : '',
+			'lgThumbnails' => boolval($attr[ 'lgThumbnails' ]),
+			'lgZoomEnabled' => boolval($attr[ 'lgZoomEnabled' ]),
 			'keyboard' => boolval( $attr[ 'keyboardNavigation' ] ) ?
 				array('keyboard' => array(
 					'enabled' => true,
@@ -354,6 +434,14 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 				'replaceState' => true,
 				'watchState' => true,
 			) : false,
+			'dividers' => isset( $attr['dividers'] ) &&
+				isset( $attr['dividers']['top'] ) &&
+				isset( $attr['dividers']['top']['value'] ) &&
+				$attr['dividers']['top']['value'] !== 'none' ||
+				isset( $attr['dividers'] ) &&
+				isset( $attr['dividers']['bottom'] ) &&
+				isset( $attr['dividers']['bottom']['value'] ) &&
+				$attr['dividers']['bottom']['value'] !== 'none',
 		);
 
 		$slider_settings = json_encode( $slider_settings );
@@ -410,7 +498,7 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 					}
 
 					$divider_top = sprintf(
-						'<div class="gutenslider-divider-top%4$s" style="color:%1$s; height:%2$spx;">%3$s</div>',
+						'<div class="gutenslider-divider-top%4$s" style="color:%1$s;">%3$s</div>',
 						$divider_top_color,
 						$divider_top_height,
 						$divider_top_svg_inverted && $attr['dividers']['top']['inverted'] ? $divider_top_svg_inverted : $divider_top_svg,
@@ -442,7 +530,7 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 					}
 
 					$divider_bottom = sprintf(
-						'<div class="gutenslider-divider-bottom%4$s" style="color:%1$s; height:%2$spx;">%3$s</div>',
+						'<div class="gutenslider-divider-bottom%4$s" style="color:%1$s;">%3$s</div>',
 						$divider_bottom_color,
 						$divider_bottom_height,
 						$divider_bottom_svg_inverted && $attr['dividers']['bottom']['inverted'] ? $divider_bottom_svg_inverted : $divider_bottom_svg,
@@ -485,21 +573,24 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 				$inner_content,
 				$divider_top,
 				$divider_bottom,
-				$hash
+				$hash,
+				$bg_image
 			);
 		}
 		//<!-- Slider main container -->
+		$wrapper_attributes = get_block_wrapper_attributes();
+		// var_dump( 'wrapper', $wrapper_attributes );
 
 		return sprintf(
-			'<div id="%6$s" class="%1$s" style="%2$s" %5$s data-hash="%11$s">'
-			. '<div class="eedee-swiper-outer">'
+			'<div id="%6$s" class="%1$s" %5$s data-hash="%11$s" %12$s>'
+			. '<div class="eedee-swiper-outer" style="%2$s">'
 			. '%9$s'
 			. '<div class="swiper" data-settings=\'%4$s\'><div class="swiper-wrapper">%3$s</div>'
 			. '</div>'
 			. '<button class="eedee-gutenslider-nav eedee-gutenslider-prev">%7$s</button>'
 			. '<button class="eedee-gutenslider-nav eedee-gutenslider-next">%8$s</button>'
 			. '<div class="eedee-gutenslider-pagination"></div>'
-			. '</div>%10$s</div>',
+			. '%10$s</div></div>',
 			esc_attr( $class ),
 			$component_style,
 			$inner_content,
@@ -510,7 +601,8 @@ if ( ! function_exists( 'eedee_gutenslider_dynamic_render_callback' ) ) {
 			$next_arrow,
 			$divider_top,
 			$divider_bottom,
-			$hash
+			$hash,
+			$bg_image
 		);
 	}
 }

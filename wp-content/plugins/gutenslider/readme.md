@@ -3,10 +3,10 @@
 **Contributors:** eedee, wordpressslider, gutenbergslider \
 **Tags:** slider, slider block, image slider, video slider, wordpress slider, carousel, gallery, responsive, media slider, content slider \
 **Requires at least:** 5.6 \
-**Tested up to:** 6.2.2 \
+**Tested up to:** 6.4.1 \
 **License:** GPLv2 or later \
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html \
-**Stable tag:** 5.10.2
+**Stable tag:** 6.1.0
 
 Slider plugin for Gutenberg. Create a image slider, video slider, fullscreen slider with this powerful slider block and add any block on top. Slide anything!
 
@@ -110,7 +110,7 @@ The slider mode you will most probably know. Each slide has a custom background 
 
 In this mode you select fixed content, that will stay on top, while the background changes and loops all slides. Great for headlines, call to actions. You name it!
 
-Gutenslider is built using WordPress, CSS, Javascript, best practices both on the front and the backend. And it's seo optimized. It makes use of the new Gutenberg powers built in react. As a result, it is robust, easy to use and lightning fast. It works with any theme. Go and check it out.
+Gutenslider is built using WordPress, CSS, Javascript, best practices both on the front and the backend. And it's SEO optimized. It makes use of the new Gutenberg powers built in react. As a result, it is robust, easy to use and lightning fast. It works with any theme. Go and check it out.
 
 ## Help us get better
 
@@ -177,18 +177,18 @@ You can contribute to translating Gutenslider for you and all other users of you
 
 ## Changelog
 
-### 5.9.5
+### 6.1.0
 
-* critical security update in freemius
-
-### 5.9.4
-
-* reset default background of lightgallery
-
-### 5.9.3
-
-* add new `gutenslider_attributes` filter to change default Gutenslider attributes with a WordPress filter
-* add new `gutenslide_attributes` filter to change default Gutenslide attributes with a WordPress filter
+* Page Speed improvemnts ~30 -> ~90 (Desktop) / ~80 (Mobile)
+* Chunks: only load required css / js
+* New setting to disable lazy load on first image
+* New setting to enable/disable lightgallery zoom
+* Video slides now pause automatically when slide not active, can be disabled
+* Update to swiper 9.3.2
+* fix high and critical security issues in npm packages
+* Update all outdated packages 
+* Add Styles tab for block padding + spacing
+* update freemius sdk 2.6.0 to fix several bugs and security issues
 
 ### 5.9.2
 
