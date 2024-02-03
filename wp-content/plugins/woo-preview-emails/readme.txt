@@ -1,10 +1,10 @@
 === Preview E-mails for WooCommerce ===
 Contributors: digamberpradhan, codemanas
 Tags: WooCommerce, Emails, Preview
-Requires at least: 6.0
-Tested up to: 6.3.0
+Requires at least: 6.1.0
+Tested up to: 6.4.0
 Requires PHP: 7.4
-Stable tag: 2.1.6
+Stable tag: 2.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,17 +17,14 @@ An Extension for WooCommerce that allows you to Preview Email Templates.
 2. Choose the templates and an Order
 3. A preview of the selected E-mail will be shown
 
-== Installation ==
-
-1. Upload `preview-emails-woocommerce` to the `/wp-content/plugins/` directory
+== Manual Installation ==
+1. Upload `woo-preview-emails` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. You're done go to Preview Emails section in the admin menu and start previewing
 
 == Frequently Asked Questions ==
-
 = Send Test Mails to yourself =
 You can now send test mails, to test on actual devices
-
 *note: If the mail isn't seen in you inbox, please first check your spam folder
 
 == Pro Version ==
@@ -42,6 +39,14 @@ Looking for integration with WooCommerce Bookings and Subscriptions - check out 
 5. Send emails to yourself to check on other devices
 
 == Changelog ==
+= 2.2.1 =
+- Language: Updated .pot file
+
+= 2.2.0 =
+- Feature: Ability to choose and preview plain text html
+- Dev: Remove jQuery dependency (moved to choices)
+- Dev: Code refactoring for maintainability
+
 = 2.1.6 =
 Dev: Declare [HPOS compatibility](https://github.com/woocommerce/woocommerce/wiki/High-Performance-Order-Storage-Upgrade-Recipe-Book#declaring-extension-incompatibility)
 
@@ -82,22 +87,22 @@ Select2 library updated
 WordPress version and WC version compatibility bump
 
 = 1.6.5 =
-Tested upto WooCommerce 4.1.1
+- Tested upto WooCommerce 4.1.1
 
 = 1.6.4 =
-Testec upto WooCommerce 4.0.0
+- Tested upto WooCommerce 4.0.0
 
 = 1.6.3 =
-Enhancement - E-mail instructions should show up for - order with Payment gateways
+- Enhancement - E-mail instructions should show up for - order with Payment gateways
 
 = 1.6.2 =
-Compatibility update for Pro Add-on for subscription product
+- Compatibility update for Pro Add-on for subscription product
 
 = 1.6.1 =
-Show full path for template file instead.
+- Show full path for template file instead.
 
 = 1.6.0 =
-Code refactoring and UI and UX changes
+- Code refactoring and UI and UX changes
 
 = 1.5.4 =
 Correction for untranslated Submit Button

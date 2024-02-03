@@ -4,9 +4,11 @@ namespace Codemanas\WooPreviewEmails;
 
 class Main {
 	public static ?Main $instance = null;
-	private $orderID, $recipient;
+	private $recipient;
 	private string $plugin_url;
-	public $emails = null, $notice_message = null, $notice_class = null;
+	public $emails = null;
+	public $notice_message = null;
+	public $notice_class = null;
 	private string $choose_email;
 
 	/**
@@ -23,22 +25,18 @@ class Main {
 		//generates result
 		add_action( 'admin_init', [ $this, 'email_preview_output' ], 20 );
 		add_action( 'admin_enqueue_scripts', [ $this, 'load_scripts' ], 10, 1 );
-		add_action( 'wp_ajax_woo_preview_orders_search', [ $this, 'get_orders' ] );
-		add_filter( 'plugin_action_links_woo-preview-emails/woocommerce-preview-emails.php', [
-			$this,
-			'settings_link'
-		], 20 );
+		add_filter( 'plugin_action_links_woo-preview-emails/woocommerce-preview-emails.php', [ $this, 'settings_link' ], 20 );
 
-        //HPOS Compatibility
-		add_action( 'before_woocommerce_init', [$this,'hpos_compatible'] );
+		//HPOS Compatibility
+		add_action( 'before_woocommerce_init', [ $this, 'hpos_compatible' ] );
 	}
 
-    //mark as HPOS compatibility
-    public function hpos_compatible() {
-	    if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
-		    \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', WOO_PREVIEW_EMAILS_FILE, true );
-	    }
-    }
+	//mark as HPOS compatibility
+	public function hpos_compatible() {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', WOO_PREVIEW_EMAILS_FILE, true );
+		}
+	}
 
 	public function settings_link( $links ) {
 		// Build and escape the URL.
@@ -64,45 +62,9 @@ class Main {
 			$wc_emails = \WC_Emails::instance();
 			$emails    = $wc_emails->get_emails();
 			if ( ! empty( $emails ) ) {
-				//Filtering out booking emails becuase it won't work from this plugin
-				//Buy PRO version if you need this capability
-				$unset_booking_emails = array(
-					'WC_Email_New_Booking',
-					'WC_Email_Booking_Reminder',
-					'WC_Email_Booking_Confirmed',
-					'WC_Email_Booking_Notification',
-					'WC_Email_Booking_Cancelled',
-					'WC_Email_Admin_Booking_Cancelled',
-					'WC_Email_Booking_Pending_Confirmation',
-				);
-
-				//Filtering out subscription emails becuase it won't work from this plugin
-				//Buy PRO version if you need this capability
-				$unset_subscription_emails = array(
-					'WCS_Email_New_Renewal_Order',
-					'WCS_Email_New_Switch_Order',
-					'WCS_Email_Processing_Renewal_Order',
-					'WCS_Email_Completed_Renewal_Order',
-					'WCS_Email_Completed_Switch_Order',
-					'WCS_Email_Customer_Renewal_Invoice',
-					'WCS_Email_Cancelled_Subscription',
-					'WCS_Email_Expired_Subscription',
-					'WCS_Email_On_Hold_Subscription',
-				);
-
-				//Filtering out membership emails becuase it won't work from this plugin
-				//Buy PRO version if you need this capability
-				$unset_membership_emails = array(
-					'WC_Memberships_User_Membership_Note_Email',
-					'WC_Memberships_User_Membership_Ending_Soon_Email',
-					'WC_Memberships_User_Membership_Ended_Email',
-					'WC_Memberships_User_Membership_Renewal_Reminder_Email',
-					'WC_Memberships_User_Membership_Activated_Email',
-				);
-
-				$unset_booking_emails      = apply_filters( 'woo_preview_emails_unset_booking_emails', $unset_booking_emails );
-				$unset_subscription_emails = apply_filters( 'woo_preview_emails_unset_subscription_emails', $unset_subscription_emails );
-				$unset_membership_emails   = apply_filters( 'woo_preview_emails_unset_memebership_emails', $unset_membership_emails );
+				$unset_booking_emails      = apply_filters( 'woo_preview_emails_unset_booking_emails', UnsupportedEmails::unset_booking_emails() );
+				$unset_subscription_emails = apply_filters( 'woo_preview_emails_unset_subscription_emails', UnsupportedEmails::unset_subscription_emails() );
+				$unset_membership_emails   = apply_filters( 'woo_preview_emails_unset_memebership_emails', UnsupportedEmails::unset_membership_emails() );
 
 				if ( ! empty( $unset_booking_emails ) ) {
 					foreach ( $unset_booking_emails as $unset_booking_email ) {
@@ -134,25 +96,6 @@ class Main {
 
 	}
 
-	/*Ajax Callback to Search Orders*/
-	public function get_orders() {
-		if ( ! current_user_can( 'manage_woocommerce' ) ) {
-			return false;
-		}
-
-		$q        = sanitize_text_field( filter_input( INPUT_GET, 'q' ) );
-		$response = [];
-		$order    = wc_get_order( $q );
-		if ( $order ) {
-			$id         = $order->get_id();
-			$response[] = [ 'id' => $id, 'text' => '#order :' . $id ];
-
-		}
-		wp_reset_postdata();
-		wp_send_json( $response );
-		die;
-	}
-
 	/**
 	 * load woo preview scripts
 	 *
@@ -162,10 +105,18 @@ class Main {
 		if ( $hook != 'woocommerce_page_codemanas-woocommerce-preview-emails' ) {
 			return;
 		}
-		wp_register_style( 'woo-preview-email-select2-css', $this->plugin_url . '/assets/select2.min.css' );
-		wp_register_script( 'woo-preview-email-select2-js', $this->plugin_url . '/assets/select2.min.js', [ 'jquery' ], '', true );
-		wp_enqueue_style( 'woo-preview-email-select2-css' );
-		wp_enqueue_script( 'woo-preview-email-select2-js' );
+
+		$assets_file = include WOO_PREVIEW_EMAILS_DIR . '/assets/main.asset.php';
+
+
+		wp_register_script( 'woo-preview-emails__main', $this->plugin_url . '/assets/main.js', $assets_file['dependencies'], $assets_file['version'], true );
+		wp_enqueue_script( 'woo-preview-emails__main' );
+
+		wp_register_style( 'woo-preview-emails__vendor', $this->plugin_url . '/assets/main.css', $assets_file['dependencies'], $assets_file['version'] );
+		wp_enqueue_style( 'woo-preview-emails__vendor' );
+
+		wp_register_style( 'woo-preview-emails__style', $this->plugin_url . '/assets/style-main.css', $assets_file['dependencies'], $assets_file['version'] );
+		wp_enqueue_style( 'woo-preview-emails__style' );
 	}
 
 	/**
@@ -221,17 +172,33 @@ class Main {
 
 	public function generate_form() {
 		$this->choose_email = isset( $_POST['choose_email'] ) ? sanitize_text_field( $_POST['choose_email'] ) : '';
-		$this->orderID      = isset( $_POST['orderID'] ) ? sanitize_text_field( $_POST['orderID'] ) : '';
+		$orderID            = isset( $_POST['orderID'] ) ? sanitize_text_field( $_POST['orderID'] ) : '';
 		$recipient_email    = isset( $_POST['email'] ) ? sanitize_text_field( $_POST['email'] ) : '';
+		$email_type         = filter_input( INPUT_POST, 'email_type' );
+		$email_type         = ! empty( $email_type ) ? $email_type : 'html';
 
 		if ( is_admin() && isset( $_POST['preview_email'] ) ) {
-			require_once WOO_PREVIEW_EMAILS_DIR . '/views/form.php';
+			load_template( WOO_PREVIEW_EMAILS_DIR . '/views/form.php', true,
+				[
+					'emails'       => $this->emails,
+					'orderID'      => $orderID,
+					'recipient'    => $recipient_email,
+					'choose_email' => $this->choose_email,
+					'email_type'   => $email_type,
+				] );
 		} else {
 			do_action( 'woo_preview_emails_before_form' );
 			//Custom tab implementation
 			$tabs = apply_filters( 'woo_preview_emails_tabs', false );
 			if ( ! $tabs ) {
-				require_once WOO_PREVIEW_EMAILS_DIR . '/views/form.php';
+				load_template( WOO_PREVIEW_EMAILS_DIR . '/views/form.php', true,
+					[
+						'emails'       => $this->emails,
+						'orderID'      => $orderID,
+						'recipient'    => $recipient_email,
+						'choose_email' => $this->choose_email,
+						'email_type'   => $email_type,
+					] );
 			}
 			do_action( 'woo_preview_emails_after_form' );
 		}
@@ -242,10 +209,15 @@ class Main {
 		$preview_email = filter_input( INPUT_POST, 'preview_email' );
 		$choose_email  = filter_input( INPUT_POST, 'choose_email' );
 		$order_id      = filter_input( INPUT_POST, 'orderID' );
+		$search_order  = filter_input( INPUT_POST, 'search_order' );
+		$email_type    = filter_input( INPUT_POST, 'email_type' );
+		$email_type    = ! empty( $email_type ) ? $email_type : 'html';
+		$order_id      = ! empty( $search_order ) ? $search_order : $order_id;
 
 		if ( is_admin() && wp_verify_nonce( $preview_email, 'woocommerce_preview_email' ) ):
 			$show_email = false;
-			//need to be called to get shipping and payment gateways data
+
+			//needs to be called to get shipping and payment gateways data
 			WC()->payment_gateways();
 			WC()->shipping();
 
@@ -257,7 +229,6 @@ class Main {
 
 			if ( $show_email ) {
 				$this->plugin_url = plugins_url( '', WOO_PREVIEW_EMAILS_FILE );
-
 				/*Make Sure searched order is selected */
 				$orderID         = absint( ! empty( $_POST['search_order'] ) ? $_POST['search_order'] : $_POST['orderID'] );
 				$index           = sanitize_text_field( $_POST['choose_email'] );
@@ -286,6 +257,8 @@ class Main {
 				// Since WooCommerce 5.0.0 - we require this to make sure emails are resent
 				add_filter( 'woocommerce_new_order_email_allows_resend', '__return_true' );
 				$additional_data = apply_filters( 'woo_preview_additional_orderID', false, $index, $orderID, $current_email );
+
+				//@todo make this more elegant
 				if ( $additional_data ) {
 					do_action( 'woo_preview_additional_order_trigger', $current_email, $additional_data );
 				} else {
@@ -301,7 +274,7 @@ class Main {
 					} elseif ( $index === 'WC_Email_Customer_New_Account' ) {
 						$user_id = get_current_user_id();
 						$current_email->trigger( $user_id );
-					} elseif ( strpos( $index, 'WCS_Email' ) === 0 && class_exists( 'WC_Subscription' ) && is_subclass_of( $current_email, 'WC_Email' ) ) {
+					} elseif ( strpos( $index, 'WCS_Email' ) === 0 && class_exists( 'WC_Subscription' ) && is_subclass_of( $current_email, 'WC_Email' ) && function_exists( 'wcs_get_subscriptions_for_order' ) ) {
 						/* Get the subscriptions for the selected order */
 						$order_subscriptions = wcs_get_subscriptions_for_order( $orderID );
 						if ( ! empty( $order_subscriptions ) && $current_email->id != 'customer_payment_retry' && $current_email->id != 'payment_retry' ) {
@@ -316,8 +289,11 @@ class Main {
 					}
 				}
 
-				$content = $current_email->get_content_html();
-				$content = apply_filters( 'woocommerce_mail_content', $current_email->style_inline( $content ) );
+				//set the type of email:
+				$current_email->email_type = $email_type;
+				$content                   = $current_email->get_content();
+				$content                   = apply_filters( 'woocommerce_mail_content', $current_email->style_inline( $content ) );
+
 				/*This ends the content for email to be previewed*/
 				/*Loading Toolbar to display for multiple email templates*/
 				/*The Woo Way to Do Things Need Exception Handling Edge Cases*/
@@ -325,7 +301,7 @@ class Main {
 				remove_filter( 'woocommerce_new_order_email_allows_resend', '__return_true', 10 );
 				?>
                 <!DOCTYPE html>
-                <html>
+                <html lang="<?php echo esc_attr( get_locale() ); ?>">
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -336,12 +312,12 @@ class Main {
 					require_once WOO_PREVIEW_EMAILS_DIR . '/views/result/scripts.php';
 					?>
                 </head>
-                <body class="digthis">
+                <body>
                 <div class="cm-WooPreviewEmail">
                     <div id="tool-options">
                         <div id="tool-wrap">
                             <p>
-                                <strong>Currently Viewing Template File: </strong><br/>
+                                <strong>Viewing Template File: </strong><br/>
 								<?php echo esc_html( $currently_used_template ); ?>
                             </p>
                             <p class="description">
@@ -354,9 +330,7 @@ class Main {
                                href="<?php echo admin_url( 'admin.php?page=codemanas-woocommerce-preview-emails' ); ?>"><?php _e( 'Back to Admin Area', 'woo-preview-emails' ); ?></a>
                         </div>
                     </div>
-                    <div class="cm-WooPreviewEmail-emailContent">
-						<?php echo $content; ?>
-                    </div>
+                    <div class="cm-WooPreviewEmail-emailContent cm-WooPreviewEmail-emailContent__<?php echo esc_attr( $email_type ); ?>"><?php echo $content; ?></div>
                     <div class="tool-bar-toggler">
                         <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
