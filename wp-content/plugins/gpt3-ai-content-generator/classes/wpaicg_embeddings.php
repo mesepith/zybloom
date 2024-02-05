@@ -321,6 +321,7 @@ if(!class_exists('\\WPAICG\\WPAICG_Embeddings')) {
                     $endpoint = $wpaicg_qdrant_endpoint . '/' . urlencode($collection_name) . '/points/delete?wait=true';
                     $id = intval($id);
                     $points = json_encode(['points' => [$id]]);
+                    error_log(print_r($points, true));
         
                     $response = wp_remote_request($endpoint, [
                         'method' => 'POST',
@@ -446,6 +447,7 @@ if(!class_exists('\\WPAICG\\WPAICG_Embeddings')) {
                     $wpaicg_qdrant_endpoint = rtrim(get_option('wpaicg_qdrant_endpoint', ''), '/') . '/collections/' . $collection_name . '/points/delete?wait=true';
                     $id = intval($id); // Cast $id to integer
                     $points = json_encode(['points' => [$id]]);
+                    error_log(print_r($points, true));
                     $response = wp_remote_request($wpaicg_qdrant_endpoint, [
                         'method' => 'POST',
                         'headers' => ['api-key' => $wpaicg_qdrant_api_key, 'Content-Type' => 'application/json'],

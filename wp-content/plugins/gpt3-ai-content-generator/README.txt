@@ -1,10 +1,10 @@
 ===AI Power: Complete AI Pack - Powered by GPT-4===
 Contributors: senols
-Tags: chatgpt, gpt, ai, openai, chatbot, speech, whisper, image generator, gpt4
+Tags: chatgpt, gpt, ai, openai, chatbot, speech, chatpdf, image generator, gpt4
 Requires at least: 5.0.0
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 1.8.29
+Stable tag: 1.8.30
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -256,6 +256,12 @@ This message is coming from OpenAI, not from our plugin. It means that you have 
 Note: You can view non-Minified JS files [here](https://github.com/aipowerorg/Non-Minified-JS-Files).
 
 == Changelog ==
+
+= 1.8.30 =
+
+- Enhanced the ChatGPT - PDF tab with more detail and clarity.
+- Added display of vector database and the active index/collection within the Content Builder and PDF tabs.
+- Fixed a bug related to PDF deletion.
 
 = 1.8.29 =
 

@@ -1,371 +1,405 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
+
+// Retrieve the vector db provider option
+$wpaicg_vector_db_provider = get_option('wpaicg_vector_db_provider', '');
+
+// Initialize variable for collection/index name
+$collection_index_name = '';
+
+// Check if the vector db provider is set and not empty
+if (!empty($wpaicg_vector_db_provider)) {
+    // Check for Qdrant provider
+    if ($wpaicg_vector_db_provider === 'qdrant') {
+        $default_qdrant_collection = get_option('wpaicg_qdrant_default_collection');
+        if (!empty($default_qdrant_collection)) {
+            $collection_index_name = sprintf(esc_html__('collection: %s', 'gpt3-ai-content-generator'), '<strong>' . esc_html($default_qdrant_collection) . '</strong>');
+        }
+    }
+    // Check for Pinecone provider
+    elseif ($wpaicg_vector_db_provider === 'pinecone') {
+        $wpaicg_pinecone_environment = get_option('wpaicg_pinecone_environment');
+        if (!empty($wpaicg_pinecone_environment)) {
+            // Extract the index name from the Pinecone environment string
+            $index_name_parts = explode('-', $wpaicg_pinecone_environment, 2);
+            $index_name = $index_name_parts[0];
+            $collection_index_name = sprintf(esc_html__('index: %s', 'gpt3-ai-content-generator'), '<strong>' . esc_html($index_name) . '</strong>');
+        }
+    }
+
+    // Display the notice with provider and collection/index name if available
+    ?>
+    <div style="padding: 10px; background-color: #f9f9f9; border-left: 4px solid #0073aa; margin-bottom: 20px;">
+        <p><?php echo sprintf(esc_html__('You are inserting data into vector database: %s', 'gpt3-ai-content-generator'), '<strong>' . esc_html($wpaicg_vector_db_provider) . '</strong>') . (!empty($collection_index_name) ? ', ' . $collection_index_name : ''); ?></p>
+    </div>
+    <?php
+}
 ?>
 <style>
-.wpaicg-faq-list:has(.wpaicg-faq-item){
-    padding: 10px;
-    background: #d5d5d5;
-    border-radius: 5px;
-    margin-bottom: 5px;
-}
-.wpaicg-faq-item{
-    padding: 5px 10px;
-    background: #fff;
-    border-radius: 4px;
-    position: relative;
-    margin-bottom: 10px;
-}
-.wpaicg-faq-close{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 20px;
-    height: 20px;
-    background: #c70000;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 20px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-}
-.wpaicg-knowledge-list:has(.wpaicg-knowledge-item){
-    padding: 10px;
-    background: #d5d5d5;
-    border-radius: 5px;
-}
-.wpaicg-knowledge-item{
-    padding: 5px 10px;
-    background: #fff;
-    border-radius: 4px;
-    position: relative;
-    margin-bottom: 10px;
-}
-.wpaicg-knowledge-close{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 20px;
-    height: 20px;
-    background: #c70000;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 20px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-}
-.wpaicg-product-list:has(.wpaicg-product-item){
-    padding: 10px;
-    background: #d5d5d5;
-    border-radius: 5px;
-}
-.wpaicg-product-item{
-    padding: 5px 10px;
-    background: #fff;
-    border-radius: 4px;
-    position: relative;
-    margin-bottom: 10px;
-}
-.wpaicg-product-close{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 20px;
-    height: 20px;
-    background: #c70000;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 20px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-}
-.wpaicg-product-Product-Name{
-    width: 100%;
-}
-.wpaicg-product-Product-Description{
-    width: 100%;
-    height: 100px;
-}
-.wpaicg-product-Product-Price{
-    width: 100%;
-}
-.wpaicg-product-Product-URL{
-    width: 100%;
-}
-.wpaicg-product-Product-Id{
-    width: 100%;
-}
-.wpaicg-wooproduct-list:has(.wpaicg-wooproduct-item){
-    padding: 10px;
-    background: #d5d5d5;
-    border-radius: 5px;
-}
-.wpaicg-wooproduct-item{
-    padding: 5px 10px;
-    background: #fff;
-    border-radius: 4px;
-    position: relative;
-    margin-bottom: 10px;
-}
-.wpaicg-wooproduct-close{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 20px;
-    height: 20px;
-    background: #c70000;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 20px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-}
-.wpaicg-wooproduct-Product-Name{
-    width: 100%;
-}
-.wpaicg-wooproduct-Product-Description{
-    width: 100%;
-    height: 100px;
-}
-.wpaicg-wooproduct-Product-RegularPrice{
-    width: 100%;
-}
-.wpaicg-wooproduct-Product-URL{
-    width: 100%;
-}
-.wpaicg-wooproduct-Product-SKU{
-    width: 100%;
-}
-.wpaicg-wooproduct-Product-SalePrice{
-    width: 100%;
-}
-.wpaicg-wooproduct-Product-StockStatus{
-    width: 100%;
-}
-.wpaicg-link-list:has(.wpaicg-link-item){
-    padding: 10px;
-    background: #d5d5d5;
-    border-radius: 5px;
-}
-.wpaicg-link-item{
-    padding: 5px 10px;
-    background: #fff;
-    border-radius: 4px;
-    position: relative;
-    margin-bottom: 10px;
-}
-.wpaicg-link-close{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 20px;
-    height: 20px;
-    background: #c70000;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 20px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-}
-.wpaicg-company-list:has(.wpaicg-company-item){
-    padding: 10px;
-    background: #d5d5d5;
-    border-radius: 5px;
-}
-.wpaicg-company-item{
-    padding: 5px 10px;
-    background: #fff;
-    border-radius: 4px;
-    position: relative;
-    margin-bottom: 10px;
-}
-.wpaicg-company-close{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 20px;
-    height: 20px;
-    background: #c70000;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 20px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-}
-.wpaicg-company-Company-Name{
-    width: 100%;
-}
-.wpaicg-company-Company-Description{
-    width: 100%;
-    height: 100px;
-}
-.wpaicg-company-Company-CEO{
-    width: 100%;
-}
-.wpaicg-company-Company-Founded{
-    width: 100%;
-}
-.wpaicg-company-Company-Location{
-    width: 100%;
-}
-.wpaicg-company-Company-Employees{
-    width: 100%;
-}
-.wpaicg-company-Company-Industry{
-    width: 100%;
-}
-.wpaicg-company-Company-Products{
-    width: 100%;
-}
-.wpaicg-company-Company-Website{
-    width: 100%;
-}
-.wpaicg-company-Company-Email{
-    width: 100%;
-}
-.wpaicg-company-Company-Phone{
-    width: 100%;
-}
-.wpaicg-company-Company-Address{
-    width: 100%;
-}
-.wpaicg-event-list:has(.wpaicg-event-item){
-    padding: 10px;
-    background: #d5d5d5;
-    border-radius: 5px;
-}
-.wpaicg-event-item{
-    padding: 5px 10px;
-    background: #fff;
-    border-radius: 4px;
-    position: relative;
-    margin-bottom: 10px;
-}
-.wpaicg-event-close{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 20px;
-    height: 20px;
-    background: #c70000;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 20px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-}
-.wpaicg-event-Event-Name{
-    width: 100%;
-}
-.wpaicg-event-Event-Description{
-    width: 100%;
-    height: 100px;
-}
-.wpaicg-event-Event-Date{
-    width: 100%;
-}
-.wpaicg-event-Event-Time{
-    width: 100%;
-}
-.wpaicg-event-Event-Location{
-    width: 100%;
-}
-.wpaicg-event-Event-Organizer{
-    width: 100%;
-}
-.wpaicg-event-Event-URL{
-    width: 100%;
-}
-.wpaicg-pricing-list:has(.wpaicg-pricingplans-item){
-    padding: 10px;
-    background: #d5d5d5;
-    border-radius: 5px;
-}
-.wpaicg-pricing-item{
-    padding: 5px 10px;
-    background: #fff;
-    border-radius: 4px;
-    position: relative;
-    margin-bottom: 10px;
-}
-.wpaicg-pricing-close{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 20px;
-    height: 20px;
-    background: #c70000;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 20px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-}
-.wpaicg-pricing-Pricing-Plan-Name{
-    width: 100%;
-}
-.wpaicg-pricing-Pricing-Plan-Features{
-    width: 100%;
-    height: 100px;
-}
-.wpaicg-pricing-Pricing-Plan-Price{
-    width: 100%;
-}
-.wpaicg-pricing-Pricing-Plan-URL{
-    width: 100%;
-}
-.wpaicg-contact-list:has(.wpaicg-contact-item){
-    padding: 10px;
-    background: #d5d5d5;
-    border-radius: 5px;
-}
-.wpaicg-contact-item{
-    padding: 5px 10px;
-    background: #fff;
-    border-radius: 4px;
-    position: relative;
-    margin-bottom: 10px;
-}
-.wpaicg-contact-close{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 20px;
-    height: 20px;
-    background: #c70000;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 20px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-}
-.wpaicg-contact-Contact-Name{
-    width: 100%;
-}
-.wpaicg-contact-Contact-Email{
-    width: 100%;
-}
-.wpaicg-contact-Contact-Phone{
-    width: 100%;
-}
-.wpaicg-contact-Contact-Address{
-    width: 100%;
-}
-.wpaicg-contact-Contact-Description{
-    width: 100%;
-    height: 100px;
-}
-.wpaicg-contact-Contact-URL{
-    width: 100%;
-}
+    .wpaicg-faq-list:has(.wpaicg-faq-item){
+        padding: 10px;
+        background: #d5d5d5;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+    .wpaicg-faq-item{
+        padding: 5px 10px;
+        background: #fff;
+        border-radius: 4px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .wpaicg-faq-close{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        background: #c70000;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 20px;
+        line-height: 15px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .wpaicg-knowledge-list:has(.wpaicg-knowledge-item){
+        padding: 10px;
+        background: #d5d5d5;
+        border-radius: 5px;
+    }
+    .wpaicg-knowledge-item{
+        padding: 5px 10px;
+        background: #fff;
+        border-radius: 4px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .wpaicg-knowledge-close{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        background: #c70000;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 20px;
+        line-height: 15px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .wpaicg-product-list:has(.wpaicg-product-item){
+        padding: 10px;
+        background: #d5d5d5;
+        border-radius: 5px;
+    }
+    .wpaicg-product-item{
+        padding: 5px 10px;
+        background: #fff;
+        border-radius: 4px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .wpaicg-product-close{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        background: #c70000;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 20px;
+        line-height: 15px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .wpaicg-product-Product-Name{
+        width: 100%;
+    }
+    .wpaicg-product-Product-Description{
+        width: 100%;
+        height: 100px;
+    }
+    .wpaicg-product-Product-Price{
+        width: 100%;
+    }
+    .wpaicg-product-Product-URL{
+        width: 100%;
+    }
+    .wpaicg-product-Product-Id{
+        width: 100%;
+    }
+    .wpaicg-wooproduct-list:has(.wpaicg-wooproduct-item){
+        padding: 10px;
+        background: #d5d5d5;
+        border-radius: 5px;
+    }
+    .wpaicg-wooproduct-item{
+        padding: 5px 10px;
+        background: #fff;
+        border-radius: 4px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .wpaicg-wooproduct-close{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        background: #c70000;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 20px;
+        line-height: 15px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .wpaicg-wooproduct-Product-Name{
+        width: 100%;
+    }
+    .wpaicg-wooproduct-Product-Description{
+        width: 100%;
+        height: 100px;
+    }
+    .wpaicg-wooproduct-Product-RegularPrice{
+        width: 100%;
+    }
+    .wpaicg-wooproduct-Product-URL{
+        width: 100%;
+    }
+    .wpaicg-wooproduct-Product-SKU{
+        width: 100%;
+    }
+    .wpaicg-wooproduct-Product-SalePrice{
+        width: 100%;
+    }
+    .wpaicg-wooproduct-Product-StockStatus{
+        width: 100%;
+    }
+    .wpaicg-link-list:has(.wpaicg-link-item){
+        padding: 10px;
+        background: #d5d5d5;
+        border-radius: 5px;
+    }
+    .wpaicg-link-item{
+        padding: 5px 10px;
+        background: #fff;
+        border-radius: 4px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .wpaicg-link-close{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        background: #c70000;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 20px;
+        line-height: 15px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .wpaicg-company-list:has(.wpaicg-company-item){
+        padding: 10px;
+        background: #d5d5d5;
+        border-radius: 5px;
+    }
+    .wpaicg-company-item{
+        padding: 5px 10px;
+        background: #fff;
+        border-radius: 4px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .wpaicg-company-close{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        background: #c70000;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 20px;
+        line-height: 15px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .wpaicg-company-Company-Name{
+        width: 100%;
+    }
+    .wpaicg-company-Company-Description{
+        width: 100%;
+        height: 100px;
+    }
+    .wpaicg-company-Company-CEO{
+        width: 100%;
+    }
+    .wpaicg-company-Company-Founded{
+        width: 100%;
+    }
+    .wpaicg-company-Company-Location{
+        width: 100%;
+    }
+    .wpaicg-company-Company-Employees{
+        width: 100%;
+    }
+    .wpaicg-company-Company-Industry{
+        width: 100%;
+    }
+    .wpaicg-company-Company-Products{
+        width: 100%;
+    }
+    .wpaicg-company-Company-Website{
+        width: 100%;
+    }
+    .wpaicg-company-Company-Email{
+        width: 100%;
+    }
+    .wpaicg-company-Company-Phone{
+        width: 100%;
+    }
+    .wpaicg-company-Company-Address{
+        width: 100%;
+    }
+    .wpaicg-event-list:has(.wpaicg-event-item){
+        padding: 10px;
+        background: #d5d5d5;
+        border-radius: 5px;
+    }
+    .wpaicg-event-item{
+        padding: 5px 10px;
+        background: #fff;
+        border-radius: 4px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .wpaicg-event-close{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        background: #c70000;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 20px;
+        line-height: 15px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .wpaicg-event-Event-Name{
+        width: 100%;
+    }
+    .wpaicg-event-Event-Description{
+        width: 100%;
+        height: 100px;
+    }
+    .wpaicg-event-Event-Date{
+        width: 100%;
+    }
+    .wpaicg-event-Event-Time{
+        width: 100%;
+    }
+    .wpaicg-event-Event-Location{
+        width: 100%;
+    }
+    .wpaicg-event-Event-Organizer{
+        width: 100%;
+    }
+    .wpaicg-event-Event-URL{
+        width: 100%;
+    }
+    .wpaicg-pricing-list:has(.wpaicg-pricingplans-item){
+        padding: 10px;
+        background: #d5d5d5;
+        border-radius: 5px;
+    }
+    .wpaicg-pricing-item{
+        padding: 5px 10px;
+        background: #fff;
+        border-radius: 4px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .wpaicg-pricing-close{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        background: #c70000;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 20px;
+        line-height: 15px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .wpaicg-pricing-Pricing-Plan-Name{
+        width: 100%;
+    }
+    .wpaicg-pricing-Pricing-Plan-Features{
+        width: 100%;
+        height: 100px;
+    }
+    .wpaicg-pricing-Pricing-Plan-Price{
+        width: 100%;
+    }
+    .wpaicg-pricing-Pricing-Plan-URL{
+        width: 100%;
+    }
+    .wpaicg-contact-list:has(.wpaicg-contact-item){
+        padding: 10px;
+        background: #d5d5d5;
+        border-radius: 5px;
+    }
+    .wpaicg-contact-item{
+        padding: 5px 10px;
+        background: #fff;
+        border-radius: 4px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .wpaicg-contact-close{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        background: #c70000;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 20px;
+        line-height: 15px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .wpaicg-contact-Contact-Name{
+        width: 100%;
+    }
+    .wpaicg-contact-Contact-Email{
+        width: 100%;
+    }
+    .wpaicg-contact-Contact-Phone{
+        width: 100%;
+    }
+    .wpaicg-contact-Contact-Address{
+        width: 100%;
+    }
+    .wpaicg-contact-Contact-Description{
+        width: 100%;
+        height: 100px;
+    }
+    .wpaicg-contact-Contact-URL{
+        width: 100%;
+    }
 </style>
 <div class="wpaicg-faq-item-default" style="display: none">
     <div class="wpaicg-faq-item">
