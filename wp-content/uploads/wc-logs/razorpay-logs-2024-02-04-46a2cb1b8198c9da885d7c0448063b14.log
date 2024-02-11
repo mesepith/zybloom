@@ -1,0 +1,15 @@
+2024-02-04T10:36:28+00:00 ERROR Could not enable webhook for localhost
+2024-02-04T10:36:28+00:00 INFO Trying to create one_cc_address_sync_cron
+2024-02-04T10:36:28+00:00 INFO Failed to create one_cc_address_sync_cron as invalid one cc merchant
+2024-02-04T10:36:28+00:00 INFO Attempting to delete one_cc_address_sync_cron, status: cancelled, message: invalid_1cc_merchant
+2024-02-04T10:36:28+00:00 INFO Deleted one_cc_address_sync_cron  if exists
+2024-02-04T10:36:28+00:00 INFO updateAddressSyncCronData: status=cancelled, message=invalid_1cc_merchant, cronStatus=deleted
+2024-02-04T10:36:28+00:00 INFO updateAddressSyncCronData:530 - Updating option: ONE_CC_ADDRESS_SYNC_CRON_HOOK
+2024-02-04T10:36:28+00:00 INFO updateAddressSyncCronData:532 -  Successfully Updated Option: ONE_CC_ADDRESS_SYNC_CRON_HOOK
+2024-02-04T10:36:28+00:00 INFO create one_cc_plugin_sync_cron successful
+2024-02-04T10:56:03+00:00 INFO Trying to create one_cc_address_sync_cron
+2024-02-04T10:56:03+00:00 INFO Failed to create one_cc_address_sync_cron as invalid one cc merchant
+2024-02-04T10:56:03+00:00 INFO Attempting to delete one_cc_address_sync_cron, status: cancelled, message: invalid_1cc_merchant
+2024-02-04T10:56:03+00:00 INFO Deleted one_cc_address_sync_cron  if exists
+2024-02-04T10:56:03+00:00 INFO updateAddressSyncCronData: status=cancelled, message=invalid_1cc_merchant, cronStatus=deleted
+2024-02-04T10:56:03+00:00 INFO create one_cc_plugin_sync_cron successful
