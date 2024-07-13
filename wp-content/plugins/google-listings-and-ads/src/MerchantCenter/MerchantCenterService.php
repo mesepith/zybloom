@@ -3,6 +3,7 @@ declare( strict_types=1 );
 
 namespace Automattic\WooCommerce\GoogleListingsAndAds\MerchantCenter;
 
+use Automattic\WooCommerce\GoogleListingsAndAds\Ads\AdsService;
 use Automattic\WooCommerce\GoogleListingsAndAds\API\Google\Merchant;
 use Automattic\WooCommerce\GoogleListingsAndAds\API\Google\Settings;
 use Automattic\WooCommerce\GoogleListingsAndAds\DB\Query\ShippingRateQuery;
@@ -32,6 +33,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * ContainerAware used to access:
  * - AddressUtility
+ * - AdsService
  * - ContactInformation
  * - Merchant
  * - MerchantAccountState
@@ -211,7 +213,11 @@ class MerchantCenterService implements ContainerAwareInterface, OptionsAwareInte
 		}
 
 		$step = 'accounts';
-		if ( $this->connected_account() ) {
+
+		if (
+			$this->connected_account() &&
+			$this->container->get( AdsService::class )->connected_account()
+		) {
 			$step = 'product_listings';
 
 			if ( $this->saved_target_audience() && $this->saved_shipping_and_tax_options() ) {
@@ -433,6 +439,6 @@ class MerchantCenterService implements ContainerAwareInterface, OptionsAwareInte
 	public function has_at_least_one_synced_product(): bool {
 		$statuses = $this->container->get( MerchantStatuses::class )->get_product_statistics();
 
-		return $statuses['statistics']['active'] >= 1;
+		return isset( $statuses['statistics']['active'] ) && $statuses['statistics']['active'] >= 1;
 	}
 }

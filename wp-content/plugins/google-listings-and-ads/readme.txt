@@ -1,11 +1,11 @@
 === Google Listings & Ads ===
 Contributors: automattic, google, woocommerce
-Tags: woocommerce, google, listings, ads
+Tags: woocommerce, google, product feed, ads, listings
 Requires at least: 5.9
-Tested up to: 6.4
+Tested up to: 6.6
 Requires PHP: 7.4
 Requires PHP Architecture: 64 Bits
-Stable tag: 2.5.16
+Stable tag: 2.7.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -60,7 +60,7 @@ Create a new Google Ads account through Google Listings & Ads and a promotional 
 * PHP Architecture 64 bits
 * MySQL version 5.6 or greater
 
-Visit the [WooCommerce server requirements documentation](https://woo.com/document/server-requirements/) for a detailed list of server requirements.
+Visit the [WooCommerce server requirements documentation](https://woocommerce.com/document/server-requirements/) for a detailed list of server requirements.
 
 = Automatic installation =
 
@@ -111,25 +111,17 @@ Yes, you can run both at the same time, and we recommend it! In the US, advertis
 
 == Changelog ==
 
-= 2.5.16 - 2024-01-30 =
-* Add - Include connected accounts in tracks from the backend.
-* Add - Include plugin version, Google Merchant Center account ID, and Google Ads account ID in all frontend tracking events.
-* Add - Send the related tracking event with the account ID to be connected when connecting to an existing Google Merchant Center or Google Ads account.
-* Add - Tracking for completed events.
-* Dev - Generate coverage report with xdebug.
-* Fix - Context not tracked in Create Campaign FAQs.
-* Fix - WordPress 6.4 Compatibility: Set an appropriate width for the content in the Popover component.
+= 2.7.6 - 2024-07-09 =
+* Dev - Update connect server URL in test proxy configuration.
+* Tweak - WC 9.1 compatibility.
+* Tweak - WP 6.6 compatibility.
 
-= 2.5.15 - 2024-01-09 =
-* Dev - Update link for developer.woo.com.
-* Tweak - WC 8.5 compatibility.
-* Update - Upgrade google/apiclient for PHP 8.3 compatibility.
+= 2.7.5 - 2024-06-26 =
+* Add - Add an query parameter `campaign=saved` to the dashboard URL after the campaign was created.
 
-= 2.5.14 - 2023-12-18 =
-* Dev - Include PHP 8.3 in tested versions for PHPunit.
-* Fix - Item price in purchase event.
-* Tweak - Track Budgets and Audience in Onboarding.
-* Tweak - WC 8.4 compatibility.
-* Update - Change to require Google Ads connection during the onboarding.
+= 2.7.4 - 2024-06-25 =
+* Add - Integration with the WP Consent API plugin.
+* Dev - Add E2E tests for WP Consent API integration.
+* Tweak - Add docs note about WP Consent API integration.
 
 [See changelog for all versions](https://raw.githubusercontent.com/woocommerce/google-listings-and-ads/trunk/changelog.txt).
