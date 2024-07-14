@@ -8,6 +8,8 @@
 
 namespace Code_Snippets\Settings;
 
+use Code_Snippets\Welcome_Menu;
+use function Code_Snippets\clean_snippets_cache;
 use function Code_Snippets\code_snippets;
 
 const CACHE_KEY = 'code_snippets_settings';
@@ -260,6 +262,22 @@ function process_settings_actions( array $input ): ?array {
 			OPTION_NAME,
 			'database_update_done',
 			__( 'Successfully performed database table upgrade.', 'code-snippets' ),
+			'updated'
+		);
+	}
+
+	if ( isset( $input['debug']['reset_caches'] ) ) {
+		Welcome_Menu::clear_cache();
+		clean_snippets_cache( code_snippets()->db->get_table_name( false ) );
+
+		if ( is_multisite() ) {
+			clean_snippets_cache( code_snippets()->db->get_table_name( true ) );
+		}
+
+		add_settings_error(
+			OPTION_NAME,
+			'snippet_caches_reset',
+			__( 'Successfully reset snippets caches.', 'code-snippets' ),
 			'updated'
 		);
 	}

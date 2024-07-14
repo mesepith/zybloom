@@ -1,11 +1,11 @@
 === Forget Spam Comment ===
 Contributors: thegulshankumar
 Donate link: https://ko-fi.com/gulshan
-Tags: comments, spam, anti spam, stop spam, security, gdpr, firewall
+Tags: anti spam, stop spam, security, gdpr, firewall
 Requires at least: 4.5
 Requires PHP: 5.6
-Tested up to: 6.4.2
-Stable tag: 1.1.6
+Tested up to: 6.5.5
+Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,6 +68,9 @@ Only Default Commenting System of WordPress. Any other commenting system like AM
 Kindly allow me a chance to look into your problem by opening a support topic. I will reply in 24 hours.
 
 == Changelog ==
+
+= 1.1.7 =
+* Tested with 6.5.5 Updated on 09-July-2024.
 
 = 1.1.6 =
 * Hotfix for Bedrock Compatibility. Updated on 30-Jan-2024.

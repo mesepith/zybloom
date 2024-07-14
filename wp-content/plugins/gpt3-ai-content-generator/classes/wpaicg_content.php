@@ -1620,6 +1620,9 @@ if ( !class_exists( '\\WPAICG\\WPAICG_Content' ) ) {
                 }
             
                 $wpaicg_content = wp_kses( $_POST['content'], $wpaicg_allowed_html_content_post );
+                if (isset($_REQUEST['save_source']) && $_REQUEST['save_source'] == 'promptbase') {
+                    $wpaicg_content = wp_kses(urldecode($_POST['content']), $wpaicg_allowed_html_content_post);
+                }
                 $wpaicg_content = str_replace("__WPAICG_IMAGE__", '', $wpaicg_content);
                 
                 if(isset($_POST['post_id']) && !empty($_POST['post_id'])){

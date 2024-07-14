@@ -128,7 +128,8 @@ var wpaicgPlayGround = {
                         const xhttp = new XMLHttpRequest();
                         xhttp.open('POST', wpaicgFormData.ajax);
                         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        xhttp.send('action=wpaicg_save_draft_post_extra&title=' + title + '&content=' + content+'&save_source=promptbase&nonce='+wpaicgFormData.ajax_nonce);
+                        var encodedContent = encodeURIComponent(content);
+                        xhttp.send('action=wpaicg_save_draft_post_extra&title=' + title + '&content=' + encodedContent+'&save_source=promptbase&nonce='+wpaicgFormData.ajax_nonce);
                         wpaicg_PlayGround.loading.add(wpaicgSaveButton);
                         xhttp.onreadystatechange = function (oEvent) {
                             if (xhttp.readyState === 4) {
@@ -173,8 +174,7 @@ var wpaicgPlayGround = {
                     var wpaicgFP = wpaicgForm.getElementsByClassName('wpaicg-prompt-frequency_penalty')[0];
                     var wpaicgPP = wpaicgForm.getElementsByClassName('wpaicg-prompt-presence_penalty')[0];
                     var wpaicgMaxLines = wpaicgForm.getElementsByClassName('wpaicg-prompt-max-lines')[0];
-                    var wpaicgPromptTitle = wpaicgForm.getElementsByClassName('wpaicg-prompt-title')[0];
-                    var wpaicgPromptTitleFilled = wpaicgForm.getElementsByClassName('wpaicg-prompt-title-filled')[0];
+
                     var wpaicgGenerateBtn = wpaicgForm.getElementsByClassName('wpaicg-generate-button')[0];
                     var wpaicgSaveResult = wpaicgForm.getElementsByClassName('wpaicg-prompt-save-result')[0];
                     var wpaicgStop = wpaicgForm.getElementsByClassName('wpaicg-prompt-stop-generate')[0];
@@ -185,10 +185,7 @@ var wpaicgPlayGround = {
                     var frequency_penalty = wpaicgFP.value;
                     var presence_penalty = wpaicgPP.value;
                     var error_message = false;
-                    var title = wpaicgPromptTitle.value;
-                    if (title === '') {
-                        error_message = 'Please insert prompt';
-                    } else if (max_tokens === '') {
+                    if (max_tokens === '') {
                         error_message = 'Please enter max tokens';
                     } else if (parseFloat(max_tokens) < 1 || parseFloat(max_tokens) > 8000) {
                         error_message = 'Please enter a valid max tokens value between 1 and 8000';
@@ -290,11 +287,7 @@ var wpaicgPlayGround = {
                                         field_value = field.value;
                                     }
                                     var sRegExInput = new RegExp('{' + field_name + '}', 'g');
-                                    title = title.replace(sRegExInput, field_value);
                                 }
-                            }
-                            if(formSource === 'form') {
-                                wpaicgPromptTitleFilled.value = title + ".\n\n";
                             }
                             let queryString = new URLSearchParams(new FormData(wpaicgForm)).toString();
                             wpaicg_PlayGround.loading.add(wpaicgGenerateBtn);

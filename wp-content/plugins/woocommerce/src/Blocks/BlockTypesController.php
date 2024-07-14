@@ -1,7 +1,7 @@
 <?php
 namespace Automattic\WooCommerce\Blocks;
 
-use Automattic\WooCommerce\Blocks\Package;
+use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Blocks\Assets\AssetDataRegistry;
 use Automattic\WooCommerce\Blocks\Assets\Api as AssetApi;
 use Automattic\WooCommerce\Blocks\Integrations\IntegrationRegistry;
@@ -48,20 +48,21 @@ final class BlockTypesController {
 	 */
 	protected function init() {
 		add_action( 'init', array( $this, 'register_blocks' ) );
+		add_filter( 'block_categories_all', array( $this, 'register_block_categories' ), 10, 2 );
 		add_filter( 'render_block', array( $this, 'add_data_attributes' ), 10, 2 );
 		add_action( 'woocommerce_login_form_end', array( $this, 'redirect_to_field' ) );
 		add_filter( 'widget_types_to_hide_from_legacy_widget_block', array( $this, 'hide_legacy_widgets_with_block_equivalent' ) );
 		add_action( 'woocommerce_delete_product_transients', array( $this, 'delete_product_transients' ) );
 		add_filter(
 			'woocommerce_is_checkout',
-			function( $return ) {
-				return $return || $this->has_block_variation( 'woocommerce/classic-shortcode', 'shortcode', 'checkout' );
+			function ( $ret ) {
+				return $ret || $this->has_block_variation( 'woocommerce/classic-shortcode', 'shortcode', 'checkout' );
 			}
 		);
 		add_filter(
 			'woocommerce_is_cart',
-			function( $return ) {
-				return $return || $this->has_block_variation( 'woocommerce/classic-shortcode', 'shortcode', 'cart' );
+			function ( $ret ) {
+				return $ret || $this->has_block_variation( 'woocommerce/classic-shortcode', 'shortcode', 'cart' );
 			}
 		);
 	}
@@ -105,6 +106,29 @@ final class BlockTypesController {
 
 			new $block_type_class( $this->asset_api, $this->asset_data_registry, new IntegrationRegistry() );
 		}
+	}
+
+	/**
+	 * Register block categories
+	 *
+	 * Used in combination with the `block_categories_all` filter, to append
+	 * WooCommerce Blocks related categories to the Gutenberg editor.
+	 *
+	 * @param array $categories The array of already registered categories.
+	 */
+	public function register_block_categories( $categories ) {
+		$woocommerce_block_categories = array(
+			array(
+				'slug'  => 'woocommerce',
+				'title' => __( 'WooCommerce', 'woocommerce' ),
+			),
+			array(
+				'slug'  => 'woocommerce-product-elements',
+				'title' => __( 'WooCommerce Product Elements', 'woocommerce' ),
+			),
+		);
+
+		return array_merge( $categories, $woocommerce_block_categories );
 	}
 
 	/**
@@ -225,6 +249,7 @@ final class BlockTypesController {
 			'CatalogSorting',
 			'ClassicTemplate',
 			'ClassicShortcode',
+			'ComingSoon',
 			'CustomerAccount',
 			'FeaturedCategory',
 			'FeaturedProduct',
@@ -233,13 +258,17 @@ final class BlockTypesController {
 			'MiniCart',
 			'StoreNotices',
 			'PriceFilter',
-			'ProductAddToCart',
 			'ProductBestSellers',
 			'ProductButton',
 			'ProductCategories',
 			'ProductCategory',
 			'ProductCollection',
 			'ProductCollectionNoResults',
+			'ProductGallery',
+			'ProductGalleryLargeImage',
+			'ProductGalleryLargeImageNextPrevious',
+			'ProductGalleryPager',
+			'ProductGalleryThumbnails',
 			'ProductImage',
 			'ProductImageGallery',
 			'ProductNew',
@@ -281,6 +310,8 @@ final class BlockTypesController {
 			'OrderConfirmation\BillingWrapper',
 			'OrderConfirmation\ShippingWrapper',
 			'OrderConfirmation\AdditionalInformation',
+			'OrderConfirmation\AdditionalFieldsWrapper',
+			'OrderConfirmation\AdditionalFields',
 		);
 
 		$block_types = array_merge(
@@ -290,18 +321,18 @@ final class BlockTypesController {
 			MiniCartContents::get_mini_cart_block_types()
 		);
 
-		if ( Package::feature()->is_experimental_build() ) {
-			$block_types[] = 'ProductGallery';
-			$block_types[] = 'ProductGalleryLargeImage';
-			$block_types[] = 'ProductGalleryLargeImageNextPrevious';
-			$block_types[] = 'ProductGalleryPager';
-			$block_types[] = 'ProductGalleryThumbnails';
-			$block_types[] = 'CollectionFilters';
-			$block_types[] = 'CollectionStockFilter';
-			$block_types[] = 'CollectionPriceFilter';
-			$block_types[] = 'CollectionAttributeFilter';
-			$block_types[] = 'CollectionRatingFilter';
-			$block_types[] = 'CollectionActiveFilters';
+		// Update plugins/woocommerce-blocks/docs/internal-developers/blocks/feature-flags-and-experimental-interfaces.md
+		// when modifying this list.
+		if ( Features::is_enabled( 'experimental-blocks' ) ) {
+			$block_types[] = 'ProductFilter';
+			$block_types[] = 'ProductFilters';
+			$block_types[] = 'ProductFiltersOverlay';
+			$block_types[] = 'ProductFilterStockStatus';
+			$block_types[] = 'ProductFilterPrice';
+			$block_types[] = 'ProductFilterAttribute';
+			$block_types[] = 'ProductFilterRating';
+			$block_types[] = 'ProductFilterActive';
+			$block_types[] = 'ProductFilterClearButton';
 		}
 
 		/**
@@ -314,6 +345,7 @@ final class BlockTypesController {
 					'AllProducts',
 					'Cart',
 					'Checkout',
+					'ProductGallery',
 				)
 			);
 		}
@@ -342,11 +374,20 @@ final class BlockTypesController {
 					'OrderConfirmation\BillingWrapper',
 					'OrderConfirmation\ShippingWrapper',
 					'OrderConfirmation\AdditionalInformation',
+					'OrderConfirmation\AdditionalFieldsWrapper',
+					'OrderConfirmation\AdditionalFields',
+					'ProductGallery',
 				)
 			);
 		}
 
-		return $block_types;
+		/**
+		 * Filters the list of allowed block types.
+		 *
+		 * @since 9.0.0
+		 *
+		 * @param array $block_types List of block types.
+		 */
+		return apply_filters( 'woocommerce_get_block_types', $block_types );
 	}
-
 }

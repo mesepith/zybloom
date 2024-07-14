@@ -184,6 +184,28 @@ border-radius: 10px;
 }
 </style>
 <style>
+    .wpaicg-img-spinner {
+        display: none;
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #000;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .wpaicg-thumbnail-placeholder {
+        display: none;
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+    }
+</style>
+<style>
     .wpaicg_chat_widget,.wpaicg_chat_widget_content{
         z-index: 99999;
     }
@@ -390,19 +412,19 @@ border-radius: 10px;
     textarea.auto-expand {
         overflow: hidden; /* Prevents scrollbar flash during size adjustment */
         transition: box-shadow 0.5s ease-in-out;
-        color: <?php echo esc_html($wpaicg_input_font_color)?>;
+        line-height: 2;
     }
 
     textarea.auto-expand.resizing {
         transition: box-shadow 0.5s ease-in-out;
         box-shadow: 0 0 12px rgba(81, 203, 238, 0.8);
-        color: <?php echo esc_html($wpaicg_input_font_color)?>;
+        line-height: 2;
     }
 
     textarea.auto-expand:focus {
         outline: none;
         box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-        color: <?php echo esc_html($wpaicg_input_font_color)?>;
+        line-height: 2;
     }
 
     textarea.wpaicg-chatbox-typing::placeholder {
@@ -693,6 +715,7 @@ border-radius: 10px;
     <div class="wpaicg-chatbox-type">
         <textarea type="text" class="auto-expand wpaicg-chatbox-typing" placeholder="<?php echo esc_html(str_replace("\\",'',$wpaicg_typing_placeholder))?>"></textarea>
         <div class="wpaicg_chat_additions">
+            <span class="wpaicg-thumbnail-placeholder"></span>
             <?php if($wpaicg_audio_enable): ?>
                 <span class="wpaicg-mic-icon" data-type="widget">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M176 0C123 0 80 43 80 96V256c0 53 43 96 96 96s96-43 96-96V96c0-53-43-96-96-96zM48 216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 89.1 66.2 162.7 152 174.4V464H104c-13.3 0-24 10.7-24 24s10.7 24 24 24h72 72c13.3 0 24-10.7 24-24s-10.7-24-24-24H200V430.4c85.8-11.7 152-85.3 152-174.4V216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 70.7-57.3 128-128 128s-128-57.3-128-128V216z"/></svg>
@@ -704,6 +727,7 @@ border-radius: 10px;
                 <!-- add nonce -->
                 <input type="hidden" id="wpaicg-img-nonce" value="<?php echo esc_html(wp_create_nonce( 'wpaicg-img-nonce' ))?>" />
             </span>
+            <span class="wpaicg-img-spinner"></span>
             <?php
             if($wpaicg_pdf_enable && \WPAICG\wpaicg_util_core()->wpaicg_is_pro()):
                 ?>

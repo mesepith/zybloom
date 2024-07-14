@@ -86,18 +86,6 @@ class WC_Facebookcommerce_Integration extends WC_Integration {
 	/** @var string the scheduled resync offset setting ID */
 	const SETTING_SCHEDULED_RESYNC_OFFSET = 'scheduled_resync_offset';
 
-	/** @var string the "enable messenger" setting ID */
-	const SETTING_ENABLE_MESSENGER = 'wc_facebook_enable_messenger';
-
-	/** @var string the messenger locale setting ID */
-	const SETTING_MESSENGER_LOCALE = 'wc_facebook_messenger_locale';
-
-	/** @var string the messenger greeting setting ID */
-	const SETTING_MESSENGER_GREETING = 'wc_facebook_messenger_greeting';
-
-	/** @var string the messenger color HEX setting ID */
-	const SETTING_MESSENGER_COLOR_HEX = 'wc_facebook_messenger_color_hex';
-
 	/** @var string the "debug mode" setting ID */
 	const SETTING_ENABLE_DEBUG_MODE = 'wc_facebook_enable_debug_mode';
 
@@ -185,11 +173,11 @@ class WC_Facebookcommerce_Integration extends WC_Integration {
 	/** @var WC_Facebookcommerce_EventsTracker instance. */
 	private $events_tracker;
 
-	/** @var WC_Facebookcommerce_MessengerChat instance. */
-	private $messenger_chat;
-
 	/** @var WC_Facebookcommerce_Background_Process instance. */
 	private $background_processor;
+
+	/** @var WC_Facebook_Product_Feed instance. */
+	private $fbproductfeed;
 
 	/**
 	 * Init and hook in the integration.
@@ -357,14 +345,6 @@ class WC_Facebookcommerce_Integration extends WC_Integration {
 			$this->events_tracker = new WC_Facebookcommerce_EventsTracker( $user_info, $aam_settings );
 		}
 
-		// Initialize the messenger chat features.
-		$this->messenger_chat = new WC_Facebookcommerce_MessengerChat(
-			array(
-				'fb_page_id'             => $this->get_facebook_page_id(),
-				'facebook_jssdk_version' => $this->get_js_sdk_version(),
-			)
-		);
-
 		// Update products on change of status.
 		add_action(
 			'transition_post_status',
@@ -397,7 +377,7 @@ class WC_Facebookcommerce_Integration extends WC_Integration {
 	 */
 	public function __get( $key ) {
 		// Add warning for private properties.
-		if ( in_array( $key, array( 'events_tracker', 'messenger_chat', 'background_processor' ), true ) ) {
+		if ( in_array( $key, array( 'events_tracker', 'background_processor' ), true ) ) {
 			/* translators: %s property name. */
 			_doing_it_wrong( __FUNCTION__, sprintf( esc_html__( 'The %s property is private and should not be accessed outside its class.', 'facebook-for-woocommerce' ), esc_html( $key ) ), '3.0.32' );
 			return $this->$key;
@@ -714,7 +694,7 @@ class WC_Facebookcommerce_Integration extends WC_Integration {
 		<script>
 			window.facebookAdsToolboxConfig = {
 				hasGzipSupport: '<?php echo extension_loaded( 'zlib' ) ? 'true' : 'false'; ?>',
-				enabledPlugins: ['MESSENGER_CHAT','INSTAGRAM_SHOP', 'PAGE_SHOP'],
+				enabledPlugins: ['INSTAGRAM_SHOP', 'PAGE_SHOP'],
 				enableSubscription: '<?php echo class_exists( 'WC_Subscriptions' ) ? 'true' : 'false'; ?>',
 				popupOrigin: '<?php echo isset( $_GET['url'] ) ? esc_js( sanitize_text_field( wp_unslash( $_GET['url'] ) ) ) : 'https://www.facebook.com/'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>',
 				feedWasDisabled: 'true',
@@ -1693,7 +1673,7 @@ class WC_Facebookcommerce_Integration extends WC_Integration {
 						include_once 'includes/fbproductfeed.php';
 					}
 
-					$this->fbproductfeed = new \WC_Facebook_Product_Feed( $this->get_product_catalog_id() );
+					$this->fbproductfeed = new \WC_Facebook_Product_Feed();
 				}
 
 				$status = $this->fbproductfeed->is_upload_complete( $this->settings );
@@ -2492,89 +2472,6 @@ class WC_Facebookcommerce_Integration extends WC_Integration {
 		return $mode;
 	}
 
-	/**
-	 * Gets the configured Facebook messenger locale.
-	 *
-	 * @since 1.10.0
-	 *
-	 * @return string
-	 */
-	public function get_messenger_locale() {
-		/**
-		 * Filters the configured Facebook messenger locale.
-		 *
-		 * @since 1.10.0
-		 *
-		 * @param string $locale the configured Facebook messenger locale
-		 * @param \WC_Facebookcommerce_Integration $integration the integration instance
-		 */
-		return (string) apply_filters( 'wc_facebook_messenger_locale', get_option( self::SETTING_MESSENGER_LOCALE, 'en_US' ), $this );
-	}
-
-	/**
-	 * Gets the configured Facebook messenger greeting.
-	 *
-	 * @since 1.10.0
-	 *
-	 * @return string
-	 */
-	public function get_messenger_greeting() {
-		/**
-		 * Filters the configured Facebook messenger greeting.
-		 *
-		 * @since 1.10.0
-		 *
-		 * @param string $greeting the configured Facebook messenger greeting
-		 * @param \WC_Facebookcommerce_Integration $integration the integration instance
-		 */
-		$greeting = (string) apply_filters( 'wc_facebook_messenger_greeting', get_option( self::SETTING_MESSENGER_GREETING, __( "Hi! We're here to answer any questions you may have.", 'facebook-for-woocommerce' ) ), $this );
-		return Helper::str_truncate( $greeting, $this->get_messenger_greeting_max_characters(), '' );
-	}
-
-	/**
-	 * Gets the maximum number of characters allowed in the messenger greeting.
-	 *
-	 * @since 1.10.0
-	 *
-	 * @return int
-	 */
-	public function get_messenger_greeting_max_characters() {
-		$default = 80;
-
-		/**
-		 * Filters the maximum number of characters allowed in the messenger greeting.
-		 *
-		 * @since 1.10.0
-		 *
-		 * @param int $max the maximum number of characters allowed in the messenger greeting
-		 * @param \WC_Facebookcommerce_Integration $integration the integration instance
-		 */
-		$max = (int) apply_filters( 'wc_facebook_messenger_greeting_max_characters', $default, $this );
-
-		return $max < 1 ? $default : $max;
-	}
-
-	/**
-	 * Gets the configured Facebook messenger color hex.
-	 *
-	 * This is used to style the messenger UI.
-	 *
-	 * @since 1.10.0
-	 *
-	 * @return string
-	 */
-	public function get_messenger_color_hex() {
-		/**
-		 * Filters the configured Facebook messenger color hex.
-		 *
-		 * @since 1.10.0
-		 *
-		 * @param string $hex the configured Facebook messenger color hex
-		 * @param \WC_Facebookcommerce_Integration $integration the integration instance
-		 */
-		return (string) apply_filters( 'wc_facebook_messenger_color_hex', get_option( self::SETTING_MESSENGER_COLOR_HEX, '#0084ff' ), $this );
-	}
-
 	/** Setter methods ************************************************************************************************/
 
 
@@ -2738,25 +2635,6 @@ class WC_Facebookcommerce_Integration extends WC_Integration {
  	public function is_legacy_feed_file_generation_enabled() {
  		return 'yes' === get_option( self::OPTION_LEGACY_FEED_FILE_GENERATION_ENABLED, 'yes' );
  	}
-
-	/**
-	 * Determines whether the Facebook messenger is enabled.
-	 *
-	 * @since 1.10.0
-	 *
-	 * @return bool
-	 */
-	public function is_messenger_enabled() {
-		/**
-		 * Filters whether the Facebook messenger is enabled.
-		 *
-		 * @since 1.10.0
-		 *
-		 * @param bool $is_enabled whether the Facebook messenger is enabled
-		 * @param \WC_Facebookcommerce_Integration $integration the integration instance
-		 */
-		return (bool) apply_filters( 'wc_facebook_is_messenger_enabled', 'yes' === get_option( self::SETTING_ENABLE_MESSENGER ), $this );
-	}
 
 	/**
 	 * Determines whether debug mode is enabled.

@@ -1,15 +1,14 @@
 === UPI QR Code Payment Gateway for WooCommerce ===
-Contributors: infosatech
-Tags: upi, upi payment, woocommerce, qrcode, bhim upi, paytm upi, india
+Contributors: knitpay, gautammkgarg, infosatech
+Tags: upi, upi payment, woocommerce, qr code, bhim upi
 Requires at least: 4.6
-Tested up to: 6.3
-Stable tag: 1.3.6
+Tested up to: 6.5
+Stable tag: 1.4.5
 Requires PHP: 5.6
-Donate link: https://www.sayandatta.co.in/donate
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-This Plugin enables WooCommerce shop owners to get direct and instant payments through UPI apps like BHIM, GooglePay, WhatsApp, Paytm, PhonePe or any banking UPI app to save payment gateway charges in India.
+This Plugin enables WooCommerce shop owners to get direct and instant payments through UPI apps like BHIM, GooglePay, PhonePe or any banking UPI app.
 
 == Description ==
 
@@ -59,8 +58,8 @@ Like UPI QR Code Payment Gateway for WooCommerce plugin? Consider leaving a [5 s
 * Community support via the [support forums](https://wordpress.org/support/plugin/upi-qr-code-payment-for-woocommerce) at WordPress.org.
 
 #### Contribute
-* Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/upi-qr-code-payment-for-woocommerce).
-* Feel free to [fork the project on GitHub](https://github.com/iamsayan/upi-qr-code-payment-for-woocommerce) and submit your contributions via pull request.
+* Active development of this plugin is handled [on GitHub](https://github.com/knit-pay/upi-qr-code-payment-for-woocommerce).
+* Feel free to [fork the project on GitHub](https://github.com/knit-pay/upi-qr-code-payment-for-woocommerce) and submit your contributions via pull request.
 
 == Installation ==
 
@@ -87,11 +86,11 @@ Yes, this plugin is compatible with any theme. Also, compatible with Genesis, Di
 
 = I want auto verification after payment is done. Is is possible? =
 
-Unfortunately no, automatic payment verification is not possible as NPCI does not allow to use their API and verify the transaction of any external website.
+This plugin currently does not support this functionality, but you can use the [Knit Pay - UPI](https://wordpress.org/plugins/knit-pay-upi/) plugin to get this feature for some Merchant UPI QR codes.
 
 = The plugin isn't working or have a bug? =
 
-Post detailed information about the issue in the [support forum](https://wordpress.org/support/plugin/upi-qr-code-payment-for-woocommerce) and I will work to fix it.
+Post detailed information about the issue in the [support forum](https://wordpress.org/support/plugin/upi-qr-code-payment-for-woocommerce) and we will work to fix it.
 
 == Screenshots ==
 
@@ -105,6 +104,53 @@ Post detailed information about the issue in the [support forum](https://wordpre
 == Changelog ==
 
 If you like UPI QR Code Payment Gateway for WooCommerce, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/upi-qr-code-payment-for-woocommerce/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.4.4 =
+Release Date: March 14, 2024
+
+* Plugin ownership transferred from Sayan Datta to Knit Pay (Logic Bridge Techno Mart LLP).
+
+= 1.4.3 =
+Release Date: March 13, 2024
+
+* Fixed: Transaction ID was not being saved.
+
+= 1.4.2 =
+Release Date: March 3, 2024
+
+* Fixed: Form not submitting if both fields are hidden.
+
+= 1.4.1 =
+Release Date: January 7, 2024
+
+* Fixed: CSS issues.
+* Tweak: PHP 8.3 Support.
+
+= 1.4.0 =
+Release Date: January 6, 2024
+
+* Added: Support for WooCommerce Block-based checkout.
+
+= 1.3.9 =
+Release Date: January 6, 2024
+
+* Added: Security check on submission.
+* Removed: Inter as default font.
+
+= 1.3.8 =
+Release Date: January 5, 2024
+
+* Added: Screenshot upload field.
+* Fixed: CSS was not loading on checkout page after last update.
+
+= 1.3.7 =
+Release Date: January 4, 2024
+
+* Added: Inter as default font family for payment modal.
+* Fixed: Payment Modal not showing on some installations.
+* Tweak: Added check for WooCommerce Order object.
+* Tweak: Added CSS fixes.
+* Tested with WooCommerce v8.6.
 
 = 1.3.6 =
 Release Date: July 22, 2023
@@ -276,7 +322,7 @@ Release Date: June 9, 2020
 * Tweak: Cancel button will redirect customers to checkout page.
 * Tweak: Cart will be automatically cleared if payment is actually completed.
 * Fixed: 404 not found issue and other permaalinks issues.
-* WC Compatibity upto v4.2.
+* WC Compatibity up to v4.2.
 
 = 1.1.1 =
 Release Date: June 1, 2020
@@ -366,7 +412,7 @@ Release Date: March 14, 2020
 * Improved: This plugin now uses On Hold Order Email template to send payment pending email to customers.
 * Fixed: Some CSS Errors.
 * Fixed: Some typo.
-* Tested upto WordPress v5.4 and WooCommerce v4.0.
+* Tested up to WordPress v5.4 and WooCommerce v4.0.
 
 = 1.0.0 =
 Release Date: January 30, 2020

@@ -1,5 +1,86 @@
 *** Changelog ***
 
+= 2.1.5 - 2024-07-09 =
+* Tweak - WC 9.1 compatibility.
+* Tweak - WP 6.6 compatibility.
+
+= 2.1.4 - 2024-07-02 =
+* Dev - Upgrade npm dependencies.
+* Dev - Upgrade to Node.js 20.
+* Tweak - Add checks and explicit errors when cart buttons are missing data.
+
+= 2.1.3 - 2024-06-25 =
+* Add - WooCommerce Product Bundles integration.
+
+= 2.1.2 - 2024-06-18 =
+* Tweak -  Replace woo.com references with woocommerce.com.
+* Tweak - Do not replace other extensions' `add_to_cart` listeners.
+
+= 2.1.1 - 2024-06-12 =
+* Tweak - Confirm WC_Cart is available before formatting cart data.
+* Tweak - WC 9.0 compatibility.
+
+= 2.1.0 - 2024-06-05 =
+* Add - Integration with the WP Consent API plugin.
+* Fix - Add E2E tests for denying via WP Consent API.
+* Tweak - Document WP Consent API support.
+
+= 2.0.7 - 2024-05-14 =
+* Dev - Add a manual workflow run for PHP unit tests.
+* Fix - Apply discounts to the ecommerce event if available.
+* Fix - Incorrect quantity value when adding product to the cart that exists in the cart.
+* Tweak - WC 8.9 compatibility.
+
+= 2.0.6 - 2024-04-09 =
+* Tweak - WC 8.8 compatibility.
+
+= 2.0.5 - 2024-04-04 =
+* Tweak - Register `woocommerce-google-analytics-integration` script earlier, so other extensions can plug in.
+* Update - Separate the site tag from the event tracking file and delay execution until DOMContentLoaded.
+
+= 2.0.4 - 2024-03-26 =
+* Dev - Add QIT workflow.
+* Dev - E2E tests for the All Products block.
+* Dev - Remove unused functions from code.
+* Fix - Warning after plugin install using wp-cli.
+* Tweak - Add WP 6.5 Require plugins header.
+
+= 2.0.3 - 2024-03-13 =
+* Tweak - WC 8.7 compatibility.
+* Tweak - WP 6.5 compatibility.
+
+= 2.0.2 - 2024-03-12 =
+* Dev - Add E2E testing to track events across all page types.
+* Fix - Add to cart & select content events for All Products Block.
+* Fix - Get correct variation data when formatting product.
+* Fix - Handle AJAX add to cart for simple products.
+* Fix - Purchase price format.
+* Fix - Track purchase transaction ID.
+* Fix - Typo with undefined variable.
+
+= 2.0.1 - 2024-03-07 =
+* Fix - Adding variable product attributes.
+* Fix - Resolve Google Analytics not loading if gtag already exists on the window object.
+* Tweak - Update Contributors list.
+* Tweak - Update assets and readme for 2.0.
+
+= 2.0.0 - 2024-03-05 =
+* Add - Basic consent mode support.
+* Add - Setting to specify the structure of the product identifier.
+* Add - Update notice for merchants using a Universal Analytics Property ID.
+* Dev - Remove options remapping, use settings directly.
+* Fix - Prevent tracking orders multiple times and additional fixes.
+* Remove - Universal Analytics code.
+* Remove - Universal Analytics integration.
+* Simplify tracker event handler API.
+* Update - Add shared tracking functionality for WooCommerce Blocks and classic pages.
+* Update - Extension branding to Google Analytics for WooCommerce.
+* Update - Tracking for GA4 when using Blocks.
+
+= 1.8.14 - 2024-02-07 =
+* Tweak - Declare feature compatibility for the new product editor (also called product block editor).
+* Tweak - WC 8.6 compatibility.
+
 = 1.8.13 - 2024-01-09 =
 * Dev - Upgrade all NPM dev dependencies.
 * Dev - Upgrade to Node.js 18.

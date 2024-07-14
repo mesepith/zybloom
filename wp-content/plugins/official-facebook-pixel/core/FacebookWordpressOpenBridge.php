@@ -26,6 +26,7 @@ defined('ABSPATH') or die('Direct access not allowed');
 class FacebookWordpressOpenBridge {
     const ADVANCED_MATCHING_LABEL = 'fb.advanced_matching';
     const CUSTOM_DATA_LABEL = 'custom_data';
+    const EXTERNAL_ID_COOKIE = 'obeid';
 
     private static $instance = null;
     private static $blocked_events = array('Microdata');
@@ -40,10 +41,37 @@ class FacebookWordpressOpenBridge {
         return self::$instance;
     }
 
-    public function handleOpenBridgeReq($data){
-        if (!session_id()) {
-            session_start();
+    private static function startNewPhpSessionIfNeeded() {
+        if (session_id()) {
+            return;
         }
+
+        $secure = false;
+        $httponly = true;
+        $samesite = 'lax';
+        $maxlifetime = 7776000;
+        if(PHP_VERSION_ID < 70300) {
+            session_set_cookie_params($maxlifetime, '/; samesite='.$samesite, $_SERVER['HTTP_HOST'], $secure, $httponly);
+        } else {
+            session_set_cookie_params([
+                'lifetime' => $maxlifetime,
+                'path' => '/',
+                'domain' => $_SERVER['HTTP_HOST'],
+                'secure' => $secure,
+                'httponly' => $httponly,
+                'samesite' => $samesite
+            ]);
+        }
+
+        session_start();
+
+        $_SESSION[self::EXTERNAL_ID_COOKIE] = isset($_SESSION[self::EXTERNAL_ID_COOKIE]) ? $_SESSION[self::EXTERNAL_ID_COOKIE] : FacebookPluginUtils::newGUID();
+    }
+
+    public function handleOpenBridgeReq($data){
+
+        self::startNewPhpSessionIfNeeded();
+
         $event_name = $data['event_name'];
         if(in_array($event_name, self::$blocked_events)){
             return;
@@ -55,7 +83,6 @@ class FacebookWordpressOpenBridge {
             'wp-cloudbridge-plugin',
             true
         );
-
         $event->setEventId($data['event_id']);
         FacebookServerSideEvent::send([$event]);
     }
@@ -148,10 +175,25 @@ class FacebookWordpressOpenBridge {
     }
 
     private static function getExternalID($current_user_data, $pixel_data){
-        if(isset($current_user_data['id'])){
-            return (string) $current_user_data['id'];
+        $external_ids = array();
+
+        if( isset( $current_user_data['id'] ) ){
+            $external_ids[] = (string) $current_user_data['id'];
         }
-        return self::getAAMField(AAMSettingsFields::EXTERNAL_ID, $pixel_data);
+
+        $temp_external_id = self::getAAMField(
+            AAMSettingsFields::EXTERNAL_ID,
+            $pixel_data
+        );
+
+        if ( $temp_external_id ) {
+            $external_ids[] = $temp_external_id;
+        }
+
+        if (isset($_SESSION[self::EXTERNAL_ID_COOKIE])) {
+            $external_ids[] = $_SESSION[self::EXTERNAL_ID_COOKIE];
+        }
+        return $external_ids;
     }
 
     private static function getPhone($current_user_data, $pixel_data){

@@ -12,21 +12,20 @@ namespace Google\Site_Kit\Core\Modules;
 
 use Google\Site_Kit\Context;
 use Google\Site_Kit\Core\Assets\Assets;
-use Google\Site_Kit\Core\Authentication\Clients\OAuth_Client;
 use Google\Site_Kit\Core\Permissions\Permissions;
 use Google\Site_Kit\Core\Storage\Options;
 use Google\Site_Kit\Core\Storage\User_Options;
 use Google\Site_Kit\Core\Authentication\Authentication;
 use Google\Site_Kit\Core\Util\Feature_Flags;
 use Google\Site_Kit\Core\Util\Method_Proxy_Trait;
+use Google\Site_Kit\Modules\Ads;
 use Google\Site_Kit\Modules\AdSense;
-use Google\Site_Kit\Modules\Analytics;
 use Google\Site_Kit\Modules\Analytics_4;
 use Google\Site_Kit\Modules\PageSpeed_Insights;
+use Google\Site_Kit\Modules\Reader_Revenue_Manager;
 use Google\Site_Kit\Modules\Search_Console;
 use Google\Site_Kit\Modules\Site_Verification;
 use Google\Site_Kit\Modules\Tag_Manager;
-use Google\Site_Kit\Core\Util\URL;
 use Exception;
 
 /**
@@ -147,7 +146,8 @@ final class Modules {
 	private $core_modules = array(
 		Site_Verification::MODULE_SLUG  => Site_Verification::class,
 		Search_Console::MODULE_SLUG     => Search_Console::class,
-		Analytics::MODULE_SLUG          => Analytics::class,
+		Ads::MODULE_SLUG                => Ads::class,
+		Analytics_4::MODULE_SLUG        => Analytics_4::class,
 		Tag_Manager::MODULE_SLUG        => Tag_Manager::class,
 		AdSense::MODULE_SLUG            => AdSense::class,
 		PageSpeed_Insights::MODULE_SLUG => PageSpeed_Insights::class,
@@ -178,7 +178,9 @@ final class Modules {
 		$this->authentication   = $authentication ?: new Authentication( $this->context, $this->options, $this->user_options );
 		$this->assets           = $assets ?: new Assets( $this->context );
 
-		$this->core_modules[ Analytics_4::MODULE_SLUG ] = Analytics_4::class;
+		if ( Feature_Flags::enabled( 'rrmModule' ) ) {
+			$this->core_modules[ Reader_Revenue_Manager::MODULE_SLUG ] = Reader_Revenue_Manager::class;
+		}
 
 		$this->rest_controller              = new REST_Modules_Controller( $this );
 		$this->dashboard_sharing_controller = new REST_Dashboard_Sharing_Controller( $this );
@@ -245,47 +247,6 @@ final class Modules {
 			}
 		);
 
-		add_action(
-			'googlesitekit_authorize_user',
-			function( $token_response ) {
-				if ( empty( $token_response['analytics_configuration'] ) ) {
-					return;
-				}
-
-				// Do nothing if the Analytics module is already activated.
-				if ( $this->is_module_active( Analytics::MODULE_SLUG ) ) {
-					return;
-				}
-
-				$this->activate_module( Analytics::MODULE_SLUG );
-
-				$extra_scopes = $this->user_options->get( OAuth_Client::OPTION_ADDITIONAL_AUTH_SCOPES );
-				if ( is_array( $extra_scopes ) ) {
-					$readonly_scope_index = array_search( Analytics::READONLY_SCOPE, $extra_scopes, true );
-					if ( $readonly_scope_index >= 0 ) {
-						unset( $extra_scopes[ $readonly_scope_index ] );
-
-						$auth_scopes = $this->user_options->get( OAuth_Client::OPTION_AUTH_SCOPES );
-						if ( is_array( $auth_scopes ) ) {
-							$auth_scopes[] = Analytics::READONLY_SCOPE;
-							$auth_scopes   = array_unique( $auth_scopes );
-
-							$this->user_options->set( OAuth_Client::OPTION_ADDITIONAL_AUTH_SCOPES, array_values( $extra_scopes ) );
-							$this->user_options->set( OAuth_Client::OPTION_AUTH_SCOPES, $auth_scopes );
-						}
-					}
-				}
-
-				try {
-					$analytics = $this->get_module( Analytics::MODULE_SLUG );
-					$analytics->handle_token_response_data( $token_response );
-				} catch ( Exception $e ) {
-					return;
-				}
-			},
-			1
-		);
-
 		add_filter( 'googlesitekit_inline_base_data', $this->get_method_proxy( 'inline_js_data' ) );
 		add_filter( 'googlesitekit_inline_tracking_data', $this->get_method_proxy( 'inline_js_data' ) );
 
@@ -314,6 +275,15 @@ final class Modules {
 			'googlesitekit_is_module_recoverable',
 			function ( $recoverable, $slug ) {
 				return $this->is_module_recoverable( $slug );
+			},
+			10,
+			2
+		);
+
+		add_filter(
+			'googlesitekit_is_module_connected',
+			function ( $connected, $slug ) {
+				return $this->is_module_connected( $slug );
 			},
 			10,
 			2
@@ -650,16 +620,6 @@ final class Modules {
 
 		$module = $this->get_module( $slug );
 
-		// TODO: Remove this when UA is sunset.
-		// Consider UA to be connected if GA4 is connected.
-		if (
-			Analytics::MODULE_SLUG === $slug &&
-			! $module->is_connected() &&
-			$this->is_module_connected( Analytics_4::MODULE_SLUG )
-		) {
-			return true;
-		}
-
 		return (bool) $module->is_connected();
 	}
 
@@ -690,13 +650,6 @@ final class Modules {
 			$module = $this->get_module( $slug );
 		} catch ( Exception $e ) {
 			return false;
-		}
-
-		// TODO: Remove this hack.
-		if ( Analytics::MODULE_SLUG === $slug ) {
-			// GA4 needs to be handled first to pass conditions below
-			// due to special handling in active modules option.
-			$this->activate_module( Analytics_4::MODULE_SLUG );
 		}
 
 		$option = $this->get_active_modules_option();
@@ -742,13 +695,6 @@ final class Modules {
 			$module = $this->get_module( $slug );
 		} catch ( Exception $e ) {
 			return false;
-		}
-
-		// TODO: Remove this hack.
-		if ( Analytics::MODULE_SLUG === $slug ) {
-			// GA4 needs to be handled first to pass conditions below
-			// due to special handling in active modules option.
-			$this->deactivate_module( Analytics_4::MODULE_SLUG );
 		}
 
 		$option = $this->get_active_modules_option();
@@ -858,12 +804,6 @@ final class Modules {
 			$option = array( PageSpeed_Insights::MODULE_SLUG );
 		}
 
-		$includes_analytics   = in_array( Analytics::MODULE_SLUG, $option, true );
-		$includes_analytics_4 = in_array( Analytics_4::MODULE_SLUG, $option, true );
-		if ( $includes_analytics && ! $includes_analytics_4 ) {
-			$option[] = Analytics_4::MODULE_SLUG;
-		}
-
 		return $option;
 	}
 
@@ -875,10 +815,6 @@ final class Modules {
 	 * @param array $option List of active module slugs.
 	 */
 	private function set_active_modules_option( array $option ) {
-		if ( in_array( Analytics_4::MODULE_SLUG, $option, true ) ) {
-			unset( $option[ array_search( Analytics_4::MODULE_SLUG, $option, true ) ] );
-		}
-
 		$this->options->set( self::OPTION_ACTIVE_MODULES, $option );
 	}
 

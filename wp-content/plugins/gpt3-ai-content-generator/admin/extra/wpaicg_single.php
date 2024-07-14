@@ -4048,7 +4048,7 @@ echo wp_create_nonce( 'wpaicg-save-togetherai-api' );
 echo esc_html( add_query_arg( 'wpaicg_stream', 'yes', site_url() . '/index.php' ) );
 ?>&title='+title+'&nonce=<?php 
 echo wp_create_nonce( 'wpaicg-ajax-nonce' );
-?>'+'&engine='+selectedModel+'&provider='+selectedProvider);
+?>'+'&engine='+selectedModel+'&provider='+selectedProvider + '&source=playground');
                 var editor = tinyMCE.get('wpaicg_generator_result');
                 var basicEditor = true;
                 if ( $('#wp-wpaicg_generator_result-wrap').hasClass('tmce-active') && editor ) {

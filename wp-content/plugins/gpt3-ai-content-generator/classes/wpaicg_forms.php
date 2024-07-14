@@ -230,75 +230,88 @@ if(!class_exists('\\WPAICG\\WPAICG_Forms')) {
         public function wpaicg_form_log()
         {
             global $wpdb;
-            $wpaicg_result = array('status' => 'success');
+        
+            $wpaicg_result = ['status' => 'success'];
             $wpaicg_nonce = sanitize_text_field($_REQUEST['_wpnonce']);
-            if ( !wp_verify_nonce( $wpaicg_nonce, 'wpaicg-formlog' ) ) {
-                $wpaicg_result['msg'] = esc_html__('Nonce verification failed','gpt3-ai-content-generator');
+        
+            // Verify nonce
+            if (!wp_verify_nonce($wpaicg_nonce, 'wpaicg-formlog')) {
+                $wpaicg_result['msg'] = esc_html__('Nonce verification failed', 'gpt3-ai-content-generator');
                 wp_send_json($wpaicg_result);
                 exit;
             }
-            if(
-                isset($_REQUEST['prompt_id'])
-                && !empty($_REQUEST['prompt_id'])
-                && isset($_REQUEST['prompt_name'])
-                && !empty($_REQUEST['prompt_name'])
-                && isset($_REQUEST['prompt_response'])
-                && !empty($_REQUEST['prompt_response'])
-                && isset($_REQUEST['engine'])
-                && !empty($_REQUEST['engine'])
-                && isset($_REQUEST['title'])
-                && !empty($_REQUEST['title'])
-            ){
-                // Check if a user is logged in
-                if(is_user_logged_in()) {
-                    // Get the logged-in user's ID
-                    $userID = get_current_user_id();
-                } else {
-                    $userID = ""; // Set to empty string if user is not logged in
-                }
-                $log = array(
-                    'prompt' => wp_kses_post($_REQUEST['title']),
-                    'data' => wp_kses_post($_REQUEST['prompt_response']),
-                    'prompt_id' => sanitize_text_field($_REQUEST['prompt_id']),
-                    'name' => sanitize_text_field($_REQUEST['prompt_name']),
-                    'model' => sanitize_text_field($_REQUEST['engine']),
-                    'duration' => sanitize_text_field($_REQUEST['duration']),
-                    'eventID' => sanitize_text_field($_REQUEST['eventID']),
-                    'userID' => $userID,
-                    'created_at' => time()
-                );
-                if(isset($_REQUEST['source_id']) && !empty($_REQUEST['source_id'])){
-                    $log['source'] = sanitize_text_field($_REQUEST['source_id']);
-                }
-                $wpaicg_generator = WPAICG_Generator::get_instance();
-                $log['tokens'] = ceil($wpaicg_generator->wpaicg_count_words($log['data'])*1000/750);
-                WPAICG_Account::get_instance()->save_log('forms',$log['tokens']);
-                $wpdb->insert($wpdb->prefix.'wpaicg_form_logs', $log);
-                $wpaicg_playground = WPAICG_Playground::get_instance();
-                $wpaicg_tokens_handling = $wpaicg_playground->wpaicg_token_handling('form');
-                if($wpaicg_tokens_handling['limit']){
-                    if($wpaicg_tokens_handling['token_id']){
-                        $wpdb->update($wpdb->prefix.$wpaicg_tokens_handling['table'], array(
-                            'tokens' => ($log['tokens'] + $wpaicg_tokens_handling['old_tokens'])
-                        ), array('id' => $wpaicg_tokens_handling['token_id']));
-                    }
-                    else{
-                        $wpaicg_prompt_token_data = array(
-                            'tokens' => $log['tokens'],
-                            'created_at' => time()
-                        );
-                        if(is_user_logged_in()){
-                            $wpaicg_prompt_token_data['user_id'] = get_current_user_id();
-                        }
-                        else{
-                            $wpaicg_prompt_token_data['session_id'] = $wpaicg_tokens_handling['client_id'];
-                        }
-                        $wpdb->insert($wpdb->prefix.$wpaicg_tokens_handling['table'],$wpaicg_prompt_token_data);
-                    }
+        
+            // Required fields
+            $required_fields = ['prompt_id', 'prompt_name', 'prompt_response', 'engine'];
+            foreach ($required_fields as $field) {
+                if (empty($_REQUEST[$field])) {
+                    wp_send_json($wpaicg_result);
+                    exit;
                 }
             }
+
+            $userID = is_user_logged_in() ? get_current_user_id() : '';
+
+            // Retrieve prompt
+            if (isset($_REQUEST['id']) && !empty($_REQUEST['id'])) {
+                $prompt_id = sanitize_text_field($_REQUEST['id']);
+            } 
+            $wpaicg_prompt = WPAICG_Playground::get_instance()->get_defined_prompt($prompt_id);
+
+            // Log data
+            $log = [
+                'prompt' => wp_kses_post($wpaicg_prompt),
+                'data' => wp_kses_post($_REQUEST['prompt_response']),
+                'prompt_id' => sanitize_text_field($_REQUEST['prompt_id']),
+                'name' => sanitize_text_field($_REQUEST['prompt_name']),
+                'model' => sanitize_text_field($_REQUEST['engine']),
+                'duration' => sanitize_text_field($_REQUEST['duration']),
+                'eventID' => sanitize_text_field($_REQUEST['eventID']),
+                'userID' => $userID,
+                'created_at' => time()
+            ];
+        
+            if (!empty($_REQUEST['source_id'])) {
+                $log['source'] = sanitize_text_field($_REQUEST['source_id']);
+            }
+        
+            // Calculate tokens
+            $wpaicg_generator = WPAICG_Generator::get_instance();
+            $log['tokens'] = ceil($wpaicg_generator->wpaicg_count_words($log['data']) * 1000 / 750);
+        
+            // Save log and update tokens
+            WPAICG_Account::get_instance()->save_log('forms', $log['tokens']);
+            $wpdb->insert($wpdb->prefix . 'wpaicg_form_logs', $log);
+        
+            $wpaicg_playground = WPAICG_Playground::get_instance();
+            $wpaicg_tokens_handling = $wpaicg_playground->wpaicg_token_handling('form');
+        
+            if ($wpaicg_tokens_handling['limit']) {
+                if ($wpaicg_tokens_handling['token_id']) {
+                    $wpdb->update(
+                        $wpdb->prefix . $wpaicg_tokens_handling['table'],
+                        ['tokens' => ($log['tokens'] + $wpaicg_tokens_handling['old_tokens'])],
+                        ['id' => $wpaicg_tokens_handling['token_id']]
+                    );
+                } else {
+                    $wpaicg_prompt_token_data = [
+                        'tokens' => $log['tokens'],
+                        'created_at' => time()
+                    ];
+        
+                    if (is_user_logged_in()) {
+                        $wpaicg_prompt_token_data['user_id'] = get_current_user_id();
+                    } else {
+                        $wpaicg_prompt_token_data['session_id'] = $wpaicg_tokens_handling['client_id'];
+                    }
+        
+                    $wpdb->insert($wpdb->prefix . $wpaicg_tokens_handling['table'], $wpaicg_prompt_token_data);
+                }
+            }
+        
             wp_send_json($wpaicg_result);
         }
+        
 
         function wpaicg_save_feedback() {
 

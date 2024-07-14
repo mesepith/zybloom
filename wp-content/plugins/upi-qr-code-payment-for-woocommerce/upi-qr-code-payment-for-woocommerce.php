@@ -3,14 +3,15 @@
  * Plugin Name: UPI QR Code Payment Gateway
  * Plugin URI: https://wordpress.org/plugins/upi-qr-code-payment-for-woocommerce/
  * Description: It enables a WooCommerce site to accept payments through UPI apps like BHIM, Google Pay, Paytm, PhonePe or any Banking UPI app. Avoid payment gateway charges.
- * Version: 1.3.6
- * Author: Sayan Datta
- * Author URI: https://www.sayandatta.co.in
+ * Version: 1.4.5
+ * Author: Team KnitPay
+ * Author URI: https://www.knitpay.org/
  * License: GPLv3
  * Text Domain: upi-qr-code-payment-for-woocommerce
  * Domain Path: /languages
  * WC requires at least: 3.1
- * WC tested up to: 7.9
+ * WC tested up to: 8.6
+ * Requires Plugins: woocommerce
  * 
  * UPI QR Code Payment Gateway is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +28,7 @@
  * 
  * @category WooCommerce
  * @package  UPI QR Code Payment Gateway
- * @author   Sayan Datta <iamsayan@protonmail.com>
+ * @author   KnitPay
  * @license  http://www.gnu.org/licenses/ GNU General Public License
  * @link     https://wordpress.org/plugins/upi-qr-code-payment-for-woocommerce/
  *
@@ -48,7 +49,7 @@ final class UPIWC {
      *
      * @var string
      */
-    public $version = '1.3.6';
+    public $version = '1.4.4';
 
     /**
      * Minimum version of WordPress required to run UPIWC.
@@ -224,6 +225,7 @@ final class UPIWC {
 
         // Load payment gateway.
         add_action( 'plugins_loaded', [ $this, 'load_gateway' ] );
+        add_action( 'woocommerce_blocks_loaded', array( $this, 'block_support' ) );
 
         // Load admin notices.
         add_action( 'admin_notices', [ $this, 'admin_notice' ] );
@@ -252,7 +254,7 @@ final class UPIWC {
 		$more = [
             '<a href="https://wordpress.org/support/plugin/upi-qr-code-payment-for-woocommerce/" target="_blank">' . __( 'Support', 'upi-qr-code-payment-for-woocommerce' ) . '</a>',
             '<a href="https://wordpress.org/plugins/upi-qr-code-payment-for-woocommerce/#faq" target="_blank">' . __( 'FAQ', 'upi-qr-code-payment-for-woocommerce' ) . '</a>',
-            '<a href="https://www.sayandatta.co.in/donate" target="_blank">' . __( 'Donate', 'upi-qr-code-payment-for-woocommerce' ) . '</a>',
+            //'<a href="https://www.sayandatta.co.in/donate" target="_blank">' . __( 'Donate', 'upi-qr-code-payment-for-woocommerce' ) . '</a>',
         ];
 
 		return array_merge( $links, $more );
@@ -300,6 +302,21 @@ final class UPIWC {
         }
     }
 
+    /**
+	 * Registers WooCommerce Blocks integration.
+	 */
+	public function block_support() {
+		if ( class_exists( '\Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ) {
+            require_once UPIWC_PATH . 'includes/blocks/class-blocks-support.php';
+			add_action(
+				'woocommerce_blocks_payment_method_type_registration',
+				function( \Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry ) {
+					$payment_method_registry->register( new UPI_WC_Payment_Gateway_Blocks_Support() );
+				}
+			);
+		}
+	}
+
 	/**
 	 * Show internal admin notices.
 	 */
@@ -317,7 +334,7 @@ final class UPIWC {
         }
 
 		$show_rating = true;
-		if ( $this->calculate_time() > strtotime( '-10 days' )
+		if ( $this->calculate_time() > strtotime( '-7 days' )
             || '1' === get_option( 'upiwc_plugin_dismiss_rating_notice' )
             || apply_filters( 'upiwc_plugin_hide_sticky_notice', false ) ) {
 			$show_rating = false;
@@ -337,11 +354,11 @@ final class UPIWC {
 		}
 
 		$show_donate = false;
-		// if ( $this->calculate_time() > strtotime( '-15 days' )
-        //     || '1' === get_option( 'upiwc_plugin_dismiss_donate_notice' )
-        //     || apply_filters( 'upiwc_plugin_hide_sticky_donate_notice', false ) ) {
-		// 	$show_donate = false;
-		// }
+		if ( $this->calculate_time() > strtotime( '-10 days' )
+            || '1' === get_option( 'upiwc_plugin_dismiss_donate_notice' )
+            || apply_filters( 'upiwc_plugin_hide_sticky_donate_notice', false ) ) {
+			$show_donate = false;
+		}
 
 		if ( $show_donate ) {
 			$dismiss = wp_nonce_url( add_query_arg( 'upiwc_notice_action', 'dismiss_donate' ), 'upiwc_notice_nonce' );
@@ -363,14 +380,14 @@ final class UPIWC {
 	public function dismiss_notice() {
 		// Check for Rating Notice
 		if ( get_option( 'upiwc_plugin_no_thanks_rating_notice' ) === '1'
-			&& get_option( 'upiwc_plugin_dismissed_time' ) <= strtotime( '-14 days' ) ) {
+			&& get_option( 'upiwc_plugin_dismissed_time' ) <= strtotime( '-10 days' ) ) {
 			delete_option( 'upiwc_plugin_dismiss_rating_notice' );
 			delete_option( 'upiwc_plugin_no_thanks_rating_notice' );
 		}
 
 		// Check for Donate Notice
 		if ( get_option( 'upiwc_plugin_no_thanks_donate_notice' ) === '1'
-			&& get_option( 'upiwc_plugin_dismissed_time_donate' ) <= strtotime( '-15 days' ) ) {
+			&& get_option( 'upiwc_plugin_dismissed_time_donate' ) <= strtotime( '-14 days' ) ) {
 			delete_option( 'upiwc_plugin_dismiss_donate_notice' );
 			delete_option( 'upiwc_plugin_no_thanks_donate_notice' );
 		}

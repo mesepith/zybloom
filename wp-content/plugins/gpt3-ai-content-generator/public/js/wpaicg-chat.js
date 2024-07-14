@@ -24,13 +24,15 @@ function showAllConversationStarters() {
 
 function loadChatInterface(containerSelector, type, clientId) {
     var chatContainers = document.querySelectorAll(containerSelector);
+    console.log(`Loading chat history for ${type} interfaces...`);
 
     chatContainers.forEach(chatContainer => {
 
         // Read autoload chat conversations setting, default to '0' if not set
         var autoloadConversations = chatContainer.getAttribute('data-autoload_chat_conversations');
+        console.log(`Autoload conversations setting for ${type} interface: ${autoloadConversations}`);
         if (autoloadConversations === null) {
-            autoloadConversations = '0';  // Default value if attribute does not exist
+            autoloadConversations = '1';  // Default value if attribute does not exist
         }
 
         // Fetch the bot ID based on the type
@@ -275,6 +277,7 @@ function wpaicgChatInit() {
     var wpaicgChatDownloadButtons = document.getElementsByClassName('wpaicg-chatbox-download-btn');
     var wpaicg_chat_widget_toggles = document.getElementsByClassName('wpaicg_toggle');
     var wpaicg_chat_widgets = document.getElementsByClassName('wpaicg_chat_widget');
+    var imageInputThumbnail = null; // Variable to store the image thumbnail
     function setupConversationStarters() {
         const starters = document.querySelectorAll('.wpaicg-conversation-starter');
         starters.forEach(starter => {
@@ -299,8 +302,10 @@ function wpaicgChatInit() {
 
 
     var imageIcon = document.querySelector('.wpaicg-img-icon');
-    
-    if(imageIcon){
+    var spinner = document.querySelector('.wpaicg-img-spinner');
+    var thumbnailPlaceholder = document.querySelector('.wpaicg-thumbnail-placeholder');
+
+    if (imageIcon) {
         imageIcon.addEventListener('click', function() {
             var imageInput = document.getElementById('imageUpload');
             imageInput.click();
@@ -308,14 +313,34 @@ function wpaicgChatInit() {
     }
 
     var imageInput = document.getElementById('imageUpload');
-    if(imageInput){
+    if (imageInput) {
         imageInput.addEventListener('change', function() {
             if (this.files && this.files[0]) {
-                console.log("Image selected: ", this.files[0].name);
+                var file = this.files[0];  // Store the file reference here
+    
+                // Show the spinner and hide the image icon
+                imageIcon.style.display = 'none';
+                spinner.style.display = 'inline-block';
+                
+                console.log("Image selected: ", file.name);
+                imageIcon.title = file.name; // Optional: show image name on hover
+    
+                // Hide the spinner and show the image icon and thumbnail after a delay
+                setTimeout(function() {
+                    spinner.style.display = 'none';
+                    imageIcon.style.display = 'inline-block'; // Re-display image icon
+                    
+                    // Now set the thumbnail image using the stored file reference
+                    thumbnailPlaceholder.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+                    thumbnailPlaceholder.style.backgroundSize = 'cover';
+                    thumbnailPlaceholder.style.backgroundPosition = 'center';
+                    thumbnailPlaceholder.style.backgroundRepeat = 'no-repeat';
+                    thumbnailPlaceholder.style.display = 'inline-block'; // Display thumbnail
+                }, 2000);
             }
         });
     }
-
+    
     // Function to set up event listeners on all clear chat buttons
     function setupClearChatButtons() {
         var wpaicgChatClearButtons = document.querySelectorAll('.wpaicg-chatbox-clear-btn');
@@ -698,17 +723,25 @@ function wpaicgChatInit() {
         // If an image URL is available, add an <img> tag to display the image
         if (imageUrl !== '') {
             wpaicgMessage += '<li class="' + class_user_item + '" style="background-color:' + wpaicg_user_bg + ';font-size: ' + wpaicg_font_size + 'px;color: ' + wpaicg_font_color + '">';
-            wpaicgMessage += '<img src="' + imageUrl + '" style="max-width: 50%; height: auto;">';
+            wpaicgMessage += '<div style="max-width: 300px; height: auto; display: flex;">';
+            wpaicgMessage += '<img src="' + imageUrl + '" style="max-width: 100%; height: auto;" onload="this.parentElement.parentElement.parentElement.scrollTop = this.parentElement.parentElement.parentElement.scrollHeight;">';
+            wpaicgMessage += '</div>'; // Closing the div tag
             wpaicgMessage += '</li>';
         }
         wpaicg_messages_box.innerHTML += wpaicgMessage;
         wpaicg_messages_box.scrollTop = wpaicg_messages_box.scrollHeight;
 
+        // Hide the thumbnail placeholder
+        var thumbnailPlaceholder = document.querySelector('.wpaicg-thumbnail-placeholder');
+        if (thumbnailPlaceholder) {
+            thumbnailPlaceholder.style.display = 'none'; // Hide the thumbnail after message is sent
+        }
+
         // Reset the image input after sending the message if imageInput exists first
         if (imageInput) {
             imageInput.value = '';
         }
-        
+                
         let chat_type = chat.getAttribute('data-type');
         
         let stream_nav;
@@ -741,6 +774,10 @@ function wpaicgChatInit() {
         //append client_id to wpaicgData
         wpaicgData.append('wpaicg_chat_client_id', clientID);
 
+        // Hide the image thumbnail after sending the message
+        if (imageInputThumbnail) {
+            imageInputThumbnail.style.display = 'none';
+        }
 
         // Function to update chat history in local storage for a specific bot identity
         function updateChatHistory(message, sender) {
@@ -752,23 +789,22 @@ function wpaicgChatInit() {
             let formattedMessage = (sender === 'user' ? "Human: " : "AI: ") + message.trim();
             chatHistory.push(formattedMessage);
         
-            // Keep only the last 5 messages if there are more than 5
-            if (chatHistory.length > 6) {
-                chatHistory = chatHistory.slice(-6);
+            // Keep only the last 10 messages if there are more than 5
+            if (chatHistory.length > 10) {
+                chatHistory = chatHistory.slice(-10);
             }
         
             // Calculate total character count
             let totalCharCount = chatHistory.reduce((total, msg) => total + msg.length, 0);
         
-            // Clear chat history if total character count exceeds 8000
-            if (totalCharCount > 8000) {
+            // Clear chat history if total character count exceeds 20000
+            if (totalCharCount > 20000) {
                 chatHistory = [];
             }
         
             localStorage.setItem(chatHistoryKey, JSON.stringify(chatHistory));
         }
         
-
         if (stream_nav === "1") {
             updateChatHistory(wpaicg_question, 'user');
             wpaicgData.append('wpaicg_chat_history', localStorage.getItem('wpaicg_chat_history_' + chatbot_identity + '_' + clientID));

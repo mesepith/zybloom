@@ -571,8 +571,8 @@ class UpdraftPlus_Admin {
 				$installed = @filemtime($backup_dir.'/index.html');// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged -- Silenced to suppress errors that may arise because of the function.
 				$installed_for = time() - $installed;
 
-				if (($installed && time() > $dismissed_until && $installed_for > 28*86400 && !defined('UPDRAFTPLUS_NOADS_B')) || (defined('UPDRAFTPLUS_FORCE_DASHNOTICE') && UPDRAFTPLUS_FORCE_DASHNOTICE)) {
-					add_action('all_admin_notices', array($this, 'show_admin_notice_upgradead'));
+				if (($installed && time() > $dismissed_until && $installed_for > 28*86400 && !defined('UPDRAFTPLUS_NOADS_B')) || (defined('UPDRAFTPLUS_NOADS_B') && !UPDRAFTPLUS_NOADS_B)) {
+					add_action('all_admin_notices', array($this, 'show_admin_notice_ad'));
 				}
 			}
 			
@@ -618,6 +618,9 @@ class UpdraftPlus_Admin {
 			}
 			UpdraftPlus_Options::update_updraft_option('updraftplus_version', $updraftplus->version);
 		}
+
+		// Dequeue conflicted scripts from other plugins before we enqueue our own scripts.
+		add_action('admin_enqueue_scripts', array($this, 'dequeue_conflicted_scripts'), 99998);
 		
 		if (UpdraftPlus_Options::admin_page() != $pagenow || empty($_REQUEST['page']) || 'updraftplus' != $_REQUEST['page']) {
 			// autobackup addon may enqueue admin-common.js and load the same script, so for the javascript we just need to make sure we call stopImmediatePropagation() to prevent other listeners of the same event from being called
@@ -785,9 +788,9 @@ class UpdraftPlus_Admin {
 	}
 
 	/**
-	 * Output HTML for a dashboard notice highlighting the benefits of upgrading to Premium
+	 * Output HTML for a dashboard notice highlighting the benefits of upgrading to Premium and other plugin
 	 */
-	public function show_admin_notice_upgradead() {
+	public function show_admin_notice_ad() {
 		$this->include_template('wp-admin/notices/thanks-for-using-main-dash.php');
 	}
 
@@ -817,6 +820,30 @@ class UpdraftPlus_Admin {
 	}
 
 	/**
+	 * Dequeue conflicted scripts from other plugins before we enqueue our own scripts.
+	 */
+	public function dequeue_conflicted_scripts() {
+		global $pagenow;
+
+		// Dequeue Gravity Forms tooltip scripts if the autobackup addon is enabled.
+		if ('plugins.php' == $pagenow && class_exists('UpdraftPlus_Addon_Autobackup')) {
+			wp_dequeue_script('gform_tooltip_init');
+		}
+	}
+
+	/**
+	 * Enqueue conflicted scripts from other plugins after we enqueue our own scripts.
+	 */
+	public function enqueue_conflicted_scripts() {
+		global $pagenow;
+
+		// Enqueue Gravity Forms tooltip scripts if the autobackup addon is enabled.
+		if ('plugins.php' == $pagenow && class_exists('UpdraftPlus_Addon_Autobackup')) {
+			wp_enqueue_script('gform_tooltip_init');
+		}
+	}
+
+	/**
 	 * This is also called directly from the auto-backup add-on
 	 */
 	public function admin_enqueue_scripts() {
@@ -837,6 +864,7 @@ class UpdraftPlus_Admin {
 		// add_filter('style_loader_tag', array($this, 'style_loader_tag'), 10, 2);
 
 		$this->ensure_sufficient_jquery_and_enqueue();
+		$this->enqueue_conflicted_scripts();
 		$jquery_blockui_enqueue_version = $updraftplus->use_unminified_scripts() ? '2.71.0'.'.'.time() : '2.71.0';
 		wp_enqueue_script('jquery-blockui', UPDRAFTPLUS_URL.'/includes/blockui/jquery.blockUI'.$min_or_not.'.js', array('jquery'), $jquery_blockui_enqueue_version);
 	
@@ -2918,7 +2946,7 @@ class UpdraftPlus_Admin {
 		}
 
 		if (isset($_GET['error'])) {
-			// This is used by Microsoft OneDrive authorisation failures (May 15). I am not sure what may have been using the 'error' GET parameter otherwise - but it is harmless.
+			// This is used by Microsoft OneDrive authorisation failures (May 15). I am not sure what may have been using the 'error' GET parameter otherwise - but it is harmless. June 2024: also now used for insufficient Google Drive permissions upon return from auth.updraftplus.com.
 			if (!empty($_GET['error_description'])) {
 				$this->show_admin_warning(htmlspecialchars($_GET['error_description']).' ('.htmlspecialchars($_GET['error']).')', 'error');
 			} else {
@@ -3202,6 +3230,8 @@ class UpdraftPlus_Admin {
 			$this->restore_in_progress_jobdata = $restore_jobdata;
 
 			add_action('all_admin_notices', array($this, 'show_admin_restore_in_progress_notice'));
+			add_action('admin_print_footer_scripts', array($this, 'print_unfinished_restoration_dialog_scripts'));
+			add_action('admin_print_styles', array($this, 'print_unfinished_restoration_dialog_styles'));
 		}
 	}
 
@@ -3224,7 +3254,7 @@ class UpdraftPlus_Admin {
 		$restore_jobdata['jobid'] = $job_id;
 		$this->restore_in_progress_jobdata = $restore_jobdata;
 
-		$html = $this->show_admin_restore_in_progress_notice(true, true);
+		$html = $this->show_admin_restore_in_progress_notice(true);
 
 		if (empty($html)) return new WP_Error('job_aborted', 'Job aborted.');
 
@@ -3239,7 +3269,7 @@ class UpdraftPlus_Admin {
 	 *
 	 * @return void|string - can return a string containing html or echo the html to page
 	 */
-	public function show_admin_restore_in_progress_notice($return_instead_of_echo = false, $exclude_js = false) {
+	public function show_admin_restore_in_progress_notice($return_instead_of_echo = false) {
 	
 		if (isset($_REQUEST['action']) && 'updraft_restore_abort' === $_REQUEST['action'] && !empty($_REQUEST['job_id'])) {
 			delete_site_option('updraft_restore_in_progress');
@@ -3252,27 +3282,23 @@ class UpdraftPlus_Admin {
 		$seconds_ago = $seconds_ago - $minutes_ago*60;
 		$time_ago = sprintf(__("%s minutes, %s seconds", 'updraftplus'), $minutes_ago, $seconds_ago);
 
-		$html = '<div class="updated show_admin_restore_in_progress_notice">';
+		$html = '<div class="updated show_admin_restore_in_progress_notice"><div class="updraft_admin_restore_dialog">';
 		$html .= '<span class="unfinished-restoration"><strong>UpdraftPlus: '.__('Unfinished restoration', 'updraftplus').'</strong></span><br>';
 		$html .= '<p>'.sprintf(__('You have an unfinished restoration operation, begun %s ago.', 'updraftplus'), $time_ago).'</p>';
-		$html .= '<form method="post" action="'.UpdraftPlus_Options::admin_page_url().'?page=updraftplus">';
+		$html .= '<form method="post" action="'.esc_url(UpdraftPlus_Options::admin_page_url()).'?page=updraftplus">';
 		$html .= wp_nonce_field('updraftplus-credentialtest-nonce');
 		$html .= '<input id="updraft_restore_continue_action" type="hidden" name="action" value="updraft_restore_continue">';
 		$html .= '<input type="hidden" name="updraftplus_ajax_restore" value="continue_ajax_restore">';
-		$html .= '<input type="hidden" name="job_id" value="'.$restore_jobdata['jobid'].'" value="'.esc_attr($restore_jobdata['jobid']).'">';
-
-		if ($exclude_js) {
-			$html .= '<button id="updraft_restore_resume" type="submit" class="button-primary">'.__('Continue restoration', 'updraftplus').'</button>';
-		} else {
-			$html .= '<button id="updraft_restore_resume" onclick="jQuery(\'#updraft_restore_continue_action\').val(\'updraft_restore_continue\'); jQuery(this).parent(\'form\').trigger(\'submit\');" type="submit" class="button-primary">'.__('Continue restoration', 'updraftplus').'</button>';
-		}
-		$html .= '<button id="updraft_restore_abort" onclick="jQuery(\'#updraft_restore_continue_action\').val(\'updraft_restore_abort\'); jQuery(this).parent(\'form\').trigger(\'submit\');" class="button-secondary">'.__('Dismiss', 'updraftplus').'</button>';
-
-		$html .= '</form></div>';
+		$html .= '<input type="hidden" name="job_id" value="'.esc_attr($restore_jobdata['jobid']).'">';
+		$html .= '<button id="updraft_restore_resume" type="submit" class="button-primary">'.__('Continue restoration', 'updraftplus').'</button>';
+		$html .= '<button id="updraft_restore_abort" class="button-secondary">'.__('Dismiss', 'updraftplus').'</button>';
+		$html .= '</form></div></div>';
 
 		if ($return_instead_of_echo) return $html;
 
+		add_filter('wp_kses_allowed_html', array($this, 'kses_allow_input_tags_on_unfinished_restoration_dialog'));
 		echo wp_kses_post($html);
+		remove_filter('wp_kses_allowed_html', array($this, 'kses_allow_input_tags_on_unfinished_restoration_dialog'));
 	}
 
 	/**
@@ -6363,6 +6389,60 @@ class UpdraftPlus_Admin {
 			});
 		});
 	</script>
+		<?php
+	}
+
+	/**
+	 * Allow HTML input elements on the unfinished restoration dialog ensuring the HTML form element doesn't get stripped during the call of wp_kses_post
+	 *
+	 * @param Array $allowed_html Allowed HTML elements
+	 * @return Array The filtered allowed HTML elements
+	 */
+	public function kses_allow_input_tags_on_unfinished_restoration_dialog($allowed_html) {
+		if (!isset($allowed_html['input'])) $allowed_html['input'] = array();
+		$allowed_html['input']['type'] = true;
+		$allowed_html['input']['name'] = true;
+		$allowed_html['input']['value'] = true;
+		$allowed_html['input']['id'] = true;
+		return $allowed_html;
+	}
+
+	/**
+	 * Print the unfinished restoration dialog scripts
+	 */
+	public function print_unfinished_restoration_dialog_scripts() {
+		?>
+	<script>
+		jQuery(function($) {
+			$('.show_admin_restore_in_progress_notice').on('click', 'button#updraft_restore_abort', function(e) {
+				e.preventDefault();
+				jQuery('#updraft_restore_continue_action').val('updraft_restore_abort');
+				jQuery(this).parent('form').trigger('submit');
+			});
+		});
+	</script>
+		<?php
+	}
+
+	/**
+	 * Print CSS rules for the unfinished restoration dialog
+	 */
+	public function print_unfinished_restoration_dialog_styles() {
+		?>
+		<style>
+			.show_admin_restore_in_progress_notice .updraft_admin_restore_dialog .unfinished-restoration {
+				font-size: 120% !important;
+			}
+
+			.show_admin_restore_in_progress_notice .updraft_admin_restore_dialog {
+				padding-top: 12px;
+				padding-bottom: 12px;
+			}
+
+			.show_admin_restore_in_progress_notice .updraft_admin_restore_dialog button {
+				margin-right: 5px;
+			}
+		</style>
 		<?php
 	}
 }

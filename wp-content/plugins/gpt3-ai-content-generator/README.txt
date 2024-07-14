@@ -1,10 +1,10 @@
-===AI Power: Complete AI Pack - Powered by GPT-4===
+===AI Power: Complete AI Pack===
 Contributors: senols
 Tags: chatgpt, gpt, ai, openai, chatbot
 Requires at least: 5.0.0
-Tested up to: 6.5
+Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 1.8.65
+Stable tag: 1.8.68
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -151,6 +151,40 @@ Please read documentation here: [https://docs.aipower.org/](https://docs.aipower
 Note: You can view non-Minified JS files [here](https://github.com/aipowerorg/Non-Minified-JS-Files).
 
 == Changelog ==
+
+### 1.8.68
+
+- Fixed an issue where OpenRouter models were not being updated in certain cases.
+- Made compatible with WordPress 6.6.
+- Freemius SDK update.
+
+### 1.8.67
+
+**Chat Bot**
+
+- Disabled delete image option when the image processing method is URL. To delete images after processing, select base64 in the ChatGPT settings.
+- Removed conversation history from the backend when enabled.
+- Adjusted line-height for auto focus in the text field.
+- Made Azure deployment name editable in custom bots.
+- Improved conversation memory.
+
+**AI Forms**
+
+- Removed prompt from AI forms on the front end, preventing prompts from appearing in the URL and source code. This also addresses prompt length restrictions.
+- Fixed issue with saving drafts in AI forms containing HTML code.
+- Implemented security improvements.
+
+**Content Writer**
+
+- Enhanced error handling for the content writer API.
+
+= 1.8.66 =
+
+- Fixed Azure Embeddings issue in AI Training.
+- Improved Image Upload feature with a progress spinner to indicate upload status.
+- Fix an issue where conversation starters were deleted when updating custom chat bots without modifying the conversation starters.
+- Fixed a CSS conflict in the chat bot text field placeholder.
+- Added an option to delete images from image uploads. More info [here](https://docs.aipower.org/docs/ChatGPT/advanced-setup/image-upload#deleting-images-after-processing).
 
 = 1.8.65 =
 

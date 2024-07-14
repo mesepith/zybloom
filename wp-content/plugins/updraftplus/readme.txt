@@ -1,14 +1,14 @@
-=== UpdraftPlus: WordPress Backup & Migration Plugin ===
+=== UpdraftPlus: WP Backup & Migration Plugin ===
 Contributors: Backup with UpdraftPlus, DavidAnderson, pmbaldha, DNutbourne, aporter, bcrodua
 Tags: backup, database backup, wordpress backup, cloud backup, migration
 Requires at least: 3.2
-Tested up to: 6.4
-Stable tag: 1.23.16
+Tested up to: 6.6
+Stable tag: 1.24.4
 Author URI: https://updraftplus.com
 Donate link: https://david.dw-perspective.org.uk/donate
 License: GPLv3 or later
 
-Backup, restoration and migration - world's most popular backup tool. Backup to the cloud - schedule backups or backup manually.
+Backup, restore or migrate your WordPress website to another host or domain. Schedule backups or run manually. Migrate in minutes. Reliable and easy to use.
 
 == Description ==
 
@@ -179,9 +179,64 @@ The <a href="https://updraftplus.com/news/">UpdraftPlus backup blog</a> is the b
 
 N.B. Paid versions of UpdraftPlus Backup / Restore have a version number which is 1 higher in the first digit, and has an extra component on the end, but the changelog below still applies. i.e. changes listed for 1.16.32.x of the free version correspond to changes made in 2.16.32.x of the paid version.
 
-The [UpdraftPlus backup blog](https://updraftplus.com/news/) is the best place to learn in more detail about any important changes.
+= 1.24.4 - 2/Jul/2024 =
 
-N.B. Paid versions of UpdraftPlus Backup / Restore have a version number which is 1 higher in the first digit, and has an extra component on the end, but the changelog below still applies. i.e. changes listed for 1.23.1.x of the free version correspond to changes made in 2.23.1.x of the paid version.
+* FIX: Case-sensitive issue of bit field type names in a table.
+* FIX: Resolved issue where backup files could not be deleted from remote storage when either the root directory was active or no directory was specified in the OneDrive configuration form.
+* FIX: When users attempt to update a plugin using the "View Version x.x.x Details" link instead of choosing "Update Now," the plugin is successfully updated; however, the UI incorrectly displays an "Update Failed" message
+* TWEAK: Ensure compliance with Google Granular Consent and check for required permissions during storage access authorisation of Google Drive and Google Cloud
+* TWEAK: Prevent PHP warning and deprecation messages after completing access authorisation to Google Drive storage.
+* FIX: Conflict with the Gravity Forms plugin when there was an older version of jQuery UI presented on the "Installed Plugins" page.
+* TWEAK: Prevent PHP warning when Dropbox remote storage has been authenticated and the page is refreshed.
+* TWEAK: Added filter updraftplus_working_dir_localpath to allow temporary unzip path to be modified by developers
+* TWEAK: Modify the displayed title of the plugin from "WordPress Backup & Migration Plugin" to "WP Backup & Migration Plugin" as required by the plugin directory team
+* TWEAK: Parse certain php events and log proper error messages
+
+= 1.24.3 - 30/Apr/2024 =
+
+* FIX: Regression in 1.23.16 for improving logs which then caused incorrect_offset error reported by Dropbox wasn't properly handled.
+* TWEAK: The UpdraftVault remote storage can handle Wasabi as well as Amazon S3 storage in the background.
+* TWEAK: Fix WP_Theme_JSON_Resolver::theme_has_support deprecation warning for UpdraftCentral  
+* TWEAK: Prevent "PHP Warning: Undefined property: UpdraftPlus_BackupModule_pcloud::$description" during rescan remote storage.
+* TWEAK: Prevent PHP deprecation warnings during database backups when encountering null values in bit field types.
+* TWEAK: Show a warning message when the WP_ACCESSIBLE_HOSTS constant is defined and updraftplus.com is not permitted by its value
+* TWEAK: Update notices
+* TWEAK: Split multiple sentences into separate translation function calls.
+* TWEAK: Trim spaces from S3-Compatible (Generic) endpoint.
+
+= 1.24.2 - 26/Mar/2024 =
+
+* FIX: The "Continue restoration" and "Dismiss" buttons on the unfinished restoration dialog were not responsive to being pressed due to a recent regression
+* FIX: Conflict with other plugins due to different version of third party library (Guzzle) and the composer autoload.php was called too early
+* FIX: Undefined "NET_SCP_LOCAL_FILE" constant when SCP was in use for the SFTP/SCP remote storage
+* TWEAK: Add compatibility fields when returning plugins and themes to UpdraftCentral
+* TWEAK: Due to issues in some cURL versions 7.x in handling HTTP/2 connections, all HTTP connections to the OneDrive API are now forced to use HTTP/1.1 version, on cURL versions after 7.61 and before 8.0. Also, a constant named UPDRAFTPLUS_ONEDRIVE_CURL_HTTP_VERSION can be set in the wp-config.php file to change the default HTTP version to another preferred version
+* TWEAK: Adjust margin to fix broken UI for the 'View logs' button on backups.
+* TWEAK: Ensure all "SET SQL_MODE" statements in the database backup file are internally handled and are subjected only to a restoration outside UpdraftPlus plugin
+* TWEAK: Prevent PHP 8.2 coding style deprecation notices in the autobackup addon
+* TWEAK: In the context of OneDrive's chunk upload, authorisation header and bearer token should not be included during upload session as it may lead to 401 HTTP status due to different upload URL
+* TWEAK: Remove default value for updraftplus_https_to_http_additional_warning and updraftplus_http_to_https_additional_warning filters.
+* TWEAK: Set the SQL_MODE to 'NO_AUTO_VALUE_ON_ZERO' in the database backup file.
+* TWEAK: Seasonal notice content update for 2024 
+* TWEAK: During the operations that require phpseclib, include the composer autoload.php only when the phpseclib is really needed
+
+= 1.24.1 - 21/Feb/2024 =
+
+* FEATURE: Implement Backblaze Object Lock support (Premium version)
+* FIX: The email backup and basic report setting didn't work causing notification email confirming backup status couldn't be delivered to admin's email address (free version)
+* FIX: Fix WP-Optimize premium discovery for UpdraftCentral
+* FIX: Regression in 1.23.16 for correcting calls to translation functions which then caused some HTML attributes to be empty
+* FIX: Restoring backup sets via Migrate/Clone tab had caused all associated backup entities being downloaded immediately ignoring user preferences about the entities they wanted to restore
+* FIX: Third-party library conflict (phpseclib) with WP All Import Pro and AIO WP Migration plugins that caused failure in testing SFTP credentials and backing up to the SFTP remote storage
+* FIX: Restore compatibility with WordPress multisite running on versions < 4.9 caused by use of function not present before then
+* TWEAK: Add new translation entries for UpdraftCentral 
+* TWEAK: Got rid of PHP 8.2 deprecation messages caused by a null value being passed to the htmlspecialchars() function and creation of dynamic property
+* TWEAK: Got rid of PHP 8.3 deprecation messages caused by calling get_class() without arguments.
+* TWEAK: Refactor methods in UpdraftPlus_Database_Utility class
+* TWEAK: Send an email if the backup directory is not writable.
+* TWEAK: Add and set the `filename_only` parameter to reduce search times when looking for specific backup files in Dropbox.
+* TWEAK: Autoload PHP secure communication library (phpseclib) in a better way that would prevent already-loaded phpseclib classes (by other plugin) from being used in certain operations
+* TWEAK: Add updraftplus_backup_db_header_append filter to allow site owners to include arbitrary content in their database backup header
 
 = 1.23.16 - 23/Dec/2023 =
 
@@ -1878,4 +1933,4 @@ Non-English translators are provided by volunteers, and wordpress.org does not g
 We recognise and thank those mentioned at https://updraftplus.com/acknowledgements/ for code and/or libraries used and/or modified under the terms of their open source licences.
 
 == Upgrade Notice ==
-* 1.23.16: Various small tweaks. A recommended update for all.
+* 1.24.4: Google granular consent compliance, compatibility with Gravity Forms, OneDrive improvements and various small tweaks. A recommended update for all.

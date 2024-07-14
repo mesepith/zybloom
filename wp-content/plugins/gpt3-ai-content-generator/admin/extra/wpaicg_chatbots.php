@@ -231,12 +231,14 @@ $conversation_starters = [];
         overflow: hidden; /* Prevents scrollbar flash during size adjustment */
         transition: box-shadow 0.5s ease-in-out;
         color: <?php echo esc_html($wpaicg_input_font_color)?>;
+        line-height: 2;
     }
 
     textarea.auto-expand.resizing {
         transition: box-shadow 0.5s ease-in-out;
         box-shadow: 0 0 12px rgba(81, 203, 238, 0.8);
         color: <?php echo esc_html($wpaicg_input_font_color)?>;
+        line-height: 2;
     }
 
 
@@ -244,6 +246,7 @@ $conversation_starters = [];
         outline: none;
         box-shadow: 0 0 5px rgba(81, 203, 238, 1);
         color: <?php echo esc_html($wpaicg_input_font_color)?>;
+        line-height: 2;
     }
 
     textarea.wpaicg-chat-shortcode-typing::placeholder {
@@ -950,7 +953,7 @@ $conversation_starters = [];
                         <div class="nice-form-group">
                             <?php $azure_model = get_option('wpaicg_azure_deployment', ''); ?>
                             <label><?php echo esc_html__('Model', 'gpt3-ai-content-generator'); ?></label>
-                            <input type="text" class="wpaicg_chatbot_model" id="wpaicg_chat_model_azure" name="bot[model]" value="<?php echo esc_attr($azure_model); ?>" readonly>
+                            <input type="text" class="wpaicg_chatbot_model" id="wpaicg_chat_model_azure" name="bot[model]" value="<?php echo esc_attr($azure_model); ?>" >
                         </div>
                     </div>
 
@@ -2891,6 +2894,13 @@ $wpaicg_bots = new WP_Query($args);
             modalContent.find('.wpaicg_chatbot_log_notice').removeAttr('disabled');
             modalContent.find('.wpaicg_chatbot_log_notice_message').removeAttr('disabled');
             modalContent.find('.wpaicg-chat-shortcode').attr('data-bot-id',fields.id);
+
+            // Add current conversation starters as hidden inputs
+            if (fields.conversation_starters && fields.conversation_starters.length > 0) {
+                fields.conversation_starters.forEach((starter, index) => {
+                    modalContent.append(`<input type="hidden" name="bot[conversation_starters][${index}]" value="${starter}">`);
+                });
+            }
 
             let embeddingCheckbox = modalContent.find('.wpaicg_chatbot_use_default_embedding');
             let embeddingModelDropdown = modalContent.find('#embeddingModelDropdown');

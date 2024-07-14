@@ -1516,6 +1516,7 @@ if(!class_exists('\\WPAICG\\WPAICG_Chat')) {
         public function handle_image_upload($image) {
             $wpaicg_user_uploads = get_option('wpaicg_user_uploads', 'filesystem');
             $wpaicg_img_processing_method = get_option('wpaicg_img_processing_method', 'url'); // Fetch user preference
+            $wpaicg_delete_image = get_option('wpaicg_delete_image', 0); // Fetch delete image preference
             $result = ['url' => '', 'base64' => '']; // Initialize result variable with both keys
         
             if ($wpaicg_user_uploads === 'filesystem') {
@@ -1539,6 +1540,11 @@ if(!class_exists('\\WPAICG\\WPAICG_Chat')) {
                     // Convert to base64 if required
                     $imageData = file_get_contents($file_path);
                     $result['base64'] = 'data:image/' . pathinfo($file_path, PATHINFO_EXTENSION) . ';base64,' . base64_encode($imageData);
+
+                    // Delete the image file after processing if the option is enabled and processing method is not URL
+                    if ($wpaicg_delete_image && $wpaicg_img_processing_method !== 'url') {
+                        unlink($file_path);
+                    }
                 } else {
                     error_log('Failed to save image to filesystem.');
                 }
@@ -1562,11 +1568,15 @@ if(!class_exists('\\WPAICG\\WPAICG_Chat')) {
                     // Convert to base64 if required
                     $imageData = file_get_contents($file_path);
                     $result['base64'] = 'data:image/' . pathinfo($file_path, PATHINFO_EXTENSION) . ';base64,' . base64_encode($imageData);
+
+                    // Delete the image file after processing if the option is enabled and processing method is not URL
+                    if ($wpaicg_delete_image && $wpaicg_img_processing_method !== 'url') {
+                        wp_delete_attachment($attachment_id, true);
+                    }
                 }
             }
             return $result;
         }
-        
         
         /* Token handling */
         public function getUserTokenUsage($wpdb, $wpaicg_chat_source, $wpaicg_client_id) {

@@ -1,14 +1,16 @@
 <?php
 /**
- * Plugin Name: WooCommerce Google Analytics Integration
+ * Plugin Name: Google Analytics for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/woocommerce-google-analytics-integration/
  * Description: Allows Google Analytics tracking code to be inserted into WooCommerce store pages.
  * Author: WooCommerce
- * Author URI: https://woo.com
- * Version: 1.8.13
- * WC requires at least: 6.8
- * WC tested up to: 8.5
- * Tested up to: 6.4
+ * Author URI: https://woocommerce.com
+ * Version: 2.1.5
+ * WC requires at least: 8.4
+ * WC tested up to: 9.1
+ * Requires at least: 6.2
+ * Requires Plugins: woocommerce
+ * Tested up to: 6.6
  * License: GPLv2 or later
  * Text Domain: woocommerce-google-analytics-integration
  * Domain Path: languages/
@@ -22,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'WC_Google_Analytics_Integration' ) ) {
 
-	define( 'WC_GOOGLE_ANALYTICS_INTEGRATION_VERSION', '1.8.13' ); // WRCS: DEFINED_VERSION.
+	define( 'WC_GOOGLE_ANALYTICS_INTEGRATION_VERSION', '2.1.5' ); // WRCS: DEFINED_VERSION.
 	define( 'WC_GOOGLE_ANALYTICS_INTEGRATION_MIN_WC_VER', '6.8' );
 
 	// Maybe show the GA Pro notice on plugin activation.
@@ -30,6 +32,7 @@ if ( ! class_exists( 'WC_Google_Analytics_Integration' ) ) {
 		__FILE__,
 		function () {
 			WC_Google_Analytics_Integration::get_instance()->maybe_show_ga_pro_notices();
+			WC_Google_Analytics_Integration::get_instance()->maybe_set_defaults();
 		}
 	);
 
@@ -40,12 +43,13 @@ if ( ! class_exists( 'WC_Google_Analytics_Integration' ) ) {
 			if ( class_exists( FeaturesUtil::class ) ) {
 				FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__ );
 				FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__ );
+				FeaturesUtil::declare_compatibility( 'product_block_editor', __FILE__ );
 			}
 		}
 	);
 
 	/**
-	 * WooCommerce Google Analytics Integration main class.
+	 * Google Analytics for WooCommerce main class.
 	 */
 	class WC_Google_Analytics_Integration {
 
@@ -107,7 +111,7 @@ if ( ! class_exists( 'WC_Google_Analytics_Integration' ) ) {
 		public function plugin_links( $links ) {
 			$settings_url = $this->get_settings_url();
 			$support_url  = 'https://wordpress.org/support/plugin/woocommerce-google-analytics-integration';
-			$docs_url     = 'https://woo.com/document/google-analytics-integration/?utm_source=wordpress&utm_medium=all-plugins-page&utm_campaign=doc-link&utm_content=woocommerce-google-analytics-integration';
+			$docs_url     = 'https://woocommerce.com/document/google-analytics-integration/?utm_source=wordpress&utm_medium=all-plugins-page&utm_campaign=doc-link&utm_content=woocommerce-google-analytics-integration';
 
 			$plugin_links = array(
 				'<a href="' . esc_url( $settings_url ) . '">' . esc_html__( 'Settings', 'woocommerce-google-analytics-integration' ) . '</a>',
@@ -148,10 +152,10 @@ if ( ! class_exists( 'WC_Google_Analytics_Integration' ) ) {
 		public function woocommerce_missing_notice() {
 			if ( defined( 'WOOCOMMERCE_VERSION' ) ) {
 				/* translators: 1 is the required component, 2 the Woocommerce version */
-				$error = sprintf( __( 'WooCommerce Google Analytics requires WooCommerce version %1$s or higher. You are using version %2$s', 'woocommerce-google-analytics-integration' ), WC_GOOGLE_ANALYTICS_INTEGRATION_MIN_WC_VER, WOOCOMMERCE_VERSION );
+				$error = sprintf( __( 'Google Analytics for WooCommerce requires WooCommerce version %1$s or higher. You are using version %2$s', 'woocommerce-google-analytics-integration' ), WC_GOOGLE_ANALYTICS_INTEGRATION_MIN_WC_VER, WOOCOMMERCE_VERSION );
 			} else {
 				/* translators: 1 is the required component */
-				$error = sprintf( __( 'WooCommerce Google Analytics requires WooCommerce version %1$s or higher.', 'woocommerce-google-analytics-integration' ), WC_GOOGLE_ANALYTICS_INTEGRATION_MIN_WC_VER );
+				$error = sprintf( __( 'Google Analytics for WooCommerce requires WooCommerce version %1$s or higher.', 'woocommerce-google-analytics-integration' ), WC_GOOGLE_ANALYTICS_INTEGRATION_MIN_WC_VER );
 			}
 
 			echo '<div class="error"><p><strong>' . wp_kses_post( $error ) . '</strong></p></div>';
@@ -161,7 +165,7 @@ if ( ! class_exists( 'WC_Google_Analytics_Integration' ) ) {
 		 * Add a new integration to WooCommerce.
 		 *
 		 * @param  array $integrations WooCommerce integrations.
-		 * @return array               Google Analytics integration added.
+		 * @return array               Google Analytics for WooCommerce added.
 		 */
 		public function add_integration( $integrations ) {
 			$integrations[] = 'WC_Google_Analytics';
@@ -202,10 +206,30 @@ if ( ! class_exists( 'WC_Google_Analytics_Integration' ) ) {
 			$notice_html = '<strong>' . esc_html__( 'Get detailed insights into your sales with Google Analytics Pro', 'woocommerce-google-analytics-integration' ) . '</strong><br><br>';
 
 			/* translators: 1: href link to GA pro */
-			$notice_html .= sprintf( __( 'Add advanced tracking for your sales funnel, coupons and more. [<a href="%s" target="_blank">Learn more</a> &gt;]', 'woocommerce-google-analytics-integration' ), 'https://woo.com/products/woocommerce-google-analytics-pro/?utm_source=woocommerce-google-analytics-integration&utm_medium=product&utm_campaign=google%20analytics%20free%20to%20pro%20extension%20upsell' );
+			$notice_html .= sprintf( __( 'Add advanced tracking for your sales funnel, coupons and more. [<a href="%s" target="_blank">Learn more</a> &gt;]', 'woocommerce-google-analytics-integration' ), 'https://woocommerce.com/products/woocommerce-google-analytics-pro/?utm_source=woocommerce-google-analytics-integration&utm_medium=product&utm_campaign=google%20analytics%20free%20to%20pro%20extension%20upsell' );
 
 			WC_Admin_Notices::add_custom_notice( 'woocommerce_google_analytics_pro_notice', $notice_html );
 			update_option( 'woocommerce_google_analytics_pro_notice_shown', true );
+		}
+
+		/**
+		 * Set default options during activation if no settings exist
+		 *
+		 * @since 2.0.0
+		 *
+		 * @return void
+		 */
+		public function maybe_set_defaults() {
+			$settings_key = 'woocommerce_google_analytics_settings';
+
+			if ( false === get_option( $settings_key, false ) ) {
+				update_option(
+					$settings_key,
+					array(
+						'ga_product_identifier' => 'product_id',
+					)
+				);
+			}
 		}
 
 		/**

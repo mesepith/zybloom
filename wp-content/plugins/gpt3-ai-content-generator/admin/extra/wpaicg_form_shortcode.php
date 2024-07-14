@@ -38,6 +38,11 @@ if(file_exists(WPAICG_PLUGIN_DIR.'admin/data/gptforms.json')){
 global $wpdb;
 if(isset($atts) && is_array($atts) && isset($atts['id']) && !empty($atts['id'])){
     $wpaicg_item_id = sanitize_text_field($atts['id']);
+    $wpaicg_item_id = esc_attr($wpaicg_item_id);
+    // Ensure the ID contains only numeric values
+    if (!preg_match('/^\d+$/', $wpaicg_item_id)) {
+        return 'Invalid form ID';
+    }
     $wpaicg_item = false;
     $wpaicg_custom = isset($atts['custom']) && $atts['custom'] == 'yes' ? true : false;
     if(count($wpaicg_items) && !$wpaicg_custom){
@@ -469,7 +474,7 @@ if(isset($atts) && is_array($atts) && isset($atts['id']) && !empty($atts['id']))
                 </div>
             </div>
             <div class="wpaicg-prompt-content">
-                <form data-source="form" data-id="<?php echo esc_html($randomFormID)?>" method="post" action="" class="wpaicg-prompt-form" id="wpaicg-prompt-form">
+                <form data-source="form" data-id="<?php echo esc_attr($randomFormID)?>" method="post" action="" class="wpaicg-prompt-form" id="wpaicg-prompt-form">
                     <?php
                     if($wpaicg_show_setting):
                     ?>
@@ -479,8 +484,6 @@ if(isset($atts) && is_array($atts) && isset($atts['id']) && !empty($atts['id']))
                             endif;
                             ?>
                             <div class="wpaicg-mb-10">
-                                <textarea style="display: none" class="wpaicg-prompt-title" id="wpaicg-prompt-title" rows="8"><?php echo esc_html($wpaicg_item['prompt'])?></textarea>
-                                <textarea style="display: none" name="title" class="wpaicg-prompt-title-filled" id="wpaicg-prompt-title-filled" rows="8"><?php echo esc_html($wpaicg_item['prompt'])?></textarea>
                                 <?php
                                 if($wpaicg_fields && is_array($wpaicg_fields) && count($wpaicg_fields)){
                                     foreach($wpaicg_fields as $key=>$wpaicg_field){

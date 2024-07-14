@@ -66,13 +66,22 @@ if(isset($_POST['wpaicg_chat_save'])){
         update_option('wpaicg_typewriter_speed', sanitize_text_field($_POST['wpaicg_typewriter_speed']));
     } elseif(empty($_POST['wpaicg_typewriter_effect'])) {
         delete_option('wpaicg_typewriter_speed');
-    }    
+    }
+    if (isset($_POST['wpaicg_delete_image']) && !empty($_POST['wpaicg_delete_image'])) {
+        update_option('wpaicg_delete_image', sanitize_text_field($_POST['wpaicg_delete_image']));
+    } else {
+        delete_option('wpaicg_delete_image');
+    }
     // Handling the new "Enable Assistants" option
     $wpaicg_assistant_feature = isset($_POST['wpaicg_assistant_feature']) ? 1 : 0;
     update_option('wpaicg_assistant_feature', $wpaicg_assistant_feature);
     // Handling autoload past conversations.
     $wpaicg_autoload_chat_conversations = isset($_POST['wpaicg_autoload_chat_conversations']) ? 1 : 0;
     update_option('wpaicg_autoload_chat_conversations', $wpaicg_autoload_chat_conversations, 'no');
+    // Ensure delete image option is false if processing method is URL
+    if (get_option('wpaicg_img_processing_method', 'url') === 'url') {
+        delete_option('wpaicg_delete_image');
+    }
     $success = true;
 }
 $autoload_chat = get_option('wpaicg_autoload_chat_conversations', false);
@@ -146,6 +155,7 @@ if($success){
                     <option value="filesystem" <?php selected($wpaicg_user_uploads, 'filesystem'); ?>><?php echo esc_html__('Filesystem', 'gpt3-ai-content-generator'); ?></option>
                     <option value="media_library" <?php selected($wpaicg_user_uploads, 'media_library'); ?>><?php echo esc_html__('Media Library', 'gpt3-ai-content-generator'); ?></option>
                 </select>
+                <a href="https://docs.aipower.org/docs/ChatGPT/advanced-setup/image-upload#image-upload-settings" target="_blank">?</a>
             </td>
         </tr>
     </table>
@@ -155,9 +165,10 @@ if($success){
             <td>
                 <?php $wpaicg_img_processing_method = get_option('wpaicg_img_processing_method', 'url'); ?>
                 <select name="wpaicg_img_processing_method">
-                    <option value="url" <?php selected($wpaicg_img_processing_method, 'url'); ?>><?php echo esc_html__('URL', 'gpt3-ai-content-generator'); ?></option>
                     <option value="base64" <?php selected($wpaicg_img_processing_method, 'base64'); ?>><?php echo esc_html__('Base64', 'gpt3-ai-content-generator'); ?></option>
+                    <option value="url" <?php selected($wpaicg_img_processing_method, 'url'); ?>><?php echo esc_html__('URL', 'gpt3-ai-content-generator'); ?></option>
                 </select>
+                <a href="https://docs.aipower.org/docs/ChatGPT/advanced-setup/image-upload#image-upload-settings" target="_blank">?</a>
             </td>
         </tr>
     </table>
@@ -171,6 +182,7 @@ if($success){
                     <option value="low" <?php selected($wpaicg_img_vision_quality, 'low'); ?>><?php echo esc_html__('Low', 'gpt3-ai-content-generator'); ?></option>
                     <option value="high" <?php selected($wpaicg_img_vision_quality, 'high'); ?>><?php echo esc_html__('High', 'gpt3-ai-content-generator'); ?></option>
                 </select>
+                <a href="https://docs.aipower.org/docs/ChatGPT/advanced-setup/image-upload#image-upload-settings" target="_blank">?</a>
             </td>
         </tr>
     </table>
@@ -180,10 +192,12 @@ if($success){
         <div class="nice-form-group">
             <input <?php echo $wpaicg_chat_enable_sale ? ' checked':''?> type="checkbox" class="wpaicg_chat_enable_sale" value="1" name="wpaicg_chat_enable_sale">
             <label><?php echo esc_html__('Enable Token Purchase','gpt3-ai-content-generator')?></label>
+            <a href="https://docs.aipower.org/docs/user-management-token-sale" target="_blank">?</a>
         </div>
         <div class="nice-form-group">
             <input <?php echo $wpaicg_elevenlabs_hide_error ? ' checked':''?> type="checkbox" class="wpaicg_elevenlabs_hide_error" value="1" name="wpaicg_elevenlabs_hide_error">
-            <label><?php echo esc_html__('Hide Errors in Chat','gpt3-ai-content-generator')?></label>
+            <label><?php echo esc_html__('Hide API Errors in Chat','gpt3-ai-content-generator')?></label>
+            <a href="https://docs.aipower.org/docs/ChatGPT/advanced-setup/voice-chat#hide-api-errors-in-chat" target="_blank">?</a>
         </div>
         <div class="nice-form-group">
             <?php
@@ -195,10 +209,17 @@ if($success){
         <div class="nice-form-group">
             <input <?php echo $wpaicg_typewriter_effect ? ' checked':''?> type="checkbox" id="wpaicg_typewriter_effect" class="wpaicg_typewriter_effect" value="1" name="wpaicg_typewriter_effect">
             <label><?php echo esc_html__('Use Typewriter Effect','gpt3-ai-content-generator')?></label>
+            <a href="https://docs.aipower.org/docs/ChatGPT/advanced-setup/style#type-writer-effect" target="_blank">?</a>
         </div>
         <div class="nice-form-group">
             <input <?php echo get_option('wpaicg_autoload_chat_conversations', 0) ? ' checked':''?> type="checkbox" id="wpaicg_autoload_chat_conversations" class="wpaicg_autoload_chat_conversations" value="1" name="wpaicg_autoload_chat_conversations">
             <label><?php echo esc_html__('Don’t Load Past Chats','gpt3-ai-content-generator')?></label>
+            <a href="https://docs.aipower.org/docs/ChatGPT/advanced-setup/context#conversation-starters" target="_blank">?</a>
+        </div>
+        <div class="nice-form-group">
+            <input type="checkbox" id="wpaicg_delete_image" name="wpaicg_delete_image" value="1" <?php checked(1, get_option('wpaicg_delete_image', 0)); ?>>
+            <label for="wpaicg_delete_image"><?php echo esc_html__('Delete Images After Processing', 'gpt3-ai-content-generator'); ?></label>
+            <a href="https://docs.aipower.org/docs/ChatGPT/advanced-setup/image-upload#deleting-images-after-processing" target="_blank">?</a>
         </div>
     </fieldset>
     <table class="form-table">
@@ -222,10 +243,15 @@ if($success){
 
         // Initial check
         toggleTypewriterSpeedDisplay();
+        toggleDeleteImageOption();
 
         // On change of the checkbox
         $('#wpaicg_typewriter_effect').change(function() {
             toggleTypewriterSpeedDisplay();
+        });
+
+        $('#wpaicg_img_processing_method').change(function() {
+            toggleDeleteImageOption();
         });
 
         function toggleTypewriterSpeedDisplay() {
@@ -233,6 +259,15 @@ if($success){
                 $('#wpaicg_typewriter_speed_row').show();
             } else {
                 $('#wpaicg_typewriter_speed_row').hide();
+            }
+        }
+
+        function toggleDeleteImageOption() {
+            if ($('#wpaicg_img_processing_method').val() === 'url') {
+                $('#wpaicg_delete_image').prop('checked', false);
+                $('#wpaicg_delete_image').attr('disabled', 'disabled');
+            } else {
+                $('#wpaicg_delete_image').removeAttr('disabled');
             }
         }
 

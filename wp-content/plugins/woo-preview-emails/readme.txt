@@ -2,9 +2,9 @@
 Contributors: digamberpradhan, codemanas
 Tags: WooCommerce, Emails, Preview
 Requires at least: 6.1.0
-Tested up to: 6.4.0
+Tested up to: 6.5.5
 Requires PHP: 7.4
-Stable tag: 2.2.1
+Stable tag: 2.2.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,13 +32,51 @@ Looking for integration with WooCommerce Bookings and Subscriptions - check out 
 
 == Screenshots ==
 
-1. Menu Location
-2. Preview Order E-mails
-3. Preview User E-mails
-4. Example
-5. Send emails to yourself to check on other devices
+1. Basic View
+2. Preview View
+3. Preview Distraction Free Mode
 
 == Changelog ==
+= 2.2.13 =
+Change hook from plugin_loaded to plugins_loaded.
+
+= 2.2.12 =
+ Rollback: Searching not working if orders are split between two tables full explanation [see here](https://www.digamberpradhan.com/)
+
+= 2.2.11 =
+- Fix: Don't show refund orders in order listing / only show type shop_order in order listing
+- Fix: Show Orders in reverse descending order
+
+= 2.2.10 =
+- Misc: Update read me to show the updated screenshots.
+- Fix: WordPress notices design correction after 2.2.9 update
+
+= 2.2.9 =
+- Enhancement : Added cache break with versioning
+- Misc : Added logo, added CM Blocks in plugin list.
+
+= 2.2.8 =
+- Fix: Don't show pro features banner if already active.
+
+= 2.2.7 =
+- Fix: Search Orders not working.
+
+= 2.2.6 =
+- Enhancement: Design Refactor for future changes
+
+= 2.2.5 =
+- Misc: Added Promo section
+- Dev: Update stable tag to 6.5
+
+= 2.2.4 =
+- Stable tag was not updated.
+
+= 2.2.3 =
+- Enhancement: If background color is dark, the form fields weren't showing up.
+
+= 2.2.2 =
+- Patch: Properly escape output
+
 = 2.2.1 =
 - Language: Updated .pot file
 

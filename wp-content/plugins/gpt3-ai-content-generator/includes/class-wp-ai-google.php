@@ -193,6 +193,35 @@ if (!class_exists('\\WPAICG\\WPAICG_Google')) {
 
             $response = wp_remote_post($url, $args);
             $processedResponse = $this->handle_response($response, $sourceModule);
+            // Check for error status and return processed response
+            if (isset($processedResponse['status']) && $processedResponse['status'] === 'error') {
+                $errorMsg = $processedResponse['msg'];
+
+                return json_encode([
+                    "id" => 'chatcmpl-' . bin2hex(random_bytes(16)),
+                    "object" => "chat.completion",
+                    "created" => time(),
+                    "model" => "gemini-pro",
+                    "choices" => [
+                        [
+                            "index" => 0,
+                            "message" => [
+                                "role" => "assistant",
+                                "content" => $errorMsg
+                            ],
+                            "logprobs" => null,
+                            "finish_reason" => "stop"
+                        ]
+                    ],
+                    "usage" => [
+                        "prompt_tokens" => 0,
+                        "completion_tokens" => 0,
+                        "total_tokens" => 0
+                    ],
+                    "system_fingerprint" => "fp_" . bin2hex(random_bytes(8))
+                ]);
+                
+            }
             
             // Modification for sourceModule = "content" or chat and status = success
             // if ($sourceModule === 'content' && isset($processedResponse['status']) && $processedResponse['status'] === 'success') {
@@ -270,7 +299,7 @@ if (!class_exists('\\WPAICG\\WPAICG_Google')) {
                         "id" => 'chatcmpl-' . bin2hex(random_bytes(16)),
                         "object" => "chat.completion",
                         "created" => time(),
-                        "model" => "your_model_here",
+                        "model" => "gemini-pro",
                         "choices" => [
                             [
                                 "index" => 0,

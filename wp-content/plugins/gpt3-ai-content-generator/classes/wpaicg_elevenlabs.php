@@ -253,7 +253,6 @@ if(!class_exists('\\WPAICG\\WPAICG_ElevenLabs')) {
                 $voice = isset($_REQUEST['voice']) && !empty($_REQUEST['voice']) ? sanitize_text_field($_REQUEST['voice']) : '21m00Tcm4TlvDq8ikWAM';
                 $message = sanitize_text_field($_REQUEST['message']);
                 $model = isset($_REQUEST['elevenlabs_model']) && !empty($_REQUEST['elevenlabs_model']) ? sanitize_text_field($_REQUEST['elevenlabs_model']) : 'eleven_monolingual_v1'; // Added the model line
-                error_log($model);
                 $result = $this->stream($voice, $message, $model); // Added the model parameter
             }
 

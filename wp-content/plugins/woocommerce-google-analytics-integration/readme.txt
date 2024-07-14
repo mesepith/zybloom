@@ -1,9 +1,9 @@
-=== WooCommerce Google Analytics Integration ===
-Contributors: woocommerce, automattic, claudiosanches, bor0, royho, laurendavissmith001, c-shultz
+=== Google Analytics for WooCommerce ===
+Contributors: woocommerce, automattic, claudiosanches, bor0, royho, laurendavissmith001, cshultz88, mmjones, tomalec
 Tags: woocommerce, google analytics
-Requires at least: 3.9
-Tested up to: 6.4
-Stable tag: 1.8.13
+Requires at least: 6.2
+Tested up to: 6.6
+Stable tag: 2.1.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -11,9 +11,9 @@ Provides integration between Google Analytics and WooCommerce.
 
 == Description ==
 
-This plugin provides the integration between Google Analytics and the WooCommerce plugin. You can link a referral to a purchase and add transaction information to your Google Analytics data. It also supports Global Site Tag, Universal Analytics, eCommerce, and enhanced eCommerce event tracking.
+This plugin provides the integration between Google Analytics and the WooCommerce plugin. You can link a referral to a purchase and add transaction information to your Google Analytics data. It supports Global Site Tag (GA4) and eCommerce event tracking.
 
-Starting from WooCommerce 2.1, this integration is not packaged with WooCommerce and is only available by using this plugin.
+Please visit the [documentation page for additional information](https://woocommerce.com/document/google-analytics-integration/).
 
 Contributions are welcome via the [GitHub repository](https://github.com/woocommerce/woocommerce-google-analytics-integration).
 
@@ -42,35 +42,22 @@ Also please make sure to enter your Google Analytics ID under WooCommerce → Se
 
 Duplicate Google Analytics code causes a conflict in tracking. Remove any other Google Analytics plugins or code from your site to avoid duplication and conflicts in tracking.
 
-= My settings are not saving! =
-
-Do you have SUHOSIN installed/active on your server? If so, the default index length is 64 and some settings on this plugin requires longer lengths. Try setting your SUHOSIN configuration's "max_array_index_length" to "100" and test again.
-
-= My national data privacy laws require that I offer an opt-out for users, how can I do this? =
-
-Include the following html code snippet within the page where you want to have the opt-out, e.g. the your Imprint our Data Privacy page:
-
-https://gist.github.com/claudiosanches/b12d15b245be21c92ebc
-
-Exact wording depends on the national data privacy laws and should be adjusted.
-
 == Screenshots ==
 
 1. Google Analytics Integration Settings.
 
 == Changelog ==
 
-= 1.8.13 - 2024-01-09 =
-* Dev - Upgrade all NPM dev dependencies.
-* Dev - Upgrade to Node.js 18.
-* Tweak - WC 8.5 compatibility.
+= 2.1.5 - 2024-07-09 =
+* Tweak - WC 9.1 compatibility.
+* Tweak - WP 6.6 compatibility.
 
-= 1.8.12 - 2023-12-28 =
-* Fix - Avoid JavaScript exceptions when sending checkout event tracking due to incompatible data structure.
-* Fix - Correct misplaced each product index value as its quantity when sending checkout event tracking.
+= 2.1.4 - 2024-07-02 =
+* Dev - Upgrade npm dependencies.
+* Dev - Upgrade to Node.js 20.
+* Tweak - Add checks and explicit errors when cart buttons are missing data.
 
-= 1.8.11 - 2023-12-18 =
-* Dev - Prevent DB warnings in unit tests.
-* Tweak - WC 8.4 compatibility.
+= 2.1.3 - 2024-06-25 =
+* Add - WooCommerce Product Bundles integration.
 
 [See changelog for all versions](https://raw.githubusercontent.com/woocommerce/woocommerce-google-analytics-integration/trunk/changelog.txt).

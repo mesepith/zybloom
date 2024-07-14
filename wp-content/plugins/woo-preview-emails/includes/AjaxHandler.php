@@ -22,21 +22,15 @@ class AjaxHandler {
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			return false;
 		}
-		global $wpdb;
 
 		$q        = sanitize_text_field( filter_input( INPUT_POST, 'query' ) );
 		$response = [];
-
-		$query = $wpdb->prepare("SELECT ID FROM {$wpdb->prefix}posts WHERE post_type = 'shop_order' AND CAST(ID AS CHAR) LIKE %s", $wpdb->esc_like( $q ) . '%' );
-		$order_ids = $wpdb->get_col($query);
-
-		if ( $order_ids ) {
-			foreach ( $order_ids as $order_id ) {
-				$response[] = [ 'value' => $order_id, 'label' => '#order :' . $order_id ];
-			}
+		$order = wc_get_order($q);
+		if($order){
+			$response[] = ['value' => $order->get_id(), 'label' => '#Order: '.$order->get_order_number()];
 		}
-		wp_reset_postdata();
+
 		wp_send_json( $response );
-		die;
+		wp_die();
 	}
 }

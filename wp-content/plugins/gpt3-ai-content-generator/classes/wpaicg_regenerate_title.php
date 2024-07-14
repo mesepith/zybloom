@@ -61,7 +61,6 @@ if(!class_exists('\\WPAICG\\WPAICG_Regenerate_Title')) {
                 $result['msg'] = isset($complete['msg']) ? $complete['msg'] : 'Something went wrong';
             } else {
                 $responseData = trim($complete['data']);
-                error_log($responseData);
                 $responseData = preg_replace('/\n$/', '', preg_replace('/^\n/', '', preg_replace('/[\r\n]+/', "\n", $responseData)));
                 // remove <br> tags
                 $responseData = preg_replace('/<br[^>]*>/', "\n", $responseData);

@@ -373,6 +373,41 @@ if(!class_exists('\\WPAICG\\WPAICG_Playground')) {
             return $result;
         }
 
+        public function get_defined_prompt($post_id)
+        {
+            $form_fields = get_post_meta($post_id, 'wpaicg_form_fields', true);
+            $defined_prompt = get_post_meta($post_id, 'wpaicg_form_prompt', true);
+        
+            if (empty($form_fields) || empty($defined_prompt)) {
+                if (file_exists(WPAICG_PLUGIN_DIR . 'admin/data/gptforms.json')) {
+                    $forms_data = json_decode(file_get_contents(WPAICG_PLUGIN_DIR . 'admin/data/gptforms.json'), true);
+                    foreach ($forms_data as $form) {
+                        if ($form['id'] == $post_id) {
+                            $form_fields = json_encode($form['fields']);
+                            $defined_prompt = $form['prompt'];
+                            break;
+                        }
+                    }
+                }
+            }
+        
+            $form_fields = json_decode($form_fields, true);
+            $field_values = array();
+        
+            foreach ($form_fields as $field) {
+                $field_id = $field['id'];
+                if (isset($_REQUEST[$field_id])) {
+                    $field_values[$field_id] = sanitize_text_field($_REQUEST[$field_id]);
+                }
+            }
+        
+            foreach ($field_values as $key => $value) {
+                $defined_prompt = str_replace('{' . $key . '}', $value, $defined_prompt);
+            }
+        
+            return $defined_prompt;
+        }
+
         public function wpaicg_stream()
         {
             if(isset($_GET['wpaicg_stream']) && sanitize_text_field($_GET['wpaicg_stream']) == 'yes'){
@@ -381,29 +416,22 @@ if(!class_exists('\\WPAICG\\WPAICG_Playground')) {
                 header('Cache-Control: no-cache');
                 if ( ! wp_verify_nonce( $_REQUEST['nonce'], 'wpaicg-ajax-nonce' ) ) {
                     $wpaicg_error_message = esc_html__('Nonce verification failed', 'gpt3-ai-content-generator');
-                    $words = explode(' ', $wpaicg_error_message);
-                    $words[count($words) + 1] = '[LIMITED]';
-                    foreach ($words as $key => $word) {
-                        echo "event: message\n";
-                        if ($key == 0) {
-                            echo 'data: {"choices":[{"delta":{"content":"' . $word . '"}}]}';
-                        } else {
-                            if ($word == '[LIMITED]') {
-                                echo 'data: [LIMITED]';
-                            } else {
-                                echo 'data: {"choices":[{"delta":{"content":" ' . $word . '"}}]}';
-                            }
+                    $this->wpaicg_event_message($wpaicg_error_message);
+                } else { 
+                    $wpaicg_prompt = '';
+                    // Playground & Promptbase
+                    if ((isset($_REQUEST['source']) && $_REQUEST['source'] == 'playground') || (isset($_REQUEST['source_stream']) && $_REQUEST['source_stream'] == 'promptbase')) {
+                        if (isset($_REQUEST['title']) && !empty($_REQUEST['title'])) {
+                            $wpaicg_prompt = sanitize_text_field($_REQUEST['title']);
                         }
-                        echo "\n\n";
-                        ob_end_flush();
-                        flush();
+                    } else {
+                        // AI Forms
+                        if (isset($_REQUEST['id']) && !empty($_REQUEST['id'])) {
+                            $post_id = intval($_REQUEST['id']);
+                            $wpaicg_prompt = $this->get_defined_prompt($post_id);
+                        }
                     }
-                }
-                else {
-                    if (isset($_REQUEST['title']) && !empty($_REQUEST['title'])) {
-
-                        $wpaicg_prompt = sanitize_text_field($_REQUEST['title']);
-
+                    if ($wpaicg_prompt) {
                         $embeddingsDetails = $this->get_embeddings_details();
 
                         if ($embeddingsDetails['embeddingsEnabled']) {

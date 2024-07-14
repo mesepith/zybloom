@@ -4,7 +4,7 @@ namespace Codemanas\WooPreviewEmails;
 
 class Main {
 	public static ?Main $instance = null;
-	private $recipient;
+	private string $recipient;
 	private string $plugin_url;
 	public $emails = null;
 	public $notice_message = null;
@@ -143,29 +143,40 @@ class Main {
 	}
 
 	public function generate_the_admin_page() {
+		$icon = plugins_url( '/images/wpe.png', WOO_PREVIEW_EMAILS_FILE );
 		?>
         <div class="wrap">
-            <h2>Woo Preview Emails</h2>
+            <h2 style="display:none">Placeholder to show messages</h2>
+            <style>
+                .woo-preview-emails-header {
+                    display: flex;
+                    align-items: center;
+                    gap: 1em;
+                    flex-wrap: wrap;
+                }
+
+                .woo-preview-emails-header #message,
+                .woo-preview-emails-header .notice {
+                    width: 100%;
+                }
+            </style>
+            <div class="woo-preview-emails-header">
+                <img src="<?php echo esc_url( $icon ); ?>" alt="Woo Preview Emails" width="60px" height="60px"/>
+                <h2>Woo Preview Emails</h2>
+            </div>
 			<?php
-			if ( ! in_array( 'woo-preview-emails-pro-addon/woo-preview-emails-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			if ( ! in_array( 'woo-preview-emails-pro/woo-preview-emails-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 				?>
-                <div id="message" class="notice notice-warning">
-                    <h3>Need more features ?</h3>
+                <div id="message" class="notice notice-success is-dismissible">
+                    <h3><?php _e( 'Need more features', 'woo-preview-emails' ); ?> ?</h3>
                     <p>
                         <a href="https://www.codemanas.com/downloads/preview-e-mails-for-woocommerce-pro">Check out the
                             pro version here</a> which lets you view WooCommerce Booking and WooCommerce Subscription
                         templates.</p>
                 </div>
-                <div id="message" class="notice notice-warning">
-                    <p>If you have found this plugin useful, please leave a <a
-                                href="https://wordpress.org/support/plugin/woo-preview-emails/reviews/#new-post"
-                                target="_blank">review</a>
-                    <p>
-                        <strong><?php _e( "Note: E-mails require orders to exist before you can preview them", 'woo-preview-emails' ); ?></strong>
-                    </p>
-                </div>
 			<?php } ?>
 			<?php $this->generate_form(); ?>
+			<?php include_once WOO_PREVIEW_EMAILS_DIR . '/views/promotions.php' ?>
         </div>
 		<?php
 	}
@@ -228,11 +239,13 @@ class Main {
 			}
 
 			if ( $show_email ) {
+				do_action( 'woo_preview_emails_before_email_render', $_POST );
 				$this->plugin_url = plugins_url( '', WOO_PREVIEW_EMAILS_FILE );
 				/*Make Sure searched order is selected */
 				$orderID         = absint( ! empty( $_POST['search_order'] ) ? $_POST['search_order'] : $_POST['orderID'] );
 				$index           = sanitize_text_field( $_POST['choose_email'] );
 				$recipient_email = sanitize_text_field( $_POST['email'] );
+
 
 				if ( is_email( $recipient_email ) ) {
 					$this->recipient = $recipient_email;
@@ -316,6 +329,11 @@ class Main {
                 <div class="cm-WooPreviewEmail">
                     <div id="tool-options">
                         <div id="tool-wrap">
+                            <div style="text-align: left">
+                                <a class="button"
+                                   style="text-align: left"
+                                   href="<?php echo admin_url( 'admin.php?page=codemanas-woocommerce-preview-emails' ); ?>"><< <?php _e( 'Back to Admin Area', 'woo-preview-emails' ); ?></a>
+                            </div>
                             <p>
                                 <strong>Viewing Template File: </strong><br/>
 								<?php echo esc_html( $currently_used_template ); ?>
@@ -325,9 +343,6 @@ class Main {
 								<?php echo $current_email->description; ?>
                             </p>
 							<?php $this->generate_form(); ?>
-                            <!-- admin url was broken -->
-                            <a class="button"
-                               href="<?php echo admin_url( 'admin.php?page=codemanas-woocommerce-preview-emails' ); ?>"><?php _e( 'Back to Admin Area', 'woo-preview-emails' ); ?></a>
                         </div>
                     </div>
                     <div class="cm-WooPreviewEmail-emailContent cm-WooPreviewEmail-emailContent__<?php echo esc_attr( $email_type ); ?>"><?php echo $content; ?></div>

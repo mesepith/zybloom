@@ -44,10 +44,38 @@ if(!class_exists('\\WPAICG\\WPAICG_OpenRouterMethod')) {
                 return $model;
             }, $models['data']);
         
-            // Update the option with new models excluding the description field
-            update_option('wpaicg_openrouter_model_list', $filtered_models);
-            wp_send_json_success('Model list updated successfully');
+            // Attempt to update the option with new models excluding the description field
+            $update_result = update_option('wpaicg_openrouter_model_list', $filtered_models);
+        
+            if ($update_result) {
+                wp_send_json_success('Model list updated successfully');
+                return;
+            }
+        
+            // If the initial update fails, remove non-alphanumeric characters (except some common characters) and try again.
+            function remove_non_alphanumeric_except_common($text) {
+                return preg_replace('/[^a-zA-Z0-9:\/\-\(\)\. ]/', '', $text);
+            }
+        
+            // Remove non-alphanumeric characters (except some common characters) from the relevant fields
+            $filtered_models = array_map(function($model) {
+                $model['id'] = remove_non_alphanumeric_except_common($model['id']);
+                $model['name'] = remove_non_alphanumeric_except_common($model['name']);
+                return $model;
+            }, $filtered_models);
+        
+            // Attempt to update the option again after removing non-alphanumeric characters
+            $update_result = update_option('wpaicg_openrouter_model_list', $filtered_models);
+        
+            if ($update_result) {
+                wp_send_json_success('Model list updated successfully');
+            } else {
+                wp_send_json_error('Failed to update model list in the database');
+            }
         }
+        
+        
+        
         
     }
 

@@ -5,7 +5,7 @@
  * Description:       The ultimate solution to stop spam comments in default commenting system of WordPress.
  * Author:            Gulshan Kumar
  * Author URI:        https://www.gulshankumar.net/
- * Version:           1.1.6
+ * Version:           1.1.7
  * Text Domain:       forget-spam-comment
  * Domain Path:       /languages
  */

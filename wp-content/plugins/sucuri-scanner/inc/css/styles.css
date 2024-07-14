@@ -1156,11 +1156,21 @@ h3.lead {
     left: 0;
 }
 
+.sucuriscan-dropdown-content-sm {
+    min-width: 120px;
+}
+
+.sucuriscan-dropdown-content option,
 .sucuriscan-dropdown-content a {
     color: black;
     padding: 6px 16px;
     text-decoration: none;
     display: block;
+}
+
+.sucuriscan-dropdown-content option:hover {
+    color: #26BA9E;
+    cursor: pointer;
 }
 
 .sucuriscan-pointer {
@@ -1176,6 +1186,93 @@ h3.lead {
     border-bottom-color: transparent;
     border-bottom: 7px solid #fff;
     margin-left: 0;
+}
+
+.sucuriscan-tag-malware-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sucuriscan-tag-malware-container a {
+    margin-top: 0 !important;
+}
+
+#sucuriscan_toggle_wafkey {
+    position: absolute;
+    right: 115px;
+    top: 14px;
+}
+
+@media (max-width: 1500px) {
+    .sucuriscan-tag-malware-container-link-top {
+        display: none !important;
+        margin-top: 0 !important;
+    }
+}
+
+@media (min-width: 1500px) {
+    .sucuriscan-tag-malware-container-link-bottom {
+        display: none !important;
+    }
+}
+
+.sucuriscan-tag-malware-container-link-top,
+.sucuriscan-tag-malware-container-link-bottom {
+    border-radius: 4px !important;
+}
+
+.sucuriscan-mt-20 {
+    margin-top: 20px !important;
+}
+
+.sucuriscan-mb-5 {
+    margin-bottom: 5px !important;
+}
+
+.vertical-align-middle {
+    vertical-align: middle;
+}
+
+.sucuriscan-double-box-update p {
+    vertical-align: middle;
+}
+
+.sucuriscan-double-box-update div {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+    width: 29%;
+}
+
+.sucuriscan-headers-cache-input {
+    width: 120px;
+    height: auto;
+    padding: 0;
+    font-size: 1em;
+}
+
+.sucuriscan-headers-cache-is-editing {
+    td {
+        padding: 3px 10px;
+    }
+}
+
+.sucuriscan-table-fixed-layout {
+    table-layout: fixed;
+}
+
+.sucuriscan-table-fixed-layout .sucuriscan-tooltip > svg {
+    vertical-align: middle;
+}
+
+.sucuriscan-table-fixed-layout .manage-column svg {
+    width: 14px;
+    height: 14px;
+}
+
+.sucuriscan-table-fixed-layout td {
+    vertical-align: middle;
 }
 
 

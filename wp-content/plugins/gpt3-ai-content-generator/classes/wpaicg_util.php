@@ -96,7 +96,7 @@ if(!class_exists('\\WPAICG\\WPAICG_Util')) {
         
 
         public function get_embedding_models() {
-            return array(
+            $models = array(
                 'OpenAI' => array(
                     'text-embedding-3-small' => 1536,
                     'text-embedding-3-large' => 3072,
@@ -107,8 +107,16 @@ if(!class_exists('\\WPAICG\\WPAICG_Util')) {
                     'text-embedding-004' => 768,
                 )
             );
+        
+            // Check if 'wpaicg_azure_embeddings' exists in the options table
+            $azure_embeddings = get_option('wpaicg_azure_embeddings');
+            if (!empty($azure_embeddings)) {
+                $models['Azure'] = array($azure_embeddings => 1536);
+            }
+        
+            return $models;
         }
-
+        
         public function seo_plugin_activated()
         {
             $activated = false;
@@ -592,6 +600,7 @@ if(!class_exists('\\WPAICG\\WPAICG_Util')) {
             '01-ai/yi-34b-chat' => 0.00000144,
             '01-ai/yi-34b' => 0.00000144,
             '01-ai/yi-6b' => 0.000000252,
+            '01-ai/yi-large' => 0.00000072,
             'togethercomputer/stripedhyena-nous-7b' => 0.00000036,
             'togethercomputer/stripedhyena-hessian-7b' => 0.00000036,
             'mistralai/mixtral-8x7b' => 0.00000108,
@@ -609,6 +618,7 @@ if(!class_exists('\\WPAICG\\WPAICG_Util')) {
             'qwen/qwen-14b-chat' => 0.00000054,
             'qwen/qwen-7b-chat' => 0.00000036,
             'qwen/qwen-4b-chat' => 0.00000018,
+            'qwen/qwen-2-72b-instruct' => 0.00000036,
             'mistralai/mixtral-8x7b-instruct:nitro' => 0.00000108,
             'openai/gpt-3.5-turbo' => 0.000002,
             'openai/gpt-3.5-turbo-0125' => 0.000002,
@@ -654,6 +664,8 @@ if(!class_exists('\\WPAICG\\WPAICG_Util')) {
             'anthropic/claude-2.0:beta' => 0.000032,
             'anthropic/claude-2.1:beta' => 0.000032,
             'anthropic/claude-instant-1:beta' => 0.0000032,
+            'anthropic/claude-3.5-sonnet' => 0.000018,
+            'anthropic/claude-3.5-sonnet:beta' => 0.000018,
             'openai/gpt-3.5' => 0.000002,
             'openai/gpt-3.5-1106' => 0.000003,
             'openai/gpt-3.5-16k' => 0.000007,

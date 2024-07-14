@@ -353,22 +353,6 @@ if(!class_exists('\\WPAICG\\WPAICG_Hook')) {
                             padding-left: 1em;
                         }
 
-                        textarea.auto-expand {
-                            overflow: hidden; /* Prevents scrollbar flash during size adjustment */
-                            transition: box-shadow 0.5s ease-in-out;
-                        }
-
-                        textarea.auto-expand.resizing {
-                            transition: box-shadow 0.5s ease-in-out;
-                            box-shadow: 0 0 12px rgba(81, 203, 238, 0.8);
-                        }
-
-
-                        textarea.auto-expand:focus {
-                            outline: none;
-                            box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-                        }
-
                         /* Updated shining light effect for hover without background */
                         @keyframes shine {
                             0% {

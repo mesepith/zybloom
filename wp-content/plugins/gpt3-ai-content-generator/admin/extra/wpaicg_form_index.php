@@ -991,7 +991,6 @@ endif;
             <div class="wpaicg-grid-2">
                 <input type="hidden" class="wpaicg-template-response-type" value="textarea">
                 <textarea style="display: none" class="wpaicg-template-title" rows="8"></textarea>
-                <textarea style="display: none" name="title" class="wpaicg-template-title-filled" rows="8"></textarea>
                 <div class="wpaicg-form-fields"></div>
                 <div class="wpaicg-mb-10">
                     <strong class="wpaicg-template-text-noanswer_text"><?php echo esc_html__('Number of Answers','gpt3-ai-content-generator')?></strong>
@@ -2394,7 +2393,6 @@ endif;
                                 template_title = template_title.replace(sRegExInput, field_value);
                             })
                         }
-                        $('.wpaicg-template-title-filled').val(template_title+".\n\n");
                         var data = form.serialize();
                         var basicEditor = true;
                         if(response_type === 'textarea') {
